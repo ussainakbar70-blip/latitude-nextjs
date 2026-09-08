@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -90,8 +90,58 @@ export default function PropertyDetailPage({
   const isBooked = project.status === "booked";
   const isSold = project.status === "sold";
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${project.title} - Residential Plots in Coimbatore`,
+    description: project.description,
+    image: [project.img, ...(project.gallery || [])],
+    brand: {
+      "@type": "Brand",
+      name: "Latitude Promoters",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://latitudepromoters.com/properties/${project.id}`,
+      priceCurrency: "INR",
+      price: project.offerPrice,
+      priceValidUntil: "2026-12-31",
+      availability: isAvailable
+        ? "https://schema.org/InStock"
+        : "https://schema.org/SoldOut",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+    category: "RealEstateListing",
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Plot Dimensions", value: project.specs.plotDimensions },
+      { "@type": "PropertyValue", name: "Total Plot Area", value: project.specs.totalPlotArea },
+      { "@type": "PropertyValue", name: "Facing", value: project.specs.facing },
+      { "@type": "PropertyValue", name: "Road Width", value: project.specs.roadWidth },
+      { "@type": "PropertyValue", name: "Approval Number", value: project.specs.approvalNumber },
+      { "@type": "PropertyValue", name: "Offer", value: "40% Deepavali Dhamaka Discount" },
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudepromoters.com" },
+      { "@type": "ListItem", position: 2, name: "Properties", item: "https://latitudepromoters.com/#projects" },
+      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudepromoters.com/properties/${project.id}` },
+    ],
+  };
+
   return (
     <main className="bg-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
       {/* Top Breadcrumb & Action Bar */}

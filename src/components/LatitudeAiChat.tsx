@@ -292,48 +292,50 @@ export default function LatitudeAiChat() {
 
   return (
     <>
-      {/* Floating Launcher Button */}
-      <div className="fixed bottom-6 left-6 z-[95]">
+      {/* Floating Launcher Button - Perfectly locked for Mobile and Desktop */}
+      <div className="fixed z-[95] bottom-[84px] left-4 md:bottom-6 md:left-6 transition-all duration-300">
         {!isOpen && (
           <button
             type="button"
             onClick={() => setIsOpen(true)}
             aria-label="Open LATITUDE AI Assistant"
-            className="group relative flex items-center gap-3 bg-navy-900 border-2 border-gold text-white px-4 py-3 rounded-full shadow-[0_12px_36px_rgba(10,16,51,0.35)] hover:scale-105 hover:border-gold-warm transition-all"
+            className="group relative flex items-center justify-center bg-navy-900 border-[1.5px] border-gold text-white rounded-full shadow-[0_10px_30px_rgba(10,16,51,0.4)] hover:shadow-[0_12px_35px_rgba(201,163,74,0.35)] hover:border-gold-warm transition-all duration-300 hover:scale-[1.06] active:scale-95 p-2 md:py-2.5 md:px-4"
           >
-            {/* Pulsing indicator */}
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-gold" />
+            {/* Pulsing online status beacon */}
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-gold-warm to-amber-500 border border-navy-900" />
             </span>
 
-            <div className="flex items-center gap-2">
-              <div className="p-1 rounded-full bg-gold/20 text-gold-warm">
-                <Bot size={20} />
-              </div>
-              <div className="text-left leading-tight hidden sm:block">
-                <div className="font-serif text-sm font-bold text-gold-warm tracking-wider flex items-center gap-1">
-                  LATITUDE AI
-                  <Sparkles size={12} className="text-amber-400" />
-                </div>
-                <div className="text-[10px] text-white/70">40% Deepavali Offer & Specs</div>
-              </div>
+            {/* Mobile Icon-only view (Compact, attractive 44px jewel) */}
+            <div className="flex md:hidden items-center justify-center w-8 h-8 rounded-full bg-gold/15 text-gold-warm">
+              <Bot size={20} className="transition-transform group-hover:rotate-12" />
             </div>
 
-            <span className="sm:hidden font-serif text-xs font-bold text-gold-warm">
-              LATITUDE AI
-            </span>
+            {/* Desktop Capsule view (Elegant, luxury look) */}
+            <div className="hidden md:flex items-center gap-2.5">
+              <div className="p-1 rounded-full bg-gold/20 text-gold-warm">
+                <Bot size={18} className="transition-transform group-hover:rotate-12" />
+              </div>
+              <div className="text-left leading-tight">
+                <div className="font-serif text-[13px] font-bold text-gold-warm tracking-wider flex items-center gap-1">
+                  LATITUDE AI
+                  <Sparkles size={11} className="text-amber-400 animate-pulse" />
+                </div>
+                <div className="text-[9.5px] text-white/70">Ask 40% Offer & Specs</div>
+              </div>
+            </div>
           </button>
         )}
       </div>
 
-      {/* Main Chat Window */}
+      {/* Main Chat Window - Locked above mobile sticky navigation and docked on desktop */}
       {isOpen && (
         <div
-          className={`fixed z-[110] transition-all duration-300 shadow-2xl rounded-sm border-2 border-gold/70 overflow-hidden bg-white flex flex-col ${
+          className={`fixed z-[120] transition-all duration-300 shadow-2xl rounded-sm border-2 border-gold/70 overflow-hidden bg-white flex flex-col ${
             isMinimized
-              ? "bottom-6 left-6 w-[320px] h-[60px]"
-              : "bottom-6 left-6 right-6 sm:right-auto sm:w-[420px] h-[580px] max-h-[88vh]"
+              ? "bottom-[84px] left-4 md:bottom-6 md:left-6 w-[290px] h-[54px]"
+              : "bottom-[76px] left-3 right-3 sm:right-auto sm:left-6 sm:w-[410px] h-[520px] max-h-[75vh] md:bottom-[86px] md:h-[560px]"
           }`}
         >
           {/* Chat Window Header */}

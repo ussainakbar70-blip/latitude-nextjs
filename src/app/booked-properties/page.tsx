@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import {
   MapPin,
@@ -17,16 +17,38 @@ import { getBookedProjects } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
 export const metadata = {
-  title: "Booked Properties | Latitude Promoters Coimbatore",
+  title: "Booked Properties | Token Advance & Under Registration Plots in Coimbatore",
   description:
-    "Explore residential plots and properties currently booked and in the process of registration with Latitude Promoters in Coimbatore.",
+    "Explore residential plots and properties currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Promoters in Coimbatore. Join our Phase 2 priority waiting list.",
+  alternates: {
+    canonical: "/booked-properties",
+  },
+  openGraph: {
+    title: "Booked Properties | Latitude Promoters Coimbatore",
+    description:
+      "Track plots currently booked and undergoing registration. Join the waitlist for adjacent plots.",
+    url: "https://latitudepromoters.com/booked-properties",
+  },
 };
 
 export default function BookedPropertiesPage() {
   const bookedProjects = getBookedProjects();
 
+  const bookedJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Booked Properties - Latitude Promoters",
+    description:
+      "Residential plots with token advance received undergoing registration in Coimbatore.",
+    url: "https://latitudepromoters.com/booked-properties",
+  };
+
   return (
     <main className="bg-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookedJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}

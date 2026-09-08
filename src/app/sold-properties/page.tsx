@@ -18,16 +18,38 @@ import { getSoldProjects } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
 export const metadata = {
-  title: "Sold Out Properties & Completed Layouts | Latitude Promoters",
+  title: "Sold Out Properties & Completed Communities | 100% Delivered Plots in Coimbatore",
   description:
-    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Promoters.",
+    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Promoters. 100% Patta delivery and zero dispute record.",
+  alternates: {
+    canonical: "/sold-properties",
+  },
+  openGraph: {
+    title: "Sold Out Properties | Latitude Promoters Coimbatore",
+    description:
+      "100% delivered residential layouts with individual Pattas transferred across Coimbatore.",
+    url: "https://latitudepromoters.com/sold-properties",
+  },
 };
 
 export default function SoldPropertiesPage() {
   const soldProjects = getSoldProjects();
 
+  const soldJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Completed & Sold Out Residential Layouts - Latitude Promoters",
+    description:
+      "Showcase of 100% delivered, registered, and inhabited residential layouts in Coimbatore.",
+    url: "https://latitudepromoters.com/sold-properties",
+  };
+
   return (
     <main className="bg-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(soldJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}
