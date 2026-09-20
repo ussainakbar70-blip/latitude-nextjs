@@ -17,6 +17,14 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { projects, getAvailableProjects, getBookedProjects, getSoldProjects } from "@/data/projects";
+import {
+  layoutPlots,
+  layoutMetadata,
+  getPlotByNumber,
+  getAvailablePlots as getAvailableSitePlots,
+  getBookedPlots as getBookedSitePlots,
+  getSoldPlots as getSoldSitePlots,
+} from "@/data/sitemap-plots";
 import { site, buildWhatsappLink } from "@/data/site";
 
 type Message = {
@@ -29,12 +37,12 @@ type Message = {
 };
 
 const INITIAL_PROMPTS = [
+  "Show me available plots in the site map 🗺️",
   "Tell me about the 40% Deepavali Offer! ✨",
-  "Which properties are currently available?",
-  "What are the inch-by-inch specs of Kalampalayam?",
-  "Show me Booked & Sold Out properties",
-  "How do I book a free site visit?",
-  "Where is Latitude Promoters office located?",
+  "Which plots are corner plots?",
+  "What are the DTCP approval details?",
+  "How many plots are booked or sold?",
+  "How do I book a free cab site visit? 🚗",
 ];
 
 export default function LatitudeAiChat() {
@@ -45,12 +53,13 @@ export default function LatitudeAiChat() {
     {
       id: "welcome",
       sender: "ai",
-      text: `Hello! I am **LATITUDE AI**, your personal property consultant for **Latitude Promoters**.\n\nI can help you explore our DTCP & RERA approved residential plots, our **Special 40% Deepavali Festive Offer**, inch-by-inch architectural specifications, 360° virtual tours, and free site visits.\n\nWhat would you like to explore today?`,
+      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Promoters**.\n\nI can assist you with our **Live 17-Plot Master Site Map**, DTCP & RERA approved residential layouts, our **Special 40% Deepavali Festive Discounts**, inch-by-inch architectural specifications, 360° virtual tours, and free cab site visits.\n\nWhat would you like to explore today?`,
       timestamp: "Just now",
       links: [
+        { label: "Interactive Site Map (17 Plots)", href: "/#site-map" },
         { label: "View 40% Deepavali Plots", href: "/#projects" },
         { label: "Booked Plots", href: "/booked-properties" },
-        { label: "Sold Out Layouts", href: "/sold-properties" },
+        { label: "Sold Out Communities", href: "/sold-properties" },
       ],
     },
   ]);
@@ -71,6 +80,91 @@ export default function LatitudeAiChat() {
   const generateAiResponse = (userQuery: string): { text: string; links?: { label: string; href: string }[] } => {
     const q = userQuery.toLowerCase();
 
+    // 0a. Specific Plot Number Inquiry (e.g. "plot 1", "plot #8", "plot 14", "tell me about plot 5")
+    const plotMatch = q.match(/plot\s*#?\s*(\d+)/);
+    if (plotMatch) {
+      const pNum = parseInt(plotMatch[1], 10);
+      const plot = getPlotByNumber(pNum);
+      if (plot) {
+        const isAvail = plot.status === "available";
+        const isBk = plot.status === "booked";
+        return {
+          text: `📍 **Details for ${plot.label} (${layoutMetadata.projectName})**:\n\n• **Status:** ${
+            isAvail
+              ? "🟢 **Available (40% Deepavali Discount Active)**"
+              : isBk
+              ? "🟡 **Booked (Token Advance Paid - SRO Processing)**"
+              : "⚪ **100% Sold Out & Patta Transferred**"
+          }\n• **Dimensions:** ${plot.dimensionsImperial} (${plot.dimensionsMetric})\n• **Area:** **${plot.areaSqFt} Sq.Ft** (${plot.areaCents} Cents)\n• **Facing:** ${plot.facing}\n• **Road Access:** ${plot.roadAccess}\n\n💰 **Pricing Details:**\n• Standard Price: ~~₹${(plot.originalPrice / 100000).toFixed(2)} Lakhs~~\n• **40% Offer Price:** **₹${(plot.offerPrice / 100000).toFixed(2)} Lakhs**\n• **Direct Savings:** ₹${(plot.savingsAmount / 100000).toFixed(2)} Lakhs (Rate: ₹${plot.ratePerSqFt}/sq.ft)\n\n${plot.note ? `*Note: ${plot.note}*\n\n` : ""}Would you like to reserve ${plot.label} or inspect it during a free cab site visit?`,
+          links: [
+            { label: `View ${plot.label} on Site Map`, href: "/#site-map" },
+            { label: "Book Free Cab Site Visit", href: "/#contact" },
+          ],
+        };
+      }
+    }
+
+    // 0b. Master Site Map / Layout Map / Blueprint / Inventory Inquiry
+    if (
+      q.includes("site map") ||
+      q.includes("layout") ||
+      q.includes("blueprint") ||
+      q.includes("sitemap") ||
+      q.includes("plan") ||
+      q.includes("how many plot") ||
+      q.includes("how many plots") ||
+      q.includes("plot map")
+    ) {
+      const availCount = getAvailableSitePlots().length;
+      const bkCount = getBookedSitePlots().length;
+      const sldCount = getSoldSitePlots().length;
+
+      return {
+        text: `🗺️ **Master Site Map & Plot Availability Overview**:\n\n• **Project:** **${layoutMetadata.projectName}**\n• **Location:** ${layoutMetadata.location}\n• **DTCP Sanction:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Order:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n\n📊 **Current Inventory Status (17 Total Plots):**\n• 🟢 **Available (40% Deepavali Offer):** **${availCount} Plots** (Plots #01, #03, #05, #08, #11, #15, #16)\n• 🟡 **Booked (Token Received):** **${bkCount} Plots** (Plots #02, #09, #12, #14)\n• ⚪ **Sold Out (Patta Delivered):** **${sldCount} Plots** (Plots #04, #06, #07, #10, #13, #17)\n\n🛣️ **Infrastructure:** 9.0m (30 Ft) Main Central Tar Avenue + 7.2m (24 Ft) Cross Branch Roads, pure Siruvani drinking water, and dedicated TANGEDCO power space.\n\nYou can explore and click any plot on our live interactive site map!`,
+        links: [
+          { label: "Explore Interactive Site Map", href: "/#site-map" },
+          { label: "Book Free Cab Site Visit", href: "/#contact" },
+        ],
+      };
+    }
+
+    // 0c. Corner Plots
+    if (q.includes("corner")) {
+      const corners = layoutPlots.filter((p) => p.isCorner);
+      const cornerList = corners
+        .map(
+          (c) =>
+            `• **${c.label}** (${c.status.toUpperCase()}): ${c.dimensionsImperial} (${c.areaCents} Cents) — ${c.facing} — Offer: **₹${(c.offerPrice / 100000).toFixed(2)} Lakhs**`
+        )
+        .join("\n");
+
+      return {
+        text: `🏡 **Corner Plots in our Layout**:\n\nCorner plots provide dual road ventilation, maximum natural light, and superior Vastu compliance:\n\n${cornerList}\n\nWould you like to reserve a corner plot under our 40% Deepavali offer?`,
+        links: [
+          { label: "Inspect Corners on Site Map", href: "/#site-map" },
+          { label: "Claim Offer on WhatsApp", href: buildWhatsappLink(site.defaultWhatsappMessage) },
+        ],
+      };
+    }
+
+    // 0d. Approval Details
+    if (
+      q.includes("approval") ||
+      q.includes("dtcp") ||
+      q.includes("rera") ||
+      q.includes("survey") ||
+      q.includes("legal") ||
+      q.includes("document")
+    ) {
+      return {
+        text: `📜 **DTCP & Government Approval Details**:\n\n• **DTCP Order No:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Sanction:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n• **Title Status:** Single-owner parent deed with 40-year clean encumbrance certificate.\n• **Patta Transfer:** Instant individual sub-division Patta transfer upon registration.\n• **Bank Approval:** Pre-approved for up to 85% home loan by SBI, HDFC, Canara, and ICICI.\n\nWould you like our senior legal advisor to present the certified sanction copies during your site visit?`,
+        links: [
+          { label: "View Approved Blueprint", href: "/#site-map" },
+          { label: "Schedule Free Site Visit", href: "/#contact" },
+        ],
+      };
+    }
+
     // 1. Deepavali 40% Offer
     if (
       q.includes("deepavali") ||
@@ -83,6 +177,7 @@ export default function LatitudeAiChat() {
       return {
         text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Promoters is currently offering an unprecedented **Flat 40% OFF** on all our active residential layouts in Coimbatore:\n\n• **Kalampalayam Area**: Original ₹55L ➔ **Offer Price: ₹33 Lakhs** (You Save ₹22 Lakhs!)\n• **Green Fields Layout**: Original ₹75L ➔ **Offer Price: ₹45 Lakhs** (You Save ₹30 Lakhs!)\n• **Coimbatore Region Plots**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (You Save ₹16.8 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP & RERA approved layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a spot or schedule a free site visit?`,
         links: [
+          { label: "Explore Site Map (17 Plots)", href: "/#site-map" },
           { label: "Explore Kalampalayam (40% Off)", href: "/properties/kalampalayam-area" },
           { label: "Explore Green Fields (40% Off)", href: "/properties/green-fields-layout" },
         ],
@@ -242,6 +337,9 @@ export default function LatitudeAiChat() {
           // Determine contextual quick links based on query
           let relevantLinks: { label: string; href: string }[] = [];
           const lower = (query + " " + data.content).toLowerCase();
+          if (lower.includes("site map") || lower.includes("plot") || lower.includes("layout") || lower.includes("map")) {
+            relevantLinks.push({ label: "Live Interactive Site Map (17 Plots)", href: "/#site-map" });
+          }
           if (lower.includes("kalampalayam")) {
             relevantLinks.push({ label: "Kalampalayam Layout (40% Off)", href: "/properties/kalampalayam-area" });
           }
@@ -256,9 +354,10 @@ export default function LatitudeAiChat() {
           }
           if (relevantLinks.length === 0) {
             relevantLinks = [
+              { label: "Interactive Site Map (17 Plots)", href: "/#site-map" },
               { label: "View Available Plots (40% Off)", href: "/#projects" },
               { label: "Booked Plots", href: "/booked-properties" },
-              { label: "Sold Out Layouts", href: "/sold-properties" },
+              { label: "Sold Out Communities", href: "/sold-properties" },
             ];
           }
 
@@ -351,8 +450,9 @@ export default function LatitudeAiChat() {
                     40% OFFER ACTIVE
                   </span>
                 </div>
-                <div className="text-[10.5px] text-white/70 mt-0.5">
-                  GPT OSS 20B • Official AI Assistant
+                <div className="text-[10.5px] text-white/80 mt-0.5 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Senior Property Consultant • Online
                 </div>
               </div>
             </div>

@@ -31,6 +31,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Property360Viewer from "@/components/Property360Viewer";
+import SiteLayoutMap from "@/components/SiteLayoutMap";
 import { getProjectById } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
@@ -638,6 +639,13 @@ export default function PropertyDetailPage({
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Master Site Map & Plot Availability Section */}
+      <section className="py-14 bg-white border-t border-[#ECE9DF]">
+        <div className="max-w-[1240px] mx-auto px-5 md:px-10">
+          <SiteLayoutMap />
         </div>
       </section>
 
