@@ -85,7 +85,7 @@ export default function ProjectModal({
             </a>
             <a
               href={buildWhatsappLink(
-                `Hello Latitude Promoters, I would like more details about ${project.title} and the 40% Deepavali offer.`
+                `Hello Latitude Properties, I would like more details about ${project.title} and the 40% Deepavali offer.`
               )}
               target="_blank"
               rel="noopener"

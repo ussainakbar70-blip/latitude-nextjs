@@ -23,7 +23,7 @@ export default function SiteVisit() {
         </h2>
         <p className="text-[#D8D9E4] text-base leading-[1.7]">
           Experience the location, connectivity and surroundings firsthand.
-          Speak with the Latitude Promoters team to arrange a site visit.
+          Speak with the Latitude Properties team to arrange a site visit.
         </p>
         <div className="flex flex-wrap gap-4 justify-center mt-7">
           <a

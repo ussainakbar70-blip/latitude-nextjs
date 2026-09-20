@@ -20,15 +20,15 @@ import { site, buildWhatsappLink } from "@/data/site";
 export const metadata = {
   title: "Sold Out Properties & Completed Communities | 100% Delivered Plots in Coimbatore",
   description:
-    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Promoters. 100% Patta delivery and zero dispute record.",
+    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Properties. 100% Patta delivery and zero dispute record.",
   alternates: {
     canonical: "/sold-properties",
   },
   openGraph: {
-    title: "Sold Out Properties | Latitude Promoters Coimbatore",
+    title: "Sold Out Properties | Latitude Properties Coimbatore",
     description:
       "100% delivered residential layouts with individual Pattas transferred across Coimbatore.",
-    url: "https://latitudepromoters.com/sold-properties",
+    url: "https://latitudeproperties.com/sold-properties",
   },
 };
 
@@ -38,10 +38,10 @@ export default function SoldPropertiesPage() {
   const soldJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Completed & Sold Out Residential Layouts - Latitude Promoters",
+    name: "Completed & Sold Out Residential Layouts - Latitude Properties",
     description:
       "Showcase of 100% delivered, registered, and inhabited residential layouts in Coimbatore.",
-    url: "https://latitudepromoters.com/sold-properties",
+    url: "https://latitudeproperties.com/sold-properties",
   };
 
   return (
@@ -68,7 +68,7 @@ export default function SoldPropertiesPage() {
             </h1>
 
             <p className="text-[#EDEAE0] text-base leading-relaxed">
-              Every project developed by Latitude Promoters is backed by transparent DTCP approvals, 100% clear legal titles, and prompt individual Patta delivery. Browse our completed gated layouts where thriving families are building their dream homes.
+              Every project developed by Latitude Properties is backed by transparent DTCP approvals, 100% clear legal titles, and prompt individual Patta delivery. Browse our completed gated layouts where thriving families are building their dream homes.
             </p>
           </div>
 
@@ -176,7 +176,7 @@ export default function SoldPropertiesPage() {
 
                     <a
                       href={buildWhatsappLink(
-                        `Hi Latitude Promoters, I noticed ${project.title} is sold out. Please inform me when Phase 2 or a similar project launches in that area.`
+                        `Hi Latitude Properties, I noticed ${project.title} is sold out. Please inform me when Phase 2 or a similar project launches in that area.`
                       )}
                       target="_blank"
                       rel="noopener"

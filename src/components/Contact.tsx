@@ -29,12 +29,12 @@ export default function Contact() {
           </h2>
           <p className="text-[#B7B9C8] text-base leading-[1.75] max-w-[560px]">
             Have a location, budget or property requirement in mind? Connect
-            with Latitude Promoters for current project details and
+            with Latitude Properties for current project details and
             site-visit assistance.
           </p>
 
           <div className="my-7">
-            <p className="font-serif text-xl text-white mb-2.5">Latitude Promoters</p>
+            <p className="font-serif text-xl text-white mb-2.5">Latitude Properties</p>
             <div className="flex items-start gap-3 text-[#D8D9E4] text-[15px] mb-3.5">
               <MapPin size={18} className="text-gold-warm flex-shrink-0 mt-0.5" />
               <span>

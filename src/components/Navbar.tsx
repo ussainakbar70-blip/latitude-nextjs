@@ -46,7 +46,7 @@ export default function Navbar() {
               LATITUDE
             </b>
             <span className="text-[9px] tracking-[0.35em] text-gold-warm mt-[3px]">
-              PROMOTERS
+              PROPERTIES
             </span>
           </Link>
 

@@ -19,15 +19,15 @@ import { site, buildWhatsappLink } from "@/data/site";
 export const metadata = {
   title: "Booked Properties | Token Advance & Under Registration Plots in Coimbatore",
   description:
-    "Explore residential plots and properties currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Promoters in Coimbatore. Join our Phase 2 priority waiting list.",
+    "Explore residential plots and properties currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Properties in Coimbatore. Join our Phase 2 priority waiting list.",
   alternates: {
     canonical: "/booked-properties",
   },
   openGraph: {
-    title: "Booked Properties | Latitude Promoters Coimbatore",
+    title: "Booked Properties | Latitude Properties Coimbatore",
     description:
       "Track plots currently booked and undergoing registration. Join the waitlist for adjacent plots.",
-    url: "https://latitudepromoters.com/booked-properties",
+    url: "https://latitudeproperties.com/booked-properties",
   },
 };
 
@@ -37,10 +37,10 @@ export default function BookedPropertiesPage() {
   const bookedJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Booked Properties - Latitude Promoters",
+    name: "Booked Properties - Latitude Properties",
     description:
       "Residential plots with token advance received undergoing registration in Coimbatore.",
-    url: "https://latitudepromoters.com/booked-properties",
+    url: "https://latitudeproperties.com/booked-properties",
   };
 
   return (
@@ -167,7 +167,7 @@ export default function BookedPropertiesPage() {
 
                     <a
                       href={buildWhatsappLink(
-                        `Hi Latitude Promoters, I noticed that ${project.title} is currently booked. Please put me on the waiting list if similar plots become available!`
+                        `Hi Latitude Properties, I noticed that ${project.title} is currently booked. Please put me on the waiting list if similar plots become available!`
                       )}
                       target="_blank"
                       rel="noopener"

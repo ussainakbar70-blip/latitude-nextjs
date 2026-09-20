@@ -2,7 +2,7 @@
 import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://latitudepromoters.com";
+  const baseUrl = "https://latitudeproperties.com";
   const lastModified = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

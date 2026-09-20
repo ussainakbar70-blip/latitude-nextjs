@@ -376,7 +376,7 @@ export const projects: Project[] = [
     deepavaliOfferValidUntil: "Sold Out Landmark Project",
     view360Image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
     view360Title: "Ananya Gardens Phase 1 Completed Community 360° View",
-    description: "An exceptional success story by Latitude Promoters. All 32 plots were sold out ahead of schedule with 100% on-time legal title transfer, individual patta handovers, and full infrastructure handover. Over 20 houses are now constructed with happy resident families.",
+    description: "An exceptional success story by Latitude Properties. All 32 plots were sold out ahead of schedule with 100% on-time legal title transfer, individual patta handovers, and full infrastructure handover. Over 20 houses are now constructed with happy resident families.",
     highlights: [
       "100% Sold Out (32 out of 32 plots delivered)",
       "Zero legal disputes, 100% clean title track record",

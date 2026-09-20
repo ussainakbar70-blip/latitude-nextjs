@@ -562,7 +562,7 @@ export default function SiteLayoutMap() {
             {selectedPlot.status === "available" && (
               <a
                 href={buildWhatsappLink(
-                  `Hello Latitude Promoters, I am interested in reserving ${selectedPlot.label} (${selectedPlot.dimensionsImperial}, ${selectedPlot.areaCents} Cents) under the 40% Deepavali Offer for Rs. ${(selectedPlot.offerPrice / 100000).toFixed(2)} Lakhs.`
+                  `Hello Latitude Properties, I am interested in reserving ${selectedPlot.label} (${selectedPlot.dimensionsImperial}, ${selectedPlot.areaCents} Cents) under the 40% Deepavali Offer for Rs. ${(selectedPlot.offerPrice / 100000).toFixed(2)} Lakhs.`
                 )}
                 target="_blank"
                 rel="noopener"
@@ -576,7 +576,7 @@ export default function SiteLayoutMap() {
             {selectedPlot.status === "booked" && (
               <a
                 href={buildWhatsappLink(
-                  `Hello Latitude Promoters, I saw that ${selectedPlot.label} is currently booked. Can you notify me if this plot becomes available or if adjacent plots are opening?`
+                  `Hello Latitude Properties, I saw that ${selectedPlot.label} is currently booked. Can you notify me if this plot becomes available or if adjacent plots are opening?`
                 )}
                 target="_blank"
                 rel="noopener"
@@ -590,7 +590,7 @@ export default function SiteLayoutMap() {
             {selectedPlot.status === "sold" && (
               <a
                 href={buildWhatsappLink(
-                  `Hello Latitude Promoters, I noticed ${selectedPlot.label} is 100% sold out. Please share details of upcoming similar plots in Kalampalayam.`
+                  `Hello Latitude Properties, I noticed ${selectedPlot.label} is 100% sold out. Please share details of upcoming similar plots in Kalampalayam.`
                 )}
                 target="_blank"
                 rel="noopener"

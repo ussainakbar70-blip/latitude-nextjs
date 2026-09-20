@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="bg-[#070A24] text-[#B7B9C8] pt-16 pb-7">
       <div className="max-w-[1240px] mx-auto px-5 md:px-10 grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-10">
         <div>
-          <b className="font-serif text-white text-2xl tracking-[0.1em]">LATITUDE PROMOTERS</b>
+          <b className="font-serif text-white text-2xl tracking-[0.1em]">LATITUDE PROPERTIES</b>
           <span className="block text-gold-warm text-xs tracking-[0.18em] uppercase mt-2">
             {site.tagline}
           </span>
@@ -61,7 +61,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1240px] mx-auto px-5 md:px-10 border-t border-white/[0.08] mt-12 pt-6 flex flex-col md:flex-row md:justify-between gap-2 text-[12.5px] text-[#7C7F94]">
-        <span>© {new Date().getFullYear()} Latitude Promoters. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Latitude Properties. All rights reserved.</span>
         <span>Demo website presentation — not an official commissioned deployment.</span>
       </div>
     </footer>

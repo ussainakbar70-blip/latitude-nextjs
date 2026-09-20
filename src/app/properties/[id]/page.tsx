@@ -71,7 +71,7 @@ export default function PropertyDetailPage({
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: `${project.title} - Latitude Promoters`,
+        title: `${project.title} - Latitude Properties`,
         text: `Check out ${project.title} with 40% Deepavali discount!`,
         url: window.location.href,
       }).catch(() => {});
@@ -99,11 +99,11 @@ export default function PropertyDetailPage({
     image: [project.img, ...(project.gallery || [])],
     brand: {
       "@type": "Brand",
-      name: "Latitude Promoters",
+      name: "Latitude Properties",
     },
     offers: {
       "@type": "Offer",
-      url: `https://latitudepromoters.com/properties/${project.id}`,
+      url: `https://latitudeproperties.com/properties/${project.id}`,
       priceCurrency: "INR",
       price: project.offerPrice,
       priceValidUntil: "2026-12-31",
@@ -127,9 +127,9 @@ export default function PropertyDetailPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudepromoters.com" },
-      { "@type": "ListItem", position: 2, name: "Properties", item: "https://latitudepromoters.com/#projects" },
-      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudepromoters.com/properties/${project.id}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudeproperties.com" },
+      { "@type": "ListItem", position: 2, name: "Properties", item: "https://latitudeproperties.com/#projects" },
+      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudeproperties.com/properties/${project.id}` },
     ],
   };
 
@@ -509,7 +509,7 @@ export default function PropertyDetailPage({
 
                 <a
                   href={buildWhatsappLink(
-                    `Hello Latitude Promoters, I would like to lock the 40% Deepavali offer for ${project.title} (Offer Price: Rs. ${(project.offerPrice / 100000).toFixed(2)} Lakhs).`
+                    `Hello Latitude Properties, I would like to lock the 40% Deepavali offer for ${project.title} (Offer Price: Rs. ${(project.offerPrice / 100000).toFixed(2)} Lakhs).`
                   )}
                   target="_blank"
                   rel="noopener"
@@ -619,7 +619,7 @@ export default function PropertyDetailPage({
               {/* Office & Direct Contact Card */}
               <div className="bg-bg p-5 border border-[#ECE9DF] rounded-sm text-xs text-muted space-y-2.5">
                 <strong className="text-navy-900 text-sm block">
-                  Latitude Promoters Office
+                  Latitude Properties Office
                 </strong>
                 <p>{site.address.full}</p>
                 <div className="pt-2 border-t border-[#ECE9DF] space-y-1">

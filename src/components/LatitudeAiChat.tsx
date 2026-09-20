@@ -53,7 +53,7 @@ export default function LatitudeAiChat() {
     {
       id: "welcome",
       sender: "ai",
-      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Promoters**.\n\nI can assist you with our **Live 17-Plot Master Site Map**, DTCP & RERA approved residential layouts, our **Special 40% Deepavali Festive Discounts**, inch-by-inch architectural specifications, 360° virtual tours, and free cab site visits.\n\nWhat would you like to explore today?`,
+      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Properties**.\n\nI can assist you with our **Live 17-Plot Master Site Map**, DTCP & RERA approved residential layouts, our **Special 40% Deepavali Festive Discounts**, inch-by-inch architectural specifications, 360° virtual tours, and free cab site visits.\n\nWhat would you like to explore today?`,
       timestamp: "Just now",
       links: [
         { label: "Interactive Site Map (17 Plots)", href: "/#site-map" },
@@ -175,7 +175,7 @@ export default function LatitudeAiChat() {
       q.includes("discount")
     ) {
       return {
-        text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Promoters is currently offering an unprecedented **Flat 40% OFF** on all our active residential layouts in Coimbatore:\n\n• **Kalampalayam Area**: Original ₹55L ➔ **Offer Price: ₹33 Lakhs** (You Save ₹22 Lakhs!)\n• **Green Fields Layout**: Original ₹75L ➔ **Offer Price: ₹45 Lakhs** (You Save ₹30 Lakhs!)\n• **Coimbatore Region Plots**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (You Save ₹16.8 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP & RERA approved layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a spot or schedule a free site visit?`,
+        text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Properties is currently offering an unprecedented **Flat 40% OFF** on all our active residential layouts in Coimbatore:\n\n• **Kalampalayam Area**: Original ₹55L ➔ **Offer Price: ₹33 Lakhs** (You Save ₹22 Lakhs!)\n• **Green Fields Layout**: Original ₹75L ➔ **Offer Price: ₹45 Lakhs** (You Save ₹30 Lakhs!)\n• **Coimbatore Region Plots**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (You Save ₹16.8 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP & RERA approved layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a spot or schedule a free site visit?`,
         links: [
           { label: "Explore Site Map (17 Plots)", href: "/#site-map" },
           { label: "Explore Kalampalayam (40% Off)", href: "/properties/kalampalayam-area" },
@@ -238,7 +238,7 @@ export default function LatitudeAiChat() {
         .join("\n\n");
 
       return {
-        text: `🏆 **100% Sold Out & Handed Over Communities:**\n\n${list}\n\nLatitude Promoters has delivered 500+ plots across Coimbatore with a **zero-litigation 100% clear title track record**.`,
+        text: `🏆 **100% Sold Out & Handed Over Communities:**\n\n${list}\n\nLatitude Properties has delivered 500+ plots across Coimbatore with a **zero-litigation 100% clear title track record**.`,
         links: [{ label: "View Sold Properties Showcase", href: "/sold-properties" }],
       };
     }
@@ -253,7 +253,7 @@ export default function LatitudeAiChat() {
       q.includes("road")
     ) {
       return {
-        text: `📐 **Inch-by-Inch Engineering Standards:**\n\nEach Latitude Promoters project features precise, verified specifications:\n\n• **Roads:** 33ft to 40ft wide heavy-duty blacktop tar roads with storm drains.\n• **Water:** Dedicated Siruvani municipal drinking water tap + sweet water borewells.\n• **Electricity:** 3-Phase underground electric cabling or high-grade conduit poles with automatic solar street lighting.\n• **Approvals:** 100% DTCP & TN RERA sanctioned with immediate individual sub-division Patta.\n• **Structure (Villas):** Deep RCC column isolated footing, 9\" wire-cut red brick walls, 4x2 vitrified tiles, teak main doors, and Finolex/Jaquar fittings.\n\nYou can inspect the full inch-by-inch breakdown on any property page!`,
+        text: `📐 **Inch-by-Inch Engineering Standards:**\n\nEach Latitude Properties project features precise, verified specifications:\n\n• **Roads:** 33ft to 40ft wide heavy-duty blacktop tar roads with storm drains.\n• **Water:** Dedicated Siruvani municipal drinking water tap + sweet water borewells.\n• **Electricity:** 3-Phase underground electric cabling or high-grade conduit poles with automatic solar street lighting.\n• **Approvals:** 100% DTCP & TN RERA sanctioned with immediate individual sub-division Patta.\n• **Structure (Villas):** Deep RCC column isolated footing, 9\" wire-cut red brick walls, 4x2 vitrified tiles, teak main doors, and Finolex/Jaquar fittings.\n\nYou can inspect the full inch-by-inch breakdown on any property page!`,
         links: [
           { label: "Kalampalayam Inch-by-Inch Specs", href: "/properties/kalampalayam-area" },
           { label: "Green Fields Specs", href: "/properties/green-fields-layout" },
@@ -283,7 +283,7 @@ export default function LatitudeAiChat() {
       q.includes("location")
     ) {
       return {
-        text: `🚗 **Latitude Promoters — Free Site Visit & Office Details:**\n\n• **Office Address:**\n  ${site.address.full}\n\n• **Direct Phone:**\n  📞 **${site.phonePrimary}** / 📞 **${site.phoneAlternate}**\n\n• **Free Site Visit:**\n  We provide complimentary cab pick-up & drop across Coimbatore, plus on-site legal document verification with our senior team.`,
+        text: `🚗 **Latitude Properties — Free Site Visit & Office Details:**\n\n• **Office Address:**\n  ${site.address.full}\n\n• **Direct Phone:**\n  📞 **${site.phonePrimary}** / 📞 **${site.phoneAlternate}**\n\n• **Free Site Visit:**\n  We provide complimentary cab pick-up & drop across Coimbatore, plus on-site legal document verification with our senior team.`,
         links: [
           { label: "Schedule Site Visit Online", href: "/#contact" },
           { label: "Chat on WhatsApp Now", href: buildWhatsappLink(site.defaultWhatsappMessage) },
@@ -293,7 +293,7 @@ export default function LatitudeAiChat() {
 
     // Default intelligent overview
     return {
-      text: `Thank you for asking! **Latitude Promoters** is Coimbatore's premier land and residential promoter, specializing in DTCP and RERA approved gated layouts with direct Siruvani drinking water, wide tar roads, and 100% clear titles.\n\nRight now, we are celebrating our **40% Deepavali Festive Discount** across our layouts in Kalampalayam and Coimbatore.\n\nFeel free to ask me about:\n- 💥 The 40% Deepavali price savings\n- 🏡 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 🔒 Booked & Sold property records\n- 🚗 Free cab pickup for site visits`,
+      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP and RERA approved gated layouts with direct Siruvani drinking water, wide tar roads, and 100% clear titles.\n\nRight now, we are celebrating our **40% Deepavali Festive Discount** across our layouts in Kalampalayam and Coimbatore.\n\nFeel free to ask me about:\n- 💥 The 40% Deepavali price savings\n- 🏡 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 🔒 Booked & Sold property records\n- 🚗 Free cab pickup for site visits`,
       links: [
         { label: "View Available Plots", href: "/#projects" },
         { label: "Booked Plots", href: "/booked-properties" },
@@ -576,7 +576,7 @@ export default function LatitudeAiChat() {
                 <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#EEECE4] text-[10px] text-muted">
                   <span>Need human support?</span>
                   <a
-                    href={buildWhatsappLink("Hi Latitude Promoters, I am chatting with LATITUDE AI and would like to speak to a senior property manager.")}
+                    href={buildWhatsappLink("Hi Latitude Properties, I am chatting with LATITUDE AI and would like to speak to a senior property manager.")}
                     target="_blank"
                     rel="noopener"
                     className="flex items-center gap-1 text-emerald-700 font-semibold hover:underline"
