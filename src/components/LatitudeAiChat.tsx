@@ -38,10 +38,10 @@ type Message = {
 
 const INITIAL_PROMPTS = [
   "Show me available plots in the site map 🗺️",
+  "Watch YouTube video tours & shorts 🎥",
   "Tell me about the 40% Deepavali Offer! ✨",
   "Which plots are corner plots?",
   "What are the DTCP approval details?",
-  "How many plots are booked or sold?",
   "How do I book a free cab site visit? 🚗",
 ];
 
@@ -268,6 +268,24 @@ export default function LatitudeAiChat() {
         links: [
           { label: "Test 360° Tour on Kalampalayam", href: "/properties/kalampalayam-area" },
           { label: "Test 360° Tour on Green Fields", href: "/properties/green-fields-layout" },
+        ],
+      };
+    }
+
+    // YouTube Video Tours & Shorts
+    if (
+      q.includes("youtube") ||
+      q.includes("video") ||
+      q.includes("short") ||
+      q.includes("channel") ||
+      q.includes("tour") ||
+      q.includes("walkthrough")
+    ) {
+      return {
+        text: `🎥 **Latitude Properties Official YouTube Channel & Video Tours:**\n\nYou can watch live on-site layout tours, villa walkthroughs, and buyer experiences directly on our website!\n\n• **Featured On-Site Shorts:**\n  - Rathna Residency DTCP Plots (Behind Karpagam University)\n  - Madhampatty 2 BHK Luxury Villa (₹45 Lakhs Onwards)\n  - Malumichampatty Dream Land Tour\n  - Coimbatore Real Estate Investment Guide\n\n• **Official Channel:** [@LatitudeProperties](https://www.youtube.com/@LatitudeProperties)`,
+        links: [
+          { label: "Watch Shorts Carousel on Website", href: "/#video-tours" },
+          { label: "Visit Official YouTube Channel", href: "https://www.youtube.com/@LatitudeProperties" },
         ],
       };
     }
