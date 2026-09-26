@@ -354,7 +354,7 @@ export default function LatitudeAiChat() {
             relevantLinks.push({ label: "Live Interactive Site Map", href: "/#site-map" });
           }
           if (lower.includes("kalampalayam")) {
-            relevantLinks.push({ label: "Kalampalayam Layout (40% Off)", href: "/properties/kalampalayam-area" });
+            relevantLinks.push({ label: "Sri Aanandham Avenue (Kalampalayam)", href: "/sites/sri-aanandham-avenue" });
           }
           if (lower.includes("kandhan")) {
             relevantLinks.push({ label: "Kandhan Avenue Layout", href: "/sites/kandhan-avenue" });

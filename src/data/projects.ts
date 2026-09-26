@@ -391,279 +391,6 @@ export const projects: Project[] = [
       "Immediate registration ready with verified Patta",
       "40% Deepavali discount active on Phase 2 introductory inventory"
     ]
-  },
-  {
-    id: "royal-palms-residency-plot-14",
-    tag: "Token Received • Registration Pending",
-    title: "Royal Palms Residency (Plot #14)",
-    location: "Vadavalli - Thondamuthur Link Road, Coimbatore",
-    type: "Premium Corner Villa Plot",
-    status: "booked",
-    dtcpApprovalNumber: "DTCP: 310/2023 | RERA: TN/11/Layout/0310/2023",
-    layoutMapImage: "/images/sites/sri-aanandham-layout.jpg",
-    layoutMapTitle: "Royal Palms Residency Layout Map",
-    img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80"
-    ],
-    plotsSummary: {
-      total: 18,
-      available: 0,
-      booked: 3,
-      sold: 15,
-    },
-    plotsList: [
-      { plotNumber: 14, areaSqFt: 2250, areaCents: "5.16 Cent", dimensions: "45' x 50'", facing: "North-East Corner", status: "booked" },
-      { plotNumber: 15, areaSqFt: 2100, areaCents: "4.82 Cent", dimensions: "42' x 50'", facing: "East", status: "booked" },
-      { plotNumber: 16, areaSqFt: 2100, areaCents: "4.82 Cent", dimensions: "42' x 50'", facing: "East", status: "booked" }
-    ],
-    amenities: "Corner Plot, 40ft Main Road, Underground Drainage, Park Facing",
-    amenitiesList: [
-      { name: "Dual Road Corner Access", description: "Front 40ft and Side 30ft two-way road access for premium ventilation", iconName: "Route" },
-      { name: "Direct Park Facing", description: "Direct view of the 1-acre central community landscaped garden", iconName: "Trees" },
-      { name: "Siruvani Water Tapping", description: "Metered Siruvani water connection active at site", iconName: "Droplets" },
-      { name: "DTCP Approved Corner", description: "100% legal compliance with individual sub-division approval", iconName: "Shield" }
-    ],
-    specs: {
-      plotDimensions: "45 Feet Frontage x 50 Feet Depth",
-      totalPlotArea: "2,250 Sq.Ft (5.16 Cents)",
-      builtUpArea: "Planned 2,800 Sq.Ft Contemporary Villa",
-      carpetArea: "2,400 Sq.Ft",
-      facing: "North-East Corner (Double Road Facing)",
-      roadWidth: "40 Feet Main Road + 30 Feet Side Road",
-      approvalNumber: "DTCP: 310/2023 | RERA: TN/11/Layout/0310/2023",
-      pattaStatus: "Token Advance Paid • SRO Registration in Progress",
-      foundation: "Heavy Column RCC Footing spec approved",
-      superstructure: "Wire-cut Red Bricks",
-      flooring: "Italian Marble finish vitrified tiles",
-      doorsWindows: "First Quality Teak Wood & UPVC",
-      electricalPlumbing: "Finolex / Jaquar Concealed systems",
-      waterDrainage: "Siruvani Tap + Underground Drainage",
-      ceilingHeight: "10 Feet 6 Inches"
-    },
-    originalPrice: 6200000,
-    discountPercent: 40,
-    offerPrice: 3720000,
-    savingsAmount: 2480000,
-    ratePerSqFtOriginal: 2755,
-    ratePerSqFtOffer: 1653,
-    deepavaliOfferValidUntil: "Booked under Deepavali Early-Bird Offer",
-    view360Image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Royal Palms Plot #14 360° Virtual Tour",
-    description: "A prime North-East corner plot facing the central park at Royal Palms Residency. This property has received a token advance booking under our 40% Deepavali festival pricing and is currently undergoing title deed registration at the Sub-Registrar Office.",
-    highlights: [
-      "Status: Booked (Token advance received)",
-      "Customer: Dr. A. Senthil Kumar & Family",
-      "Expected Handover/Registration Date: November 2026",
-      "Join the waitlist if this deal doesn't conclude or for adjacent plots"
-    ],
-    bookedOrSoldNote: "Booked on Sep 2026. Registration process currently underway with HDFC Bank mortgage clearance.",
-    handoverDate: "Nov 2026"
-  },
-  {
-    id: "grand-orchard-plot-08",
-    tag: "Token Received • Loan Processed",
-    title: "Grand Orchard Greens (Plot #08)",
-    location: "Kovaipudur Garden Zone, Coimbatore",
-    type: "Residential Plot with G+1 Villa Plan",
-    status: "booked",
-    dtcpApprovalNumber: "DTCP: 119/2023 | RERA Certified",
-    layoutMapImage: "/images/sites/kandhan-avenue-layout.png",
-    layoutMapTitle: "Grand Orchard Greens Layout Plan",
-    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
-    ],
-    plotsSummary: {
-      total: 20,
-      available: 0,
-      booked: 2,
-      sold: 18,
-    },
-    plotsList: [
-      { plotNumber: 8, areaSqFt: 1350, areaCents: "3.10 Cent", dimensions: "30' x 45'", facing: "East", status: "booked" }
-    ],
-    amenities: "30ft Tar Road, EB Connection, Fully Fenced, Siruvani Water",
-    amenitiesList: [
-      { name: "30 Ft Blacktop Road", description: "Direct connectivity to Kovaipudur main road", iconName: "Route" },
-      { name: "Clear Legal Patta", description: "Single owner document verified by senior advocate", iconName: "Shield" },
-      { name: "Borewell & Siruvani Water", description: "Dual water points ready at site", iconName: "Droplets" }
-    ],
-    specs: {
-      plotDimensions: "30 Feet Frontage x 45 Feet Depth",
-      totalPlotArea: "1,350 Sq.Ft (3.10 Cents)",
-      builtUpArea: "1,850 Sq.Ft (Villa Blueprint Ready)",
-      carpetArea: "1,550 Sq.Ft",
-      facing: "East Facing",
-      roadWidth: "30 Feet Bitumen Tar Road",
-      approvalNumber: "DTCP: 119/2023 | RERA Certified",
-      pattaStatus: "Token Advance Paid • Bank Loan Sanctioned",
-      foundation: "RCC Footing Structure",
-      superstructure: "Country Red Bricks",
-      flooring: "Vitrified Glazed Tiles",
-      doorsWindows: "Teak Main Door & UPVC",
-      electricalPlumbing: "Concealed 3-Phase Havells",
-      waterDrainage: "Siruvani + Borewell",
-      ceilingHeight: "10 Feet"
-    },
-    originalPrice: 4800000,
-    discountPercent: 40,
-    offerPrice: 2880000,
-    savingsAmount: 1920000,
-    ratePerSqFtOriginal: 3555,
-    ratePerSqFtOffer: 2133,
-    deepavaliOfferValidUntil: "Locked under 40% Deepavali Campaign",
-    view360Image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Grand Orchard Plot #08 360° Virtual Walkthrough",
-    description: "A fast-appreciating residential plot in the serene Kovaipudur micro-market, locked with a booking deposit by an NRI client taking advantage of the 40% Deepavali discount.",
-    highlights: [
-      "Status: Booked (SBI Home Loan Approved)",
-      "Purchaser: Mr. Rajesh Kannan",
-      "Registration timeline: Within 25 days",
-      "Similar adjacent plots opening soon for Phase II"
-    ],
-    bookedOrSoldNote: "Booked with token advance. Bank loan documentation completed.",
-    handoverDate: "Oct 2026"
-  },
-  {
-    id: "ananya-gardens-phase-1",
-    tag: "100% Sold Out & Handed Over",
-    title: "Ananya Gardens (Phase 1)",
-    location: "Siruvani Main Road, Kalampalayam, Coimbatore",
-    type: "Completed Residential Gated Layout",
-    status: "sold",
-    dtcpApprovalNumber: "DTCP: 95/2021 | RERA Registered",
-    layoutMapImage: "/images/sites/phase1-phase2-layout.png",
-    layoutMapTitle: "Ananya Gardens Delivered Layout Plan",
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
-    ],
-    plotsSummary: {
-      total: 32,
-      available: 0,
-      booked: 0,
-      sold: 32,
-    },
-    plotsList: Array.from({ length: 32 }, (_, i) => ({
-      plotNumber: i + 1,
-      areaSqFt: 1500,
-      areaCents: "3.44 Cent",
-      status: "sold" as const,
-      facing: i % 2 === 0 ? "East" : "North"
-    })),
-    amenities: "Fully Inhabited, Asphalt Roads, Streetlights, Parks, CCTV",
-    amenitiesList: [
-      { name: "Fully Occupied Gated Colony", description: "32 families already living and enjoying clean surroundings", iconName: "Shield" },
-      { name: "Asphalt Roads & Streetlights", description: "Completed infrastructure fully handed over to local panchayat", iconName: "Route" },
-      { name: "Active Resident Association", description: "Monthly maintenance and round-the-clock security surveillance", iconName: "Trees" }
-    ],
-    specs: {
-      plotDimensions: "Various sizes from 3 Cents to 8 Cents",
-      totalPlotArea: "32 Plots Total (Completed Project)",
-      builtUpArea: "Multiple Custom Villas Built",
-      carpetArea: "100% Occupied",
-      facing: "East, North and North-East plots",
-      roadWidth: "33 Feet Tar Road with street lighting",
-      approvalNumber: "DTCP: 95/2021 | RERA Registered",
-      pattaStatus: "100% Individual Pattas Transferred to All 32 Owners",
-      foundation: "RCC Column Footing with engineered soil stabilization",
-      superstructure: "Red Clay Chamber Bricks",
-      flooring: "Vitrified Premium Floorings",
-      doorsWindows: "Teak Wood & UPVC",
-      electricalPlumbing: "Underground Three-Phase Line",
-      waterDrainage: "Siruvani Water Network & Covered Storm Drains",
-      ceilingHeight: "10 Feet 6 Inches"
-    },
-    originalPrice: 4200000,
-    discountPercent: 40,
-    offerPrice: 2520000,
-    savingsAmount: 1680000,
-    ratePerSqFtOriginal: 2800,
-    ratePerSqFtOffer: 1680,
-    deepavaliOfferValidUntil: "Sold Out Landmark Project",
-    view360Image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Ananya Gardens Phase 1 Completed Community 360° View",
-    description: "An exceptional success story by Latitude Properties. All 32 plots were sold out ahead of schedule with 100% on-time legal title transfer, individual patta handovers, and full infrastructure handover. Over 20 houses are now constructed with happy resident families.",
-    highlights: [
-      "100% Sold Out (32 out of 32 plots delivered)",
-      "Zero legal disputes, 100% clean title track record",
-      "Handed over to Resident Welfare Association",
-      "Notice: Enquire for Phase 2 pre-launch notifications!"
-    ],
-    bookedOrSoldNote: "Successfully registered and handed over to buyers. 100% sold out.",
-    handoverDate: "Completed & Fully Inhabited"
-  },
-  {
-    id: "siruvani-meadows-layout",
-    tag: "100% Sold Out & Delivered",
-    title: "Siruvani Meadows Layout",
-    location: "Theethipalayam / Kalampalayam, Coimbatore",
-    type: "Premium Residential Villa Plots",
-    status: "sold",
-    dtcpApprovalNumber: "DTCP: 74/2022 | RERA Approved",
-    layoutMapImage: "/images/sites/sri-aanandham-layout.jpg",
-    layoutMapTitle: "Siruvani Meadows Delivered Layout Plan",
-    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
-    ],
-    plotsSummary: {
-      total: 24,
-      available: 0,
-      booked: 0,
-      sold: 24,
-    },
-    plotsList: Array.from({ length: 24 }, (_, i) => ({
-      plotNumber: i + 1,
-      areaSqFt: 1500,
-      areaCents: "3.44 Cent",
-      status: "sold" as const,
-      facing: i % 2 === 0 ? "East" : "North"
-    })),
-    amenities: "30ft Roads, Solar Lights, Water Connection, Park",
-    amenitiesList: [
-      { name: "30ft Bitumen Roads", description: "Tar roads with concrete side drains", iconName: "Route" },
-      { name: "Siruvani Water", description: "Municipal drinking water connection line delivered", iconName: "Droplets" },
-      { name: "Parks & Greenery", description: "Full landscaped area with recreational lawn", iconName: "Trees" }
-    ],
-    specs: {
-      plotDimensions: "30 ft x 40 ft & 30 ft x 50 ft",
-      totalPlotArea: "24 Villa Plots Total",
-      builtUpArea: "Independent Villas Constructed",
-      carpetArea: "100% Delivered",
-      facing: "North and East Facing",
-      roadWidth: "30 Feet Tar Road",
-      approvalNumber: "DTCP: 74/2022 | RERA Approved",
-      pattaStatus: "All 24 Registered Deeds with Sub-division Pattas Delivered",
-      foundation: "Deep RCC Footing",
-      superstructure: "Red Bricks",
-      flooring: "Vitrified Tiles",
-      doorsWindows: "First Quality Teak & UPVC",
-      electricalPlumbing: "Finolex / Jaquar",
-      waterDrainage: "Siruvani Connection",
-      ceilingHeight: "10 Feet"
-    },
-    originalPrice: 3800000,
-    discountPercent: 40,
-    offerPrice: 2280000,
-    savingsAmount: 1520000,
-    ratePerSqFtOriginal: 2533,
-    ratePerSqFtOffer: 1520,
-    deepavaliOfferValidUntil: "Successfully Delivered Landmark Project",
-    view360Image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Siruvani Meadows 360° Completed Layout Tour",
-    description: "Siruvani Meadows was fully sold within 45 days of launch. All buyers received individual cleared Pattas, DTCP approvals, and direct access to Siruvani drinking water.",
-    highlights: [
-      "100% Sold Out (24/24 plots)",
-      "High capital value appreciation (>35% in 2 years for early buyers)",
-      "Completed infrastructure with tar roads and solar lights",
-      "Contact us to receive priority notifications for Phase 2"
-    ],
-    bookedOrSoldNote: "100% Sold out. Handed over with completed registration and patta.",
-    handoverDate: "Completed & Registered"
   }
 ];
 
@@ -672,6 +399,10 @@ const idAliases: Record<string, string> = {
   "kalampalayam-area": "sri-aanandham-avenue",
   "green-fields-layout": "kandhan-avenue",
   "coimbatore-region-plots": "siruvani-phase-1-2",
+  "royal-palms-residency-plot-14": "sri-aanandham-avenue",
+  "grand-orchard-plot-08": "kandhan-avenue",
+  "ananya-gardens-phase-1": "siruvani-phase-1-2",
+  "siruvani-meadows-layout": "siruvani-phase-1-2",
 };
 
 export function getProjectById(id: string): Project | undefined {
@@ -691,11 +422,15 @@ export function getAvailableProjects(): Project[] {
 export const getAvailableSites = getAvailableProjects;
 
 export function getBookedProjects(): Project[] {
-  return projects.filter((p) => p.status === "booked");
+  return projects.filter(
+    (p) => p.status === "booked" || (p.plotsSummary && p.plotsSummary.booked > 0)
+  );
 }
 export const getBookedSites = getBookedProjects;
 
 export function getSoldProjects(): Project[] {
-  return projects.filter((p) => p.status === "sold");
+  return projects.filter(
+    (p) => p.status === "sold" || (p.plotsSummary && p.plotsSummary.sold > 0)
+  );
 }
 export const getSoldSites = getSoldProjects;
