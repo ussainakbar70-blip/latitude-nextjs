@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import WhyLatitude from "@/components/WhyLatitude";
 import Investment from "@/components/Investment";
 import SiteVisit from "@/components/SiteVisit";
+import YouTubeShortsCarousel from "@/components/YouTubeShortsCarousel";
 import CustomerExperience from "@/components/CustomerExperience";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -26,6 +27,7 @@ export default function Home() {
       <WhyLatitude />
       <Investment />
       <SiteVisit />
+      <YouTubeShortsCarousel />
       <CustomerExperience />
       <FAQ />
       <Contact />

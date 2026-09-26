@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 const links = [
   { href: "/", label: "Home" },
   { href: "/#sites", label: "Our Sites" },
+  { href: "/#video-tours", label: "Video Tours & Shorts" },
   { href: "/booked-properties", label: "Booked Plots" },
   { href: "/sold-properties", label: "Sold Out Sites" },
   { href: "/#about", label: "About Us" },
@@ -68,9 +69,21 @@ export default function Footer() {
                 {site.phoneAlternate}
               </a>
             </li>
-            <li>
+            <li className="mb-3">
               <span className="text-[14.5px]">{site.address.line1} {site.address.line2}</span>
             </li>
+            {site.youtube && (
+              <li>
+                <a
+                  href={site.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-medium"
+                >
+                  <span>YouTube: @LatitudeProperties</span>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

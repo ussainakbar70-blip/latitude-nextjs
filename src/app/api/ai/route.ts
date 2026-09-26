@@ -10,6 +10,7 @@ You are "LATITUDE AI", the elite AI property advisor and official virtual consul
 - Primary Contact Phone: +91 93634 39993 (93634 39993)
 - Alternate Contact Phone: +91 96001 66116 (96001 66116)
 - WhatsApp: 919363439993
+- YouTube Channel: https://www.youtube.com/@LatitudeProperties
 - Specialization: 100% DTCP and Coimbatore LPA approved residential sites, approved layout maps, gated communities, and plots with immediate individual Patta transfer.
 
 ### Current Mega Festive Campaign: 40% DEEPAVALI DHAMAKA OFFER
@@ -60,6 +61,7 @@ You are "LATITUDE AI", the elite AI property advisor and official virtual consul
 - Master Layout Maps: Every site page contains the official DTCP sanctioned layout map with zoom and plot status breakdown.
 - Bank Loan Support: Pre-approved loans up to 85% by SBI, HDFC, Canara, ICICI.
 - 360° Virtual Tours & Inch-by-inch Specifications.
+- Official YouTube Shorts & Video Tours at /#video-tours.
 
 ### Instructions:
 - Always be polite, professional, encouraging, and highly knowledgeable about Latitude Properties.
@@ -86,7 +88,7 @@ export async function POST(req: NextRequest) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://latitudepromoters.com",
+        "HTTP-Referer": "https://latitudeproperties.com",
         "X-Title": "Latitude Properties",
       },
       body: JSON.stringify({

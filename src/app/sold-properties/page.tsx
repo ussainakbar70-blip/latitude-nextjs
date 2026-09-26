@@ -29,7 +29,7 @@ export const metadata = {
     title: "Sold Out Sites | Latitude Properties Coimbatore",
     description:
       "100% delivered residential layouts with individual Pattas transferred across Coimbatore.",
-    url: "https://latitudepromoters.com/sold-properties",
+    url: "https://latitudeproperties.com/sold-properties",
   },
 };
 
@@ -42,7 +42,7 @@ export default function SoldPropertiesPage() {
     name: "Completed & Sold Out Residential Layouts - Latitude Properties",
     description:
       "Showcase of 100% delivered, registered, and inhabited residential layouts in Coimbatore.",
-    url: "https://latitudepromoters.com/sold-properties",
+    url: "https://latitudeproperties.com/sold-properties",
   };
 
   return (

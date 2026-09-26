@@ -12,6 +12,7 @@ export const site = {
     full: "Latitude Properties, 2/350, Siruvani Main Road, Durga Nagar, Kalampalayam, Coimbatore, Tamil Nadu 641010",
   },
   whatsappNumber: "919363439993",
+  youtube: "https://www.youtube.com/@LatitudeProperties",
   defaultWhatsappMessage:
     "Hello Latitude Properties, I visited your website and would like to know more about your available sites and layout plots in Coimbatore.",
 };

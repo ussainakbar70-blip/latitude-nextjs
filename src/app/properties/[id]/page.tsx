@@ -32,6 +32,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Property360Viewer from "@/components/Property360Viewer";
 import SiteLayoutViewer from "@/components/SiteLayoutViewer";
+import SiteLayoutMap from "@/components/SiteLayoutMap";
 import { getProjectById } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
@@ -127,9 +128,9 @@ export default function PropertyDetailPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudepromoters.com" },
-      { "@type": "ListItem", position: 2, name: "Our Sites", item: "https://latitudepromoters.com/#sites" },
-      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudepromoters.com/sites/${project.id}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudeproperties.com" },
+      { "@type": "ListItem", position: 2, name: "Our Sites", item: "https://latitudeproperties.com/#sites" },
+      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudeproperties.com/sites/${project.id}` },
     ],
   };
 
@@ -644,6 +645,13 @@ export default function PropertyDetailPage({
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Master Site Map & Plot Availability Section */}
+      <section className="py-14 bg-white border-t border-[#ECE9DF]">
+        <div className="max-w-[1240px] mx-auto px-5 md:px-10">
+          <SiteLayoutMap />
         </div>
       </section>
 

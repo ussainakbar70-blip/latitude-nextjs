@@ -16,7 +16,7 @@ export default function About() {
             Beyond the Plot
           </h2>
           <p className="text-muted text-base leading-[1.75] max-w-[560px]">
-            Latitude Promoters helps buyers discover thoughtfully planned
+            Latitude Properties helps buyers discover thoughtfully planned
             residential plots and land investment opportunities across
             Coimbatore. The focus is on quality infrastructure, practical
             connectivity, transparent guidance and a smoother path toward

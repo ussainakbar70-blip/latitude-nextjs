@@ -17,9 +17,10 @@ const inter = Inter({
 });
 
 import LatitudeAiChat from "@/components/LatitudeAiChat";
+import LeadPopupModal from "@/components/LeadPopupModal";
 import { site } from "@/data/site";
 
-const siteUrl = "https://latitudepromoters.com";
+const siteUrl = "https://latitudeproperties.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -175,6 +176,7 @@ export default function RootLayout({
       <body className="font-sans">
         {children}
         <LatitudeAiChat />
+        <LeadPopupModal />
       </body>
     </html>
   );

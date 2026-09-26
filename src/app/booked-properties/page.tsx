@@ -29,7 +29,7 @@ export const metadata = {
     title: "Booked Sites | Latitude Properties Coimbatore",
     description:
       "Track plots and sites currently booked and undergoing registration. Join the waitlist for adjacent plots.",
-    url: "https://latitudepromoters.com/booked-properties",
+    url: "https://latitudeproperties.com/booked-properties",
   },
 };
 
@@ -42,7 +42,7 @@ export default function BookedPropertiesPage() {
     name: "Booked Sites & Plots - Latitude Properties",
     description:
       "Residential plots with token advance received undergoing registration in Coimbatore.",
-    url: "https://latitudepromoters.com/booked-properties",
+    url: "https://latitudeproperties.com/booked-properties",
   };
 
   return (

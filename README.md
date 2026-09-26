@@ -1,7 +1,7 @@
-# Latitude Promoters — Website
+# Latitude Properties — Website
 
 Next.js 14 (App Router) + TypeScript + Tailwind CSS demo website for
-Latitude Promoters, a residential plot / land promoter in Coimbatore,
+Latitude Properties, a residential plot / land promoter in Coimbatore,
 Tamil Nadu.
 
 ## Run locally

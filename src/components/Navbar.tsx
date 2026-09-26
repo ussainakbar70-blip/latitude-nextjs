@@ -8,6 +8,7 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "Home" },
   { href: "/#sites", label: "Our Sites" },
+  { href: "/#video-tours", label: "Video Tours" },
   { href: "/booked-properties", label: "Booked Plots" },
   { href: "/sold-properties", label: "Sold Out" },
   { href: "/#about", label: "About" },
