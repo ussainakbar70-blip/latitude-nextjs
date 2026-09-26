@@ -31,6 +31,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Property360Viewer from "@/components/Property360Viewer";
+import SiteLayoutViewer from "@/components/SiteLayoutViewer";
 import { getProjectById } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
@@ -64,14 +65,14 @@ export default function PropertyDetailPage({
     name: "",
     phone: "",
     date: "",
-    message: `Hi, I am interested in visiting ${project.title} and locking the 40% Deepavali offer.`,
+    message: `Hi Latitude Properties, I am interested in visiting ${project.title} and exploring available plots with the 40% Deepavali offer.`,
   });
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: `${project.title} - Latitude Promoters`,
-        text: `Check out ${project.title} with 40% Deepavali discount!`,
+        title: `${project.title} - Latitude Properties`,
+        text: `Check out ${project.title} layout map & plots with 40% Deepavali discount!`,
         url: window.location.href,
       }).catch(() => {});
     } else {
@@ -93,16 +94,16 @@ export default function PropertyDetailPage({
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `${project.title} - Residential Plots in Coimbatore`,
+    name: `${project.title} - Residential Sites in Coimbatore`,
     description: project.description,
     image: [project.img, ...(project.gallery || [])],
     brand: {
       "@type": "Brand",
-      name: "Latitude Promoters",
+      name: "Latitude Properties",
     },
     offers: {
       "@type": "Offer",
-      url: `https://latitudepromoters.com/properties/${project.id}`,
+      url: `https://latitudepromoters.com/sites/${project.id}`,
       priceCurrency: "INR",
       price: project.offerPrice,
       priceValidUntil: "2026-12-31",
@@ -117,7 +118,7 @@ export default function PropertyDetailPage({
       { "@type": "PropertyValue", name: "Total Plot Area", value: project.specs.totalPlotArea },
       { "@type": "PropertyValue", name: "Facing", value: project.specs.facing },
       { "@type": "PropertyValue", name: "Road Width", value: project.specs.roadWidth },
-      { "@type": "PropertyValue", name: "Approval Number", value: project.specs.approvalNumber },
+      { "@type": "PropertyValue", name: "Approval Number", value: project.dtcpApprovalNumber || project.specs.approvalNumber },
       { "@type": "PropertyValue", name: "Offer", value: "40% Deepavali Dhamaka Discount" },
     ],
   };
@@ -127,8 +128,8 @@ export default function PropertyDetailPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://latitudepromoters.com" },
-      { "@type": "ListItem", position: 2, name: "Properties", item: "https://latitudepromoters.com/#projects" },
-      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudepromoters.com/properties/${project.id}` },
+      { "@type": "ListItem", position: 2, name: "Our Sites", item: "https://latitudepromoters.com/#sites" },
+      { "@type": "ListItem", position: 3, name: project.title, item: `https://latitudepromoters.com/sites/${project.id}` },
     ],
   };
 
@@ -153,8 +154,8 @@ export default function PropertyDetailPage({
               Home
             </Link>
             <span className="text-white/40">/</span>
-            <Link href="/#projects" className="hover:text-gold-warm transition-colors">
-              Properties
+            <Link href="/#sites" className="hover:text-gold-warm transition-colors">
+              Our Sites
             </Link>
             <span className="text-white/40">/</span>
             <span className="text-gold-warm font-medium truncate max-w-[200px] sm:max-w-none">
@@ -181,7 +182,7 @@ export default function PropertyDetailPage({
         </div>
       </div>
 
-      {/* Hero Property Title & Deepavali Festive Callout */}
+      {/* Hero Site Title & Deepavali Festive Callout */}
       <section className="bg-navy-900 text-white pt-6 pb-12">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/15">
@@ -259,7 +260,7 @@ export default function PropertyDetailPage({
       <section className="py-12">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Left 2 Columns: Gallery, 360 Viewer, Inch-by-Inch Specs, Amenities */}
+            {/* Left 2 Columns: Gallery, Master Layout Map & Plot Status, 360 Viewer, Specs, Amenities */}
             <div className="lg:col-span-2 space-y-12">
               {/* Photo Gallery with Switcher */}
               <div className="bg-white p-4 border border-[#ECE9DF] rounded-sm shadow-sm">
@@ -303,26 +304,39 @@ export default function PropertyDetailPage({
                 )}
               </div>
 
-              {/* 360-Degree Interactive Virtual Tour Viewer */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <div>
-                    <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900 flex items-center gap-2">
-                      <Eye className="text-gold" />
-                      360° Interactive Walkthrough
-                    </h2>
-                    <p className="text-muted text-sm mt-1">
-                      Drag to rotate 360 degrees horizontally. Experience every angle of this property layout.
-                    </p>
-                  </div>
-                </div>
+              {/* Master Layout Map & Real-Time Plot Availability Section */}
+              <SiteLayoutViewer
+                project={project}
+                onSelectPlot={(plot) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    message: `Hi Latitude Properties, I am interested in Plot #${plot.plotNumber} (${plot.areaCents} / ${plot.areaSqFt} sq.ft) at ${project.title}. Please share available plot layout details and booking steps.`,
+                  }));
+                }}
+              />
 
-                <Property360Viewer
-                  title={project.title}
-                  imageUrl={project.view360Image}
-                  location={project.location}
-                />
-              </div>
+              {/* 360-Degree Interactive Virtual Tour Viewer */}
+              {project.view360Image && (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div>
+                      <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900 flex items-center gap-2">
+                        <Eye className="text-gold" />
+                        360° Interactive Walkthrough
+                      </h2>
+                      <p className="text-muted text-sm mt-1">
+                        Drag to rotate 360 degrees horizontally. Experience every angle of this site layout.
+                      </p>
+                    </div>
+                  </div>
+
+                  <Property360Viewer
+                    title={project.title}
+                    imageUrl={project.view360Image}
+                    location={project.location}
+                  />
+                </div>
+              )}
 
               {/* Inch-by-Inch Architectural & Structural Specifications */}
               <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
@@ -331,10 +345,10 @@ export default function PropertyDetailPage({
                     Complete Transparency
                   </p>
                   <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900 mt-1">
-                    Inch-by-Inch Property Details & Specs
+                    Inch-by-Inch Site Details & Specifications
                   </h2>
                   <p className="text-muted text-sm mt-2">
-                    Every dimension, structural material grade, legal document, and infrastructure specification verified down to the exact detail.
+                    Every dimension, road width, legal approval, and infrastructure detail verified down to the exact measurement.
                   </p>
                 </div>
 
@@ -372,52 +386,43 @@ export default function PropertyDetailPage({
                     title="Legal & Approval Documentation"
                     icon={ShieldCheck}
                     items={[
-                      { label: "Approval Numbers", value: project.specs.approvalNumber },
+                      { label: "DTCP / LPA Approval", value: project.dtcpApprovalNumber || project.specs.approvalNumber },
+                      { label: "Revenue Survey Numbers", value: project.surveyNumber || "Demarcated on Master Layout Plan" },
                       { label: "Patta & Title Status", value: project.specs.pattaStatus },
-                      { label: "Bank Loan Pre-approval", value: "Eligible for up to 85% loan by SBI, HDFC, Canara, ICICI" },
+                      { label: "Bank Loan Support", value: "Eligible for up to 85% loan by SBI, HDFC, Canara, ICICI" },
                     ]}
                   />
 
                   <SpecCard
-                    title="Foundation & Structural Engineering"
+                    title="Road & Infrastructure Engineering"
                     icon={Layers}
                     items={[
-                      { label: "Foundation Details", value: project.specs.foundation },
-                      { label: "Superstructure Walls", value: project.specs.superstructure },
-                      { label: "Clear Ceiling Height", value: project.specs.ceilingHeight },
+                      { label: "Tar Road Construction", value: project.specs.roadWidth },
+                      { label: "Street Lighting", value: "Dusk-to-dawn automatic Solar LED Street Luminaries" },
+                      { label: "Underground Cabling", value: project.specs.electricalPlumbing },
                     ]}
                   />
 
                   <SpecCard
-                    title="Flooring, Doors & Interior Craftsmanship"
-                    icon={Grid3x3}
-                    items={[
-                      { label: "Flooring Specifications", value: project.specs.flooring },
-                      { label: "Main Door & Windows", value: project.specs.doorsWindows },
-                      { label: "Electrical & Plumbing", value: project.specs.electricalPlumbing },
-                    ]}
-                  />
-
-                  <SpecCard
-                    title="Water Supply & Environmental Drainage"
+                    title="Water Supply & Environmental Features"
                     icon={Droplets}
                     items={[
-                      { label: "Drinking Water & Borewell", value: project.specs.waterDrainage },
-                      { label: "Sewage & Stormwater", value: "Heavy-duty underground RCC drainage network connection" },
-                      { label: "Groundwater Table", value: "High sweet water aquifer layer tested and certified" },
+                      { label: "Drinking Water Line", value: project.specs.waterDrainage },
+                      { label: "Sewage & Drainage", value: "Covered heavy-duty concrete drainage gutters" },
+                      { label: "Greenery & Landscaping", value: "Tree-lined internal roadways with avenue plantations" },
                     ]}
                   />
                 </div>
               </div>
 
-              {/* Property-Specific Amenities Section */}
+              {/* Site Amenities Section */}
               <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
                 <div className="border-b border-[#ECE9DF] pb-5 mb-6">
                   <p className="uppercase text-xs font-semibold tracking-[0.28em] text-gold">
                     Layout Infrastructure
                   </p>
                   <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900 mt-1">
-                    Amenities Specially Provided for {project.title}
+                    Amenities Provided for {project.title}
                   </h2>
                   <p className="text-muted text-sm mt-2">
                     Engineered for high comfort, peace of mind, and continuous property value appreciation.
@@ -449,10 +454,10 @@ export default function PropertyDetailPage({
                 </div>
               </div>
 
-              {/* About the Project & Location Advantages */}
+              {/* About the Site & Location Advantages */}
               <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
                 <h3 className="font-serif text-2xl font-bold text-navy-900 mb-3">
-                  Project Overview & Surrounding Neighborhood
+                  Site Overview & Neighborhood Connectivity
                 </h3>
                 <p className="text-muted text-sm leading-relaxed mb-6">
                   {project.description}
@@ -488,7 +493,7 @@ export default function PropertyDetailPage({
                 </div>
 
                 <p className="text-xs text-[#EDEAE0] mb-4">
-                  Exclusive festive pricing on spot bookings. Lock your rate before slots are filled!
+                  Exclusive festive pricing on spot bookings. Lock your preferred plot before slots are filled!
                 </p>
 
                 <div className="bg-white/10 p-4 rounded-sm border border-white/15 space-y-2 mb-4">
@@ -508,7 +513,7 @@ export default function PropertyDetailPage({
 
                 <a
                   href={buildWhatsappLink(
-                    `Hello Latitude Promoters, I would like to lock the 40% Deepavali offer for ${project.title} (Offer Price: Rs. ${(project.offerPrice / 100000).toFixed(2)} Lakhs).`
+                    `Hello Latitude Properties, I would like to lock the 40% Deepavali offer for ${project.title} (Offer Price: Rs. ${(project.offerPrice / 100000).toFixed(2)} Lakhs).`
                   )}
                   target="_blank"
                   rel="noopener"
@@ -520,7 +525,7 @@ export default function PropertyDetailPage({
               </div>
 
               {/* Schedule Free Site Visit Form */}
-              <div className="bg-white p-6 border border-[#ECE9DF] rounded-sm shadow-sm">
+              <div id="site-visit-form" className="bg-white p-6 border border-[#ECE9DF] rounded-sm shadow-sm">
                 <h3 className="font-serif text-xl font-bold text-navy-900 mb-1">
                   Schedule a Free Site Visit
                 </h3>
@@ -580,9 +585,10 @@ export default function PropertyDetailPage({
 
                     <div>
                       <label className="text-xs font-semibold text-navy-900 block mb-1">
-                        Message / Query
+                        Message / Query / Selected Plot
                       </label>
                       <textarea
+                        id="visit-message"
                         rows={3}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -606,7 +612,7 @@ export default function PropertyDetailPage({
                   </div>
                   <div className="flex items-center gap-2">
                     <Check size={14} className="text-emerald-600 flex-shrink-0" />
-                    <span>On-site legal documents & layout map inspection</span>
+                    <span>On-site DTCP documents & layout map inspection</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check size={14} className="text-emerald-600 flex-shrink-0" />
@@ -618,7 +624,7 @@ export default function PropertyDetailPage({
               {/* Office & Direct Contact Card */}
               <div className="bg-bg p-5 border border-[#ECE9DF] rounded-sm text-xs text-muted space-y-2.5">
                 <strong className="text-navy-900 text-sm block">
-                  Latitude Promoters Office
+                  Latitude Properties Office
                 </strong>
                 <p>{site.address.full}</p>
                 <div className="pt-2 border-t border-[#ECE9DF] space-y-1">

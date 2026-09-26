@@ -4,8 +4,10 @@ import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function PropertySearch() {
-  const scrollToProjects = () => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSites = () => {
+    (document.getElementById("sites") || document.getElementById("projects"))?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -19,18 +21,19 @@ export default function PropertySearch() {
           </label>
           <select className="w-full border-0 border-b border-[#E5E1D8] py-2 text-[15.5px] bg-transparent outline-none focus:border-gold">
             <option>Coimbatore</option>
+            <option>Siruvani Main Road</option>
             <option>Kalampalayam</option>
-            <option>Theethipalayam</option>
+            <option>Pollachi Road / Othakkalmandapam</option>
           </select>
         </div>
         <div>
           <label className="block text-[11px] tracking-[0.14em] uppercase text-muted font-semibold mb-2">
-            Property Type
+            Site / Plot Type
           </label>
           <select className="w-full border-0 border-b border-[#E5E1D8] py-2 text-[15.5px] bg-transparent outline-none focus:border-gold">
-            <option>Residential Plots</option>
-            <option>Gated Community</option>
-            <option>Land Investment</option>
+            <option>DTCP Approved Layouts</option>
+            <option>Gated Community Sites</option>
+            <option>Immediate House Construction Plots</option>
           </select>
         </div>
         <div>
@@ -38,17 +41,17 @@ export default function PropertySearch() {
             Budget
           </label>
           <select className="w-full border-0 border-b border-[#E5E1D8] py-2 text-[15.5px] bg-transparent outline-none focus:border-gold">
-            <option>Select Budget</option>
-            <option>Under ₹15 Lakhs</option>
-            <option>₹15L – ₹30L</option>
-            <option>₹30L and above</option>
+            <option>All Budgets (40% Deepavali Offer)</option>
+            <option>Under ₹25 Lakhs</option>
+            <option>₹25L – ₹40L</option>
+            <option>₹40L and above</option>
           </select>
         </div>
         <button
-          onClick={scrollToProjects}
+          onClick={scrollToSites}
           className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-semibold text-[13.5px] px-6 py-3 transition-transform hover:-translate-y-0.5"
         >
-          Find Properties <ArrowRight size={16} />
+          Find Sites <ArrowRight size={16} />
         </button>
       </Reveal>
     </div>

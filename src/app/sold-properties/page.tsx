@@ -10,6 +10,7 @@ import {
   Users,
   Award,
   MessageCircle,
+  Layers,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,14 +19,14 @@ import { getSoldProjects } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
 export const metadata = {
-  title: "Sold Out Properties & Completed Communities | 100% Delivered Plots in Coimbatore",
+  title: "Sold Out Sites & Completed Communities | 100% Delivered Plots in Coimbatore",
   description:
-    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Promoters. 100% Patta delivery and zero dispute record.",
+    "Explore our delivered, fully inhabited, and 100% sold-out residential plotting communities in Coimbatore with Latitude Properties. 100% Patta delivery and zero dispute record.",
   alternates: {
     canonical: "/sold-properties",
   },
   openGraph: {
-    title: "Sold Out Properties | Latitude Promoters Coimbatore",
+    title: "Sold Out Sites | Latitude Properties Coimbatore",
     description:
       "100% delivered residential layouts with individual Pattas transferred across Coimbatore.",
     url: "https://latitudepromoters.com/sold-properties",
@@ -38,7 +39,7 @@ export default function SoldPropertiesPage() {
   const soldJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Completed & Sold Out Residential Layouts - Latitude Promoters",
+    name: "Completed & Sold Out Residential Layouts - Latitude Properties",
     description:
       "Showcase of 100% delivered, registered, and inhabited residential layouts in Coimbatore.",
     url: "https://latitudepromoters.com/sold-properties",
@@ -64,92 +65,103 @@ export default function SoldPropertiesPage() {
             </span>
 
             <h1 className="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
-              Sold Properties & Completed Layouts
+              Sold Out Sites & Completed Layouts
             </h1>
 
             <p className="text-[#EDEAE0] text-base leading-relaxed">
-              Every project developed by Latitude Promoters is backed by transparent DTCP approvals, 100% clear legal titles, and prompt individual Patta delivery. Browse our completed gated layouts where thriving families are building their dream homes.
+              Every single plot in these landmark residential communities was sold out, legally registered,
+              and handed over to proud homeowners. Over 50+ families are already building and living peacefully in these layouts.
             </p>
-          </div>
 
-          {/* Key Delivery Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 pt-8 border-t border-white/10">
-            <div className="bg-navy-800/80 border border-white/10 p-4 rounded-sm">
-              <div className="font-serif text-3xl font-bold text-gold-warm">100%</div>
-              <div className="text-xs text-[#EDEAE0] mt-1">Individual Patta Delivery</div>
-            </div>
-            <div className="bg-navy-800/80 border border-white/10 p-4 rounded-sm">
-              <div className="font-serif text-3xl font-bold text-gold-warm">500+</div>
-              <div className="text-xs text-[#EDEAE0] mt-1">Happy Landowners</div>
-            </div>
-            <div className="bg-navy-800/80 border border-white/10 p-4 rounded-sm">
-              <div className="font-serif text-3xl font-bold text-gold-warm">0</div>
-              <div className="text-xs text-[#EDEAE0] mt-1">Legal Title Disputes</div>
-            </div>
-            <div className="bg-navy-800/80 border border-white/10 p-4 rounded-sm">
-              <div className="font-serif text-3xl font-bold text-gold-warm">&gt;35%</div>
-              <div className="text-xs text-[#EDEAE0] mt-1">Avg. 3-Year Appreciation</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
+              <div className="bg-white/10 border border-white/15 p-4 rounded-sm">
+                <Users size={20} className="text-gold-warm mb-1.5" />
+                <strong className="text-2xl font-serif text-white block">56+</strong>
+                <span className="text-xs text-[#EDEAE0]">Happy Plot Owners</span>
+              </div>
+              <div className="bg-white/10 border border-white/15 p-4 rounded-sm">
+                <CheckCircle2 size={20} className="text-emerald-400 mb-1.5" />
+                <strong className="text-2xl font-serif text-white block">100%</strong>
+                <span className="text-xs text-[#EDEAE0]">Individual Pattas Handed</span>
+              </div>
+              <div className="bg-white/10 border border-white/15 p-4 rounded-sm col-span-2 sm:col-span-1">
+                <Award size={20} className="text-gold-warm mb-1.5" />
+                <strong className="text-2xl font-serif text-white block">Zero</strong>
+                <span className="text-xs text-[#EDEAE0]">Legal Disputes</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Sold Projects Grid */}
-      <section className="py-16">
+      {/* Sold Projects Showcase */}
+      <section className="py-14 md:py-20">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {soldProjects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white border border-[#ECE9DF] rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="bg-white border border-[#ECE9DF] rounded-sm overflow-hidden shadow-sm flex flex-col justify-between"
               >
-                <div className="relative h-[260px] w-full overflow-hidden">
-                  <span className="absolute top-3.5 left-3.5 z-10 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm shadow-md flex items-center gap-1.5">
-                    <CheckCircle2 size={13} />
-                    {project.tag}
-                  </span>
+                <div>
+                  <div className="relative h-64 w-full">
+                    <Image
+                      src={project.img}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
 
-                  <span className="absolute bottom-3.5 left-3.5 z-10 bg-navy-900/85 backdrop-blur-md text-gold-warm text-xs px-3 py-1 rounded-sm">
-                    {project.handoverDate || "Successfully Delivered"}
-                  </span>
+                    <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 items-start">
+                      <span className="bg-emerald-700 text-white text-xs font-bold uppercase px-3 py-1 rounded-sm shadow-md flex items-center gap-1.5">
+                        <CheckCircle2 size={13} />
+                        100% Sold Out & Delivered
+                      </span>
+                    </div>
 
-                  <Image
-                    src={project.img}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <span className="text-xs bg-navy-900/80 px-2.5 py-1 rounded-sm text-gold-warm font-medium">
+                        {project.type}
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="p-6 md:p-8 flex flex-col flex-grow justify-between">
-                  <div>
-                    <h3 className="font-serif text-2xl text-navy-900 mb-2">
+                  <div className="p-6">
+                    <h3 className="font-serif text-2xl font-bold text-navy-900 mb-1">
                       {project.title}
                     </h3>
-
-                    <div className="flex items-center gap-1.5 text-muted text-sm mb-4">
-                      <MapPin size={15} className="text-gold flex-shrink-0" />
+                    <div className="flex items-center gap-1.5 text-muted text-xs mb-4">
+                      <MapPin size={14} className="text-gold" />
                       <span>{project.location}</span>
                     </div>
 
-                    <p className="text-muted text-xs leading-relaxed mb-5">
+                    {/* Plots KPI */}
+                    {project.plotsSummary && (
+                      <div className="flex items-center justify-between text-xs bg-[#FAF8F5] p-2.5 rounded-sm border border-[#EBE7DC] mb-4">
+                        <span className="font-semibold text-navy-900 flex items-center gap-1">
+                          <Layers size={13} className="text-gold" />
+                          {project.plotsSummary.total} Plots Total
+                        </span>
+                        <span className="text-rose-700 font-bold">
+                          ● All {project.plotsSummary.sold} Plots Delivered
+                        </span>
+                      </div>
+                    )}
+
+                    <p className="text-xs text-muted leading-relaxed mb-4">
                       {project.description}
                     </p>
 
-                    {/* Specs summary */}
-                    <div className="space-y-1.5 text-xs text-muted mb-6 bg-bg p-4 rounded-sm border border-[#ECE9DF]">
+                    <div className="bg-bg p-3.5 rounded-sm border border-[#ECE9DF] space-y-2 text-xs text-muted mb-4">
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
-                        <span>Delivery Scope:</span>
+                        <span>Total Units Delivered:</span>
                         <strong className="text-navy-900">{project.specs.totalPlotArea}</strong>
                       </div>
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
-                        <span>Road & Infrastructure:</span>
-                        <strong className="text-navy-900">{project.specs.roadWidth}</strong>
-                      </div>
-                      <div className="flex justify-between py-1 border-b border-[#EEECE4]">
                         <span>DTCP & Approvals:</span>
-                        <strong className="text-navy-900">{project.specs.approvalNumber}</strong>
+                        <strong className="text-navy-900">{project.dtcpApprovalNumber || project.specs.approvalNumber}</strong>
                       </div>
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
                         <span>Patta Status:</span>
@@ -164,19 +176,21 @@ export default function SoldPropertiesPage() {
                       </div>
                     )}
                   </div>
+                </div>
 
+                <div className="p-6 pt-0">
                   <div className="pt-4 border-t border-[#EEECE4] flex flex-wrap gap-3 items-center justify-between">
                     <Link
-                      href={`/properties/${project.id}`}
+                      href={`/sites/${project.id}`}
                       className="inline-flex items-center gap-1.5 text-navy-900 font-semibold text-sm hover:text-gold transition-colors"
                     >
-                      View Specs & 360° View
+                      View Layout Map & Specs
                       <ArrowRight size={15} />
                     </Link>
 
                     <a
                       href={buildWhatsappLink(
-                        `Hi Latitude Promoters, I noticed ${project.title} is sold out. Please inform me when Phase 2 or a similar project launches in that area.`
+                        `Hi Latitude Properties, I noticed ${project.title} is sold out. Please inform me when Phase 2 or a similar layout launches in that area.`
                       )}
                       target="_blank"
                       rel="noopener"
@@ -198,19 +212,20 @@ export default function SoldPropertiesPage() {
                 Don&apos;t Miss Out
               </span>
               <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
-                Grab Currently Available Plots with 40% Deepavali Discount
+                Grab Currently Available Sites with 40% Deepavali Discount
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
-                Our active plots in Kalampalayam and Coimbatore are filling fast. Benefit from our limited-time 40% Deepavali festive pricing today!
+                Our active plots in Sri Aanandham Avenue, Kandhan Avenue, and Siruvani Enclave are filling fast.
+                Benefit from our limited-time 40% Deepavali festive pricing today!
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/#projects"
+                href="/#sites"
                 className="inline-flex items-center gap-2 bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-bold text-sm px-6 py-3 rounded-sm shadow hover:scale-[1.02] transition-transform"
               >
-                View Available Plots
+                View Available Sites
                 <ArrowRight size={16} />
               </Link>
             </div>

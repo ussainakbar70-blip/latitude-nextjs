@@ -1,19 +1,19 @@
 export const site = {
-  name: "Latitude Promoters",
+  name: "Latitude Properties",
   tagline: "Your Trusted Property Partner",
   phonePrimary: "93634 39993",
   phonePrimaryTel: "+919363439993",
   phoneAlternate: "96001 66116",
   phoneAlternateTel: "+919600166116",
   address: {
-    line1: "2/344, Siruvani Main Rd, Durga Nagar,",
+    line1: "2/350, Siruvani Main Road, Durga Nagar,",
     line2: "Kalampalayam, Coimbatore, Theethipalayam,",
     line3: "Tamil Nadu 641010",
-    full: "Latitude Promoters, 2/344, Siruvani Main Rd, Durga Nagar, Kalampalayam, Coimbatore, Theethipalayam, Tamil Nadu 641010",
+    full: "Latitude Properties, 2/350, Siruvani Main Road, Durga Nagar, Kalampalayam, Coimbatore, Tamil Nadu 641010",
   },
   whatsappNumber: "919363439993",
   defaultWhatsappMessage:
-    "Hello Latitude Promoters, I visited your website and would like to know more about your available plots in Coimbatore.",
+    "Hello Latitude Properties, I visited your website and would like to know more about your available sites and layout plots in Coimbatore.",
 };
 
 export function buildWhatsappLink(message: string) {

@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-
+import Image from "next/image";
 import Link from "next/link";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/#projects", label: "Properties" },
+  { href: "/#sites", label: "Our Sites" },
   { href: "/booked-properties", label: "Booked Plots" },
   { href: "/sold-properties", label: "Sold Out" },
   { href: "/#about", label: "About" },
@@ -41,13 +41,24 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1240px] mx-auto px-5 md:px-10 flex items-center justify-between">
-          <Link href="/" className="flex flex-col leading-none text-white no-underline">
-            <b className="font-serif text-[22px] tracking-[0.12em] font-bold">
-              LATITUDE
-            </b>
-            <span className="text-[9px] tracking-[0.35em] text-gold-warm mt-[3px]">
-              PROMOTERS
-            </span>
+          <Link href="/" className="flex items-center gap-3 text-white no-underline group">
+            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-sm overflow-hidden bg-navy-950 border border-gold/40 flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/images/branding/logo.png"
+                alt="Latitude Properties Official Logo"
+                fill
+                className="object-contain p-1"
+                priority
+              />
+            </div>
+            <div className="flex flex-col leading-none">
+              <b className="font-serif text-[20px] md:text-[22px] tracking-[0.12em] font-bold text-white group-hover:text-gold-warm transition-colors">
+                LATITUDE
+              </b>
+              <span className="text-[9px] tracking-[0.35em] text-gold-warm mt-[3px] font-sans font-semibold">
+                PROPERTIES
+              </span>
+            </div>
           </Link>
 
           <nav className="hidden lg:flex gap-9 items-center">
@@ -82,8 +93,9 @@ export default function Navbar() {
         </div>
       </header>
 
+      {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 bg-navy-900 z-[105] flex flex-col justify-center p-10 transition-transform duration-400 ease-[cubic-bezier(0.65,0,0.35,1)] lg:hidden ${
+        className={`fixed inset-0 bg-navy-900 z-[105] flex flex-col justify-center p-8 sm:p-10 transition-transform duration-400 ease-[cubic-bezier(0.65,0,0.35,1)] lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -94,20 +106,42 @@ export default function Navbar() {
         >
           <X size={28} />
         </button>
+
+        {/* Mobile Brand Header */}
+        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-white/10">
+          <div className="relative w-12 h-12 rounded-sm overflow-hidden bg-navy-950 border border-gold/40 flex-shrink-0">
+            <Image
+              src="/images/branding/logo.png"
+              alt="Latitude Properties Official Logo"
+              fill
+              className="object-contain p-1"
+            />
+          </div>
+          <div className="flex flex-col leading-none">
+            <b className="font-serif text-[24px] tracking-[0.12em] font-bold text-white">
+              LATITUDE
+            </b>
+            <span className="text-[10px] tracking-[0.35em] text-gold-warm mt-[3px] font-sans font-semibold">
+              PROPERTIES
+            </span>
+          </div>
+        </div>
+
         {links.map((l) => (
           <Link
             key={l.href}
             href={l.href}
             onClick={() => setMenuOpen(false)}
-            className="text-white font-serif text-[28px] no-underline py-3 border-b border-white/10"
+            className="text-white font-serif text-[26px] no-underline py-3 border-b border-white/10 hover:text-gold-warm transition-colors"
           >
             {l.label}
           </Link>
         ))}
+
         <Link
           href="/#contact"
           onClick={() => setMenuOpen(false)}
-          className="mt-7 inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-semibold text-[13.5px] px-6 py-3.5"
+          className="mt-7 inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-semibold text-[14px] px-6 py-3.5 shadow-lg"
         >
           Enquire Now
         </Link>

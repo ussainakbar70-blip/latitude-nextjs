@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { X, Sparkles, ArrowRight } from "lucide-react";
+import { X, Sparkles, ArrowRight, Layers } from "lucide-react";
 import { Project } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
@@ -43,6 +43,27 @@ export default function ProjectModal({
           </p>
           <h3 className="font-serif text-[28px] text-navy-900 mb-2">{project.title}</h3>
 
+          {/* Plot Summary Strip */}
+          {project.plotsSummary && (
+            <div className="flex items-center justify-between text-xs bg-[#FAF8F5] p-3 rounded-sm border border-[#EBE7DC] mb-4">
+              <span className="font-semibold text-navy-900 flex items-center gap-1.5">
+                <Layers size={14} className="text-gold" />
+                {project.plotsSummary.total} Plots Total
+              </span>
+              <div className="flex gap-2.5">
+                <span className="text-emerald-700 font-bold">
+                  ● {project.plotsSummary.available} Available
+                </span>
+                <span className="text-amber-700 font-bold">
+                  ● {project.plotsSummary.booked} Booked
+                </span>
+                <span className="text-rose-700 font-bold">
+                  ● {project.plotsSummary.sold} Sold
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Deepavali Offer Card */}
           <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-gold/30 rounded p-3.5 mb-4">
             <div className="flex justify-between items-center text-xs text-muted mb-1">
@@ -62,16 +83,16 @@ export default function ProjectModal({
           <DetailRow label="Total Plot Area" value={project.specs.totalPlotArea} />
           <DetailRow label="Facing Direction" value={project.specs.facing} />
           <DetailRow label="Road Width" value={project.specs.roadWidth} />
-          <DetailRow label="Approval Status" value={project.specs.approvalNumber} />
+          <DetailRow label="Approval Status" value={project.dtcpApprovalNumber || project.specs.approvalNumber} />
           <DetailRow label="Patta" value={project.specs.pattaStatus} />
 
           <div className="mt-5">
             <Link
-              href={`/properties/${project.id}`}
+              href={`/sites/${project.id}`}
               onClick={onClose}
               className="w-full inline-flex items-center justify-center gap-2 rounded-sm bg-navy-900 hover:bg-navy-800 text-gold-warm font-semibold text-[14px] px-6 py-3.5 transition-all shadow-md"
             >
-              Open Full Inch-by-Inch & 360° Virtual Tour Page
+              Open Full Site Details & Layout Map
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -85,7 +106,7 @@ export default function ProjectModal({
             </a>
             <a
               href={buildWhatsappLink(
-                `Hello Latitude Promoters, I would like more details about ${project.title} and the 40% Deepavali offer.`
+                `Hello Latitude Properties, I would like more details about ${project.title} layout map and the 40% Deepavali offer.`
               )}
               target="_blank"
               rel="noopener"

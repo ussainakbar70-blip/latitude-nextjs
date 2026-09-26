@@ -9,6 +9,8 @@ import {
   Sparkles,
   Phone,
   MessageCircle,
+  Layers,
+  Map,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,16 +19,16 @@ import { getBookedProjects } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
 
 export const metadata = {
-  title: "Booked Properties | Token Advance & Under Registration Plots in Coimbatore",
+  title: "Booked Sites & Plots | Token Advance & Under Registration Sites in Coimbatore",
   description:
-    "Explore residential plots and properties currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Promoters in Coimbatore. Join our Phase 2 priority waiting list.",
+    "Explore residential sites and plots currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Properties in Coimbatore. Join our Phase 2 priority waiting list.",
   alternates: {
     canonical: "/booked-properties",
   },
   openGraph: {
-    title: "Booked Properties | Latitude Promoters Coimbatore",
+    title: "Booked Sites | Latitude Properties Coimbatore",
     description:
-      "Track plots currently booked and undergoing registration. Join the waitlist for adjacent plots.",
+      "Track plots and sites currently booked and undergoing registration. Join the waitlist for adjacent plots.",
     url: "https://latitudepromoters.com/booked-properties",
   },
 };
@@ -37,7 +39,7 @@ export default function BookedPropertiesPage() {
   const bookedJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Booked Properties - Latitude Promoters",
+    name: "Booked Sites & Plots - Latitude Properties",
     description:
       "Residential plots with token advance received undergoing registration in Coimbatore.",
     url: "https://latitudepromoters.com/booked-properties",
@@ -59,84 +61,101 @@ export default function BookedPropertiesPage() {
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold uppercase px-3 py-1 rounded-sm mb-3">
               <Clock size={14} />
-              Under Registration & Token Confirmed
+              Active Transaction Pipeline
             </span>
 
             <h1 className="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
-              Booked Properties
+              Booked Sites & Token Received Plots
             </h1>
 
             <p className="text-[#EDEAE0] text-base leading-relaxed">
-              These prime residential plots have been locked by smart homebuyers taking advantage of our exclusive 40% Deepavali festive discounts. Track ongoing registrations, plot details, and join the priority waiting list for upcoming releases.
+              These plots have received token advances from proud home buyers under our festive pricing.
+              Sub-Registrar Office (SRO) deed registrations and bank mortgage releases are actively in progress.
             </p>
+
+            <div className="flex flex-wrap gap-4 mt-6">
+              <div className="bg-white/10 border border-white/15 px-4 py-2.5 rounded-sm">
+                <span className="text-xs text-white/70 block">Active Booked Sites</span>
+                <strong className="text-xl font-serif text-gold-warm font-bold">
+                  {bookedProjects.length} Sites Tracked
+                </strong>
+              </div>
+              <div className="bg-white/10 border border-white/15 px-4 py-2.5 rounded-sm">
+                <span className="text-xs text-white/70 block">Next Phase Release</span>
+                <strong className="text-xl font-serif text-gold-warm font-bold">
+                  Phase 2 Now Open
+                </strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Booked Plots Grid */}
-      <section className="py-16">
+      {/* Booked Projects Grid */}
+      <section className="py-14 md:py-20">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {bookedProjects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white border border-[#ECE9DF] rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="bg-white border border-[#ECE9DF] rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
               >
-                <div className="relative h-[260px] w-full overflow-hidden">
-                  <span className="absolute top-3.5 left-3.5 z-10 bg-amber-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm shadow-md flex items-center gap-1.5">
-                    <Clock size={13} />
-                    {project.tag}
-                  </span>
+                <div>
+                  <div className="relative h-64 w-full">
+                    <Image
+                      src={project.img}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
 
-                  <span className="absolute bottom-3.5 left-3.5 z-10 bg-navy-900/85 backdrop-blur-md text-gold-warm text-xs px-3 py-1 rounded-sm">
-                    Est. Handover: {project.handoverDate || "Q4 2026"}
-                  </span>
+                    <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 items-start">
+                      <span className="bg-amber-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-sm shadow-md flex items-center gap-1.5">
+                        <Clock size={12} />
+                        Token Advance Received
+                      </span>
+                    </div>
 
-                  <Image
-                    src={project.img}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <span className="text-xs bg-navy-900/80 px-2.5 py-1 rounded-sm text-gold-warm font-medium">
+                        {project.type}
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="p-6 md:p-8 flex flex-col flex-grow justify-between">
-                  <div>
-                    <h3 className="font-serif text-2xl text-navy-900 mb-2">
+                  <div className="p-6">
+                    <h3 className="font-serif text-2xl font-bold text-navy-900 mb-1">
                       {project.title}
                     </h3>
-
-                    <div className="flex items-center gap-1.5 text-muted text-sm mb-4">
-                      <MapPin size={15} className="text-gold flex-shrink-0" />
+                    <div className="flex items-center gap-1.5 text-muted text-xs mb-4">
+                      <MapPin size={14} className="text-gold" />
                       <span>{project.location}</span>
                     </div>
 
-                    {/* Pricing Pill */}
-                    <div className="bg-bg p-3.5 rounded-sm border border-[#ECE9DF] mb-5">
-                      <div className="flex justify-between items-center text-xs text-muted mb-1">
-                        <span>Original Price: <del>₹{(project.originalPrice / 100000).toFixed(2)}L</del></span>
-                        <span className="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded">
-                          Locked at 40% OFF
+                    {/* Plots KPI */}
+                    {project.plotsSummary && (
+                      <div className="flex items-center justify-between text-xs bg-[#FAF8F5] p-2.5 rounded-sm border border-[#EBE7DC] mb-4">
+                        <span className="font-semibold text-navy-900 flex items-center gap-1">
+                          <Layers size={13} className="text-gold" />
+                          {project.plotsSummary.total} Plots Total
                         </span>
+                        <div className="flex gap-2">
+                          <span className="text-amber-700 font-bold">
+                            ● {project.plotsSummary.booked} Booked
+                          </span>
+                          <span className="text-rose-700 font-bold">
+                            ● {project.plotsSummary.sold} Sold
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-xl font-serif font-bold text-navy-900">
-                        ₹{(project.offerPrice / 100000).toFixed(2)} Lakhs
-                        <span className="text-xs font-sans text-muted font-normal ml-2">
-                          (Saved ₹{(project.savingsAmount / 100000).toFixed(2)} Lakhs)
-                        </span>
-                      </div>
-                    </div>
+                    )}
 
-                    {/* Specs summary */}
-                    <div className="space-y-1.5 text-xs text-muted mb-6">
+                    <div className="bg-bg p-3.5 rounded-sm border border-[#ECE9DF] space-y-2 text-xs text-muted mb-4">
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
                         <span>Plot Dimensions:</span>
                         <strong className="text-navy-900">{project.specs.plotDimensions}</strong>
-                      </div>
-                      <div className="flex justify-between py-1 border-b border-[#EEECE4]">
-                        <span>Total Area:</span>
-                        <strong className="text-navy-900">{project.specs.totalPlotArea}</strong>
                       </div>
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
                         <span>Facing:</span>
@@ -144,7 +163,7 @@ export default function BookedPropertiesPage() {
                       </div>
                       <div className="flex justify-between py-1 border-b border-[#EEECE4]">
                         <span>Approvals:</span>
-                        <strong className="text-navy-900">{project.specs.approvalNumber}</strong>
+                        <strong className="text-navy-900">{project.dtcpApprovalNumber || project.specs.approvalNumber}</strong>
                       </div>
                     </div>
 
@@ -155,19 +174,21 @@ export default function BookedPropertiesPage() {
                       </div>
                     )}
                   </div>
+                </div>
 
+                <div className="p-6 pt-0">
                   <div className="pt-4 border-t border-[#EEECE4] flex flex-wrap gap-3 items-center justify-between">
                     <Link
-                      href={`/properties/${project.id}`}
+                      href={`/sites/${project.id}`}
                       className="inline-flex items-center gap-1.5 text-navy-900 font-semibold text-sm hover:text-gold transition-colors"
                     >
-                      View Full Inch-by-Inch & 360° Specs
+                      View Layout Map & Site Specs
                       <ArrowRight size={15} />
                     </Link>
 
                     <a
                       href={buildWhatsappLink(
-                        `Hi Latitude Promoters, I noticed that ${project.title} is currently booked. Please put me on the waiting list if similar plots become available!`
+                        `Hi Latitude Properties, I noticed that ${project.title} is currently booked. Please put me on the waiting list if similar plots become available!`
                       )}
                       target="_blank"
                       rel="noopener"
@@ -186,19 +207,19 @@ export default function BookedPropertiesPage() {
           <div className="mt-16 bg-gradient-to-r from-navy-900 to-navy-800 text-white p-8 md:p-12 rounded-sm border border-gold/30 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
-                Looking for Available Plots with 40% Deepavali Discount?
+                Looking for Available Sites with 40% Deepavali Discount?
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
-                Browse our active layout listings ready for immediate booking, instant registration, and individual Patta handover in Coimbatore.
+                Browse our active layout listings with master layout maps, ready for immediate spot booking, instant registration, and individual Patta handover in Coimbatore.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/#projects"
+                href="/#sites"
                 className="inline-flex items-center gap-2 bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-bold text-sm px-6 py-3 rounded-sm shadow hover:scale-[1.02] transition-transform"
               >
-                Browse Available Plots
+                Browse Our Available Sites
                 <ArrowRight size={16} />
               </Link>
             </div>

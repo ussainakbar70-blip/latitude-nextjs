@@ -45,12 +45,13 @@ export default function LatitudeAiChat() {
     {
       id: "welcome",
       sender: "ai",
-      text: `Hello! I am **LATITUDE AI**, your personal property consultant for **Latitude Promoters**.\n\nI can help you explore our DTCP & RERA approved residential plots, our **Special 40% Deepavali Festive Offer**, inch-by-inch architectural specifications, 360° virtual tours, and free site visits.\n\nWhat would you like to explore today?`,
+      text: `Hello! I am **LATITUDE AI**, your personal property consultant for **Latitude Properties**.\n\nI can help you explore our DTCP approved residential sites, **Master Layout Maps**, real-time plot availability (Available, Booked & Sold), our **Special 40% Deepavali Festive Offer**, and free cab site visits.\n\nWhat would you like to explore today?`,
       timestamp: "Just now",
       links: [
-        { label: "View 40% Deepavali Plots", href: "/#projects" },
+        { label: "View Our Sites (40% Off)", href: "/#sites" },
+        { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
+        { label: "Kandhan Avenue Layout Map", href: "/sites/kandhan-avenue" },
         { label: "Booked Plots", href: "/booked-properties" },
-        { label: "Sold Out Layouts", href: "/sold-properties" },
       ],
     },
   ]);
@@ -81,37 +82,29 @@ export default function LatitudeAiChat() {
       q.includes("discount")
     ) {
       return {
-        text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Promoters is currently offering an unprecedented **Flat 40% OFF** on all our active residential layouts in Coimbatore:\n\n• **Kalampalayam Area**: Original ₹55L ➔ **Offer Price: ₹33 Lakhs** (You Save ₹22 Lakhs!)\n• **Green Fields Layout**: Original ₹75L ➔ **Offer Price: ₹45 Lakhs** (You Save ₹30 Lakhs!)\n• **Coimbatore Region Plots**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (You Save ₹16.8 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP & RERA approved layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a spot or schedule a free site visit?`,
+        text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Properties is currently offering an unprecedented **Flat 40% OFF** on our active residential sites in Coimbatore:\n\n• **Sri Aanandham Avenue**: Original ₹48L ➔ **Offer Price: ₹28.80 Lakhs** (Save ₹19.20 Lakhs! Rate: ₹1,740/sq.ft)\n• **Kandhan Avenue**: Original ₹52L ➔ **Offer Price: ₹31.20 Lakhs** (Save ₹20.80 Lakhs! Rate: ₹1,680/sq.ft)\n• **Siruvani Enclave (Phase 1 & 2)**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (Save ₹16.80 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP sanctioned master layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a plot or schedule a free site visit?`,
         links: [
-          { label: "Explore Kalampalayam (40% Off)", href: "/properties/kalampalayam-area" },
-          { label: "Explore Green Fields (40% Off)", href: "/properties/green-fields-layout" },
+          { label: "Explore Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
+          { label: "Explore Kandhan Avenue", href: "/sites/kandhan-avenue" },
         ],
       };
     }
 
-    // 2. Available Properties / Plots
+    // 2. Layout Maps & Plot Availability
     if (
-      q.includes("available") ||
-      q.includes("property") ||
-      q.includes("properties") ||
-      q.includes("plots") ||
-      q.includes("land") ||
-      q.includes("projects")
+      q.includes("layout") ||
+      q.includes("map") ||
+      q.includes("plot") ||
+      q.includes("site") ||
+      q.includes("sites") ||
+      q.includes("available")
     ) {
-      const avail = getAvailableProjects();
-      const list = avail
-        .map(
-          (p) =>
-            `• **[${p.title}](/properties/${p.id})** (${p.location}):\n  - Size: ${p.specs.totalPlotArea}\n  - Facing: ${p.specs.facing}\n  - Offer Price: **₹${(p.offerPrice / 100000).toFixed(2)} Lakhs** (after 40% Deepavali discount)\n  - Status: ${p.tag}`
-        )
-        .join("\n\n");
-
       return {
-        text: `Here are our currently **Available Residential Properties**:\n\n${list}\n\nEvery property includes interactive **360° virtual tours**, inch-by-inch specifications, and DTCP approval documents.`,
+        text: `🗺️ **Master Layout Maps & Live Plot Status:**\n\nYou can inspect our high-resolution sanctioned layout maps and real-time plot directory right on each site page:\n\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)**: 17 Plots total (8 Available, 4 Booked, 5 Sold) | 30ft Roads, Siruvani water line, solar lights\n• **[Kandhan Avenue](/sites/kandhan-avenue)**: 25 Plots total (11 Available, 6 Booked, 8 Sold) | 12m Panchayat Tar Road, LPA & DTCP approved\n• **[Siruvani Enclave (Phase 1 & 2)](/sites/siruvani-phase-1-2)**: 56 Plots total (18 Available in Phase 2, 12 Booked, 26 Sold in Phase 1)\n\nEvery site detail page features an interactive zoomable layout map and plot-by-plot inventory table!`,
         links: [
-          { label: "View Kalampalayam Layout", href: "/properties/kalampalayam-area" },
-          { label: "View Green Fields Layout", href: "/properties/green-fields-layout" },
-          { label: "View Coimbatore Region Plots", href: "/properties/coimbatore-region-plots" },
+          { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
+          { label: "Kandhan Avenue Layout Map", href: "/sites/kandhan-avenue" },
+          { label: "Siruvani Enclave Layout Map", href: "/sites/siruvani-phase-1-2" },
         ],
       };
     }
@@ -122,13 +115,13 @@ export default function LatitudeAiChat() {
       const list = booked
         .map(
           (p) =>
-            `• **[${p.title}](/properties/${p.id})**:\n  - Location: ${p.location}\n  - Locked Price: ₹${(p.offerPrice / 100000).toFixed(2)} Lakhs (under 40% Deepavali offer)\n  - Status: ${p.bookedOrSoldNote}`
+            `• **[${p.title}](/sites/${p.id})**:\n  - Location: ${p.location}\n  - Locked Price: ₹${(p.offerPrice / 100000).toFixed(2)} Lakhs (under 40% Deepavali offer)\n  - Status: ${p.bookedOrSoldNote}`
         )
         .join("\n\n");
 
       return {
-        text: `📌 **Booked Properties Status:**\n\n${list}\n\nBuyers have placed token advances and their registrations are currently underway at the Sub-Registrar Office. You can join the **Phase 2 Waiting List** to be notified first if adjacent plots open up!`,
-        links: [{ label: "Browse Booked Properties Page", href: "/booked-properties" }],
+        text: `📌 **Booked Sites & Plots Status:**\n\n${list}\n\nBuyers have placed token advances and their registrations are currently underway at the Sub-Registrar Office. You can join the **Phase 2 Waiting List** to be notified first if adjacent plots open up!`,
+        links: [{ label: "Browse Booked Sites Page", href: "/booked-properties" }],
       };
     }
 
@@ -138,13 +131,13 @@ export default function LatitudeAiChat() {
       const list = sold
         .map(
           (p) =>
-            `• **[${p.title}](/properties/${p.id})**:\n  - 100% Sold Out & Delivered (${p.specs.totalPlotArea})\n  - All individual Pattas transferred\n  - Active resident welfare association with completed infrastructure.`
+            `• **[${p.title}](/sites/${p.id})**:\n  - 100% Sold Out & Delivered (${p.specs.totalPlotArea})\n  - All individual Pattas transferred\n  - Active resident welfare association with completed infrastructure.`
         )
         .join("\n\n");
 
       return {
-        text: `🏆 **100% Sold Out & Handed Over Communities:**\n\n${list}\n\nLatitude Promoters has delivered 500+ plots across Coimbatore with a **zero-litigation 100% clear title track record**.`,
-        links: [{ label: "View Sold Properties Showcase", href: "/sold-properties" }],
+        text: `🏆 **100% Sold Out & Handed Over Communities:**\n\n${list}\n\nLatitude Properties has delivered hundreds of plots across Coimbatore with a **zero-litigation 100% clear title track record**.`,
+        links: [{ label: "View Sold Sites Showcase", href: "/sold-properties" }],
       };
     }
 
@@ -158,10 +151,10 @@ export default function LatitudeAiChat() {
       q.includes("road")
     ) {
       return {
-        text: `📐 **Inch-by-Inch Engineering Standards:**\n\nEach Latitude Promoters project features precise, verified specifications:\n\n• **Roads:** 33ft to 40ft wide heavy-duty blacktop tar roads with storm drains.\n• **Water:** Dedicated Siruvani municipal drinking water tap + sweet water borewells.\n• **Electricity:** 3-Phase underground electric cabling or high-grade conduit poles with automatic solar street lighting.\n• **Approvals:** 100% DTCP & TN RERA sanctioned with immediate individual sub-division Patta.\n• **Structure (Villas):** Deep RCC column isolated footing, 9\" wire-cut red brick walls, 4x2 vitrified tiles, teak main doors, and Finolex/Jaquar fittings.\n\nYou can inspect the full inch-by-inch breakdown on any property page!`,
+        text: `📐 **Engineering Standards & Specifications:**\n\nEach Latitude Properties project features precise, verified specifications:\n\n• **Roads:** 24ft (7.2m), 30ft (9.0m), and 40ft (12.0m) wide heavy-duty blacktop tar roads with storm drains.\n• **Water:** Dedicated Siruvani municipal drinking water tap + sweet water borewells.\n• **Electricity:** 3-Phase underground electric cabling or high-grade conduit poles with automatic solar street lighting.\n• **Approvals:** 100% DTCP & Coimbatore LPA sanctioned with immediate individual sub-division Patta.\n\nYou can inspect the full inch-by-inch breakdown on any site page!`,
         links: [
-          { label: "Kalampalayam Inch-by-Inch Specs", href: "/properties/kalampalayam-area" },
-          { label: "Green Fields Specs", href: "/properties/green-fields-layout" },
+          { label: "Sri Aanandham Avenue Specs", href: "/sites/sri-aanandham-avenue" },
+          { label: "Kandhan Avenue Specs", href: "/sites/kandhan-avenue" },
         ],
       };
     }
@@ -169,10 +162,10 @@ export default function LatitudeAiChat() {
     // 6. 360-Degree Views
     if (q.includes("360") || q.includes("virtual") || q.includes("tour") || q.includes("panorama") || q.includes("view")) {
       return {
-        text: `🌐 **360° Interactive Virtual Property Tours:**\n\nEvery property detail page now contains an interactive 360-degree viewer! You can click, drag, pan, zoom, and rotate the panorama horizontally 360 degrees to inspect the layout, roads, and scenic surroundings right from your screen.\n\nVisit any property page to test the interactive 360° tour!`,
+        text: `🌐 **360° Interactive Virtual Site Tours:**\n\nEvery site detail page contains an interactive 360-degree viewer! You can click, drag, pan, zoom, and rotate the panorama horizontally 360 degrees to inspect the layout, roads, and scenic surroundings right from your screen.\n\nVisit any site page to test the interactive 360° tour!`,
         links: [
-          { label: "Test 360° Tour on Kalampalayam", href: "/properties/kalampalayam-area" },
-          { label: "Test 360° Tour on Green Fields", href: "/properties/green-fields-layout" },
+          { label: "Test 360° Tour on Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
+          { label: "Test 360° Tour on Kandhan Avenue", href: "/sites/kandhan-avenue" },
         ],
       };
     }
@@ -188,7 +181,7 @@ export default function LatitudeAiChat() {
       q.includes("location")
     ) {
       return {
-        text: `🚗 **Latitude Promoters — Free Site Visit & Office Details:**\n\n• **Office Address:**\n  ${site.address.full}\n\n• **Direct Phone:**\n  📞 **${site.phonePrimary}** / 📞 **${site.phoneAlternate}**\n\n• **Free Site Visit:**\n  We provide complimentary cab pick-up & drop across Coimbatore, plus on-site legal document verification with our senior team.`,
+        text: `🚗 **Latitude Properties — Free Site Visit & Office Details:**\n\n• **Office Address:**\n  ${site.address.full}\n\n• **Direct Phone:**\n  📞 **${site.phonePrimary}** / 📞 **${site.phoneAlternate}**\n\n• **Free Site Visit:**\n  We provide complimentary cab pick-up & drop across Coimbatore, plus on-site legal document verification with our senior team.`,
         links: [
           { label: "Schedule Site Visit Online", href: "/#contact" },
           { label: "Chat on WhatsApp Now", href: buildWhatsappLink(site.defaultWhatsappMessage) },
@@ -198,11 +191,11 @@ export default function LatitudeAiChat() {
 
     // Default intelligent overview
     return {
-      text: `Thank you for asking! **Latitude Promoters** is Coimbatore's premier land and residential promoter, specializing in DTCP and RERA approved gated layouts with direct Siruvani drinking water, wide tar roads, and 100% clear titles.\n\nRight now, we are celebrating our **40% Deepavali Festive Discount** across our layouts in Kalampalayam and Coimbatore.\n\nFeel free to ask me about:\n- 💥 The 40% Deepavali price savings\n- 🏡 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 🔒 Booked & Sold property records\n- 🚗 Free cab pickup for site visits`,
+      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP and LPA approved gated layouts with direct Siruvani drinking water, wide tar roads, and 100% clear titles.\n\nRight now, we are celebrating our **40% Deepavali Festive Discount** across our sites including Sri Aanandham Avenue, Kandhan Avenue, and Siruvani Enclave.\n\nFeel free to ask me about:\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 💥 The 40% Deepavali price savings\n- 🏡 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 🔒 Booked & Sold property records\n- 🚗 Free cab pickup for site visits`,
       links: [
-        { label: "View Available Plots", href: "/#projects" },
+        { label: "View Our Sites (40% Off)", href: "/#sites" },
+        { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
         { label: "Booked Plots", href: "/booked-properties" },
-        { label: "Sold Layouts", href: "/sold-properties" },
       ],
     };
   };
@@ -242,23 +235,26 @@ export default function LatitudeAiChat() {
           // Determine contextual quick links based on query
           let relevantLinks: { label: string; href: string }[] = [];
           const lower = (query + " " + data.content).toLowerCase();
-          if (lower.includes("kalampalayam")) {
-            relevantLinks.push({ label: "Kalampalayam Layout (40% Off)", href: "/properties/kalampalayam-area" });
+          if (lower.includes("aanandham")) {
+            relevantLinks.push({ label: "Sri Aanandham Avenue Layout", href: "/sites/sri-aanandham-avenue" });
           }
-          if (lower.includes("green fields")) {
-            relevantLinks.push({ label: "Green Fields Layout", href: "/properties/green-fields-layout" });
+          if (lower.includes("kandhan")) {
+            relevantLinks.push({ label: "Kandhan Avenue Layout", href: "/sites/kandhan-avenue" });
+          }
+          if (lower.includes("siruvani enclave") || lower.includes("phase")) {
+            relevantLinks.push({ label: "Siruvani Enclave Layout", href: "/sites/siruvani-phase-1-2" });
           }
           if (lower.includes("booked")) {
             relevantLinks.push({ label: "Booked Plots", href: "/booked-properties" });
           }
           if (lower.includes("sold")) {
-            relevantLinks.push({ label: "Sold Out Communities", href: "/sold-properties" });
+            relevantLinks.push({ label: "Sold Out Sites", href: "/sold-properties" });
           }
           if (relevantLinks.length === 0) {
             relevantLinks = [
-              { label: "View Available Plots (40% Off)", href: "/#projects" },
+              { label: "View Our Sites (40% Off)", href: "/#sites" },
+              { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
               { label: "Booked Plots", href: "/booked-properties" },
-              { label: "Sold Out Layouts", href: "/sold-properties" },
             ];
           }
 

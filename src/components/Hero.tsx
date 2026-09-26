@@ -36,10 +36,10 @@ export default function Hero() {
 
         <div className="flex flex-wrap gap-4 mb-10">
           <a
-            href="#projects"
+            href="#sites"
             className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-semibold text-[13.5px] px-6 py-3 transition-transform hover:-translate-y-0.5"
           >
-            Explore Projects <ArrowRight size={16} />
+            Explore Our Sites <ArrowRight size={16} />
           </a>
           <a
             href="#contact"

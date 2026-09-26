@@ -1,4 +1,4 @@
-﻿import { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,12 +26,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const propertyRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
-    url: `${baseUrl}/properties/${p.id}`,
+  const siteRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${baseUrl}/sites/${p.id}`,
     lastModified,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
 
-  return [...staticRoutes, ...propertyRoutes];
+  const propertyRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${baseUrl}/properties/${p.id}`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...siteRoutes, ...propertyRoutes];
 }
