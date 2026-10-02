@@ -212,11 +212,11 @@ export default function SoldPropertiesPage() {
                 Don&apos;t Miss Out
               </span>
               <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
-                Grab Currently Available Sites with 40% Deepavali Discount
+                Explore Currently Available DTCP Approved Sites
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
-                Our active plots in Sri Aanandham Avenue, Kandhan Avenue, and Siruvani Enclave are filling fast.
-                Benefit from our limited-time 40% Deepavali festive pricing today!
+                Our active plots and houses in Kandhan Avenue (Elur, Arisipalayam), Sri Aanandham Avenue, and Siruvani Enclave are filling fast.
+                Benefit from our Grand Launch pricing and site visit assistance today!
               </p>
             </div>
 

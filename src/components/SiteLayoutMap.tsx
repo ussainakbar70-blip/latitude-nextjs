@@ -66,7 +66,7 @@ export default function SiteLayoutMap() {
         return (
           <span className="inline-flex items-center gap-1 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">
             <Sparkles size={10} />
-            Available (40% Off)
+            Available Plot
           </span>
         );
       case "booked":
@@ -113,7 +113,7 @@ export default function SiteLayoutMap() {
         </h2>
 
         <p className="text-muted text-sm md:text-base leading-[1.7] max-w-[780px] mt-2 mb-0">
-          Explore all 17 DTCP-approved residential plots with exact dimensions, road widths, and real-time booking statuses. Click any plot on the layout to inspect detailed inch-by-inch specifications and claim our exclusive <strong>40% Deepavali Dhamaka Discount</strong>.
+          Explore all 17 DTCP-approved residential plots with exact dimensions, road widths, and real-time booking statuses. Click any plot on the layout to inspect detailed inch-by-inch specifications and verified title deeds.
         </p>
       </Reveal>
 
@@ -136,7 +136,7 @@ export default function SiteLayoutMap() {
           <div>
             <div className="text-xs text-emerald-800 font-medium">Available Now</div>
             <div className="text-sm font-bold text-emerald-950 flex items-center gap-1">
-              {availableCount} Plots (40% Off)
+              {availableCount} Plots Available
             </div>
           </div>
         </div>
@@ -446,7 +446,7 @@ export default function SiteLayoutMap() {
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 bg-emerald-50 border border-emerald-500 rounded-sm" />
-                Available (40% Off)
+                Available Plot
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 bg-amber-50 border border-amber-500 rounded-sm" />
@@ -510,22 +510,19 @@ export default function SiteLayoutMap() {
             </div>
           </div>
 
-          {/* Pricing Box with Deepavali Dhamaka Discount */}
+          {/* Plot Pricing Box */}
           <div className="bg-navy-900 text-white p-4 rounded-sm border border-gold/40 shadow-inner mb-5">
             <div className="flex items-center justify-between text-[11px] text-gold-warm font-semibold mb-1">
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 font-bold">
                 <Sparkles size={13} className="text-gold-warm" />
-                40% DEEPAVALI OFFER
+                DTCP APPROVED PLOT
               </span>
-              <span className="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">
-                FLAT 40% OFF
+              <span className="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">
+                100% CLEAR PATTA
               </span>
             </div>
 
             <div className="flex items-baseline gap-2.5 my-1">
-              <del className="text-xs text-white/50">
-                ₹{(selectedPlot.originalPrice / 100000).toFixed(2)} Lakhs
-              </del>
               <div className="font-serif text-2xl font-bold text-white">
                 ₹{(selectedPlot.offerPrice / 100000).toFixed(2)} Lakhs
               </div>
@@ -533,7 +530,7 @@ export default function SiteLayoutMap() {
 
             <div className="flex items-center justify-between text-xs pt-2 mt-2 border-t border-white/15">
               <span className="text-emerald-400 font-semibold">
-                You Save ₹{(selectedPlot.savingsAmount / 100000).toFixed(2)} Lakhs
+                Instant Sub-division Patta
               </span>
               <span className="text-white/70">
                 ₹{selectedPlot.ratePerSqFt}/sq.ft
@@ -562,7 +559,7 @@ export default function SiteLayoutMap() {
             {selectedPlot.status === "available" && (
               <a
                 href={buildWhatsappLink(
-                  `Hello Latitude Properties, I am interested in reserving ${selectedPlot.label} (${selectedPlot.dimensionsImperial}, ${selectedPlot.areaCents} Cents) under the 40% Deepavali Offer for Rs. ${(selectedPlot.offerPrice / 100000).toFixed(2)} Lakhs.`
+                  `Hello Latitude Properties, I am interested in reserving ${selectedPlot.label} (${selectedPlot.dimensionsImperial}, ${selectedPlot.areaCents} Cents) at Sri Aanandham Avenue for Rs. ${(selectedPlot.offerPrice / 100000).toFixed(2)} Lakhs.`
                 )}
                 target="_blank"
                 rel="noopener"
@@ -728,7 +725,7 @@ function PlotButton({
           }`}
         >
           {plot.status === "available"
-            ? "40% Off"
+            ? "Available"
             : plot.status === "booked"
             ? "Booked"
             : "Sold"}

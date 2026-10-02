@@ -32,9 +32,9 @@ export default function ProjectModal({
         </button>
         <div className="relative h-[220px] w-full">
           <Image src={project.img} alt={project.title} fill className="object-cover" sizes="640px" />
-          <div className="absolute top-3 left-3 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[11px] font-bold px-3 py-1 rounded shadow flex items-center gap-1.5">
-            <Sparkles size={12} />
-            40% Deepavali Festive Discount
+          <div className="absolute top-3 left-3 bg-gradient-to-r from-navy-900 to-navy-800 text-gold-warm text-[11px] font-bold px-3 py-1 rounded shadow flex items-center gap-1.5 border border-gold/40">
+            <Sparkles size={12} className="text-gold-warm" />
+            {project.launchOfferTitle || "DTCP Approved"}
           </div>
         </div>
         <div className="p-7">
@@ -64,18 +64,50 @@ export default function ProjectModal({
             </div>
           )}
 
-          {/* Deepavali Offer Card */}
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-gold/30 rounded p-3.5 mb-4">
-            <div className="flex justify-between items-center text-xs text-muted mb-1">
-              <span>Original Standard Price: <del>₹{(project.originalPrice / 100000).toFixed(2)} Lakhs</del></span>
-              <span className="font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded">40% OFF</span>
-            </div>
-            <div className="text-2xl font-serif font-bold text-navy-900">
-              ₹{(project.offerPrice / 100000).toFixed(2)} Lakhs
-              <span className="text-xs font-sans font-normal text-emerald-700 font-semibold ml-2">
-                (Save ₹{(project.savingsAmount / 100000).toFixed(2)} Lakhs)
-              </span>
-            </div>
+          {/* Pricing Card */}
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-gold/40 rounded p-4 mb-4">
+            {project.houseStartingPrice ? (
+              <div>
+                <div className="flex justify-between items-center text-xs font-bold text-navy-900 mb-1">
+                  <span>PREMIUM 2 BHK INDIVIDUAL HOUSES</span>
+                  <span className="text-emerald-800">Plots: {project.plotRatePerCent}</span>
+                </div>
+                <div className="text-2xl font-serif font-bold text-navy-900">
+                  {project.houseStartingPrice}
+                </div>
+                <div className="text-xs text-muted mt-2 pt-2 border-t border-gold/20 flex flex-wrap justify-between gap-1">
+                  <span className="font-semibold text-navy-900">{project.onHandAmount}</span>
+                  <span className="text-emerald-700 font-medium">{project.bankLoanAssistance}</span>
+                </div>
+              </div>
+            ) : project.plotRatePerCent ? (
+              <div>
+                <div className="flex justify-between items-center text-xs font-bold text-navy-900 mb-1">
+                  <span>GRAND LAUNCH OFFER</span>
+                  <span className="text-emerald-800">DTCP Approved Layout</span>
+                </div>
+                <div className="text-2xl font-serif font-bold text-navy-900">
+                  {project.plotRatePerCent}
+                </div>
+                <div className="text-xs text-muted mt-2 pt-2 border-t border-gold/20 flex flex-wrap justify-between gap-1">
+                  <span className="font-semibold text-navy-900">Future Corporation Limit</span>
+                  <span className="text-emerald-700 font-medium">33-ft Blacktop Roads • Pollachi Rd 650m</span>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex justify-between items-center text-xs text-muted mb-1">
+                  <span>Plot Starting Price</span>
+                  <span className="font-semibold text-emerald-800">100% Clear Title Patta</span>
+                </div>
+                <div className="text-2xl font-serif font-bold text-navy-900">
+                  ₹{(project.offerPrice / 100000).toFixed(2)} Lakhs
+                  <span className="text-xs font-sans font-normal text-muted ml-2">
+                    (₹{project.ratePerSqFtOffer}/sq.ft)
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           <DetailRow label="Location" value={project.location} />
@@ -106,7 +138,7 @@ export default function ProjectModal({
             </a>
             <a
               href={buildWhatsappLink(
-                `Hello Latitude Properties, I would like more details about ${project.title} layout map and the 40% Deepavali offer.`
+                `Hello Latitude Properties, I would like more details about ${project.title} layout map and pricing.`
               )}
               target="_blank"
               rel="noopener"

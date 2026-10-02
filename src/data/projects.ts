@@ -40,6 +40,15 @@ export type PropertyAmenity = {
   iconName: "Route" | "Droplets" | "Sun" | "Shield" | "Trees" | "Zap" | "Compass" | "Waves" | "Grid3x3";
 };
 
+export type NeighborhoodCategory = {
+  category: string;
+  iconName: "Route" | "GraduationCap" | "Briefcase" | "HeartPulse" | "Landmark" | "School";
+  items: {
+    name: string;
+    distanceTime: string;
+  }[];
+};
+
 export type Project = {
   id: string;
   tag: string;
@@ -52,14 +61,21 @@ export type Project = {
   img: string;
   gallery: string[];
   specs: InchByInchSpecs;
-  // Deepavali 40% Festive Offer Details
-  originalPrice: number;
-  discountPercent: number; // 40
+  // Transparent Pricing Details
+  originalPrice?: number;
+  discountPercent?: number;
   offerPrice: number;
-  savingsAmount: number;
-  ratePerSqFtOriginal: number;
+  savingsAmount?: number;
+  ratePerSqFtOriginal?: number;
   ratePerSqFtOffer: number;
-  deepavaliOfferValidUntil: string;
+  offerValidUntil?: string;
+  startingPriceLabel?: string;
+  houseStartingPrice?: string;
+  plotRatePerCent?: string;
+  onHandAmount?: string;
+  bankLoanAssistance?: string;
+  launchOfferTitle?: string;
+  neighborhoodConnectivity?: NeighborhoodCategory[];
   // 360 Tour resources
   view360Image: string;
   view360Title: string;
@@ -150,13 +166,9 @@ export const projects: Project[] = [
       waterDrainage: "Pure Siruvani Municipal Water Supply + Covered Underground Drains",
       ceilingHeight: "10 Feet 6 Inches Clear Ceiling Height"
     },
-    originalPrice: 4800000,
-    discountPercent: 40,
     offerPrice: 2880000,
-    savingsAmount: 1920000,
-    ratePerSqFtOriginal: 2900,
     ratePerSqFtOffer: 1740,
-    deepavaliOfferValidUntil: "Limited Deepavali Season Celebration Offer",
+    startingPriceLabel: "Starting from ₹28.80 Lakhs",
     view360Image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
     view360Title: "Sri Aanandham Avenue 360° Interactive Virtual Tour",
     description: "Sri Aanandham Avenue is a prestigious DTCP Approved residential layout (DTCP No: 252/2026) located right off Siruvani Main Road in Kalampalayam, Coimbatore. Featuring 17 prime plots ranging from 2.87 to 4.56 cents, complete with 30-feet wide tar roads, individual Siruvani water pipeline connections, complete electricity infrastructure, and eco-friendly solar street lights. Within minutes from Kikani School (5 mins), Kovai Kondattam (5 mins), Karunya University (10 mins), and Isha Yoga Center (15 mins).",
@@ -171,20 +183,20 @@ export const projects: Project[] = [
   },
   {
     id: "kandhan-avenue",
-    tag: "DTCP & Coimbatore LPA Approved",
-    title: "Kandhan Avenue",
-    location: "Near Pollachi Main Road / Othakkalmandapam, Coimbatore",
-    type: "Gated Residential Community Plots",
+    tag: "Grand Launch Offer",
+    title: "Kandhan Avenue – Elur, Arisipalayam",
+    location: "Elur, Arisipalayam, Near Pollachi Highway, Coimbatore",
+    type: "Premium 2 BHK Individual Houses & DTCP Approved Plots",
     status: "available",
-    dtcpApprovalNumber: "L.P/CLPA No: 256/2026 : 330/2026",
+    dtcpApprovalNumber: "DTCP Approval No. 256/2026",
     surveyNumber: "S.F. NO - 408/2B, 407/2A, 407/3, 406/2B, 406/3",
     layoutMapImage: "/images/sites/kandhan-avenue-layout.png",
-    layoutMapTitle: "Kandhan Avenue Official DTCP/LPA Approved Layout Plan",
+    layoutMapTitle: "Kandhan Avenue Official DTCP Approved Layout Plan",
     brochureImage: "/images/sites/kandhan-avenue-layout.png",
     img: "/images/sites/kandhan-avenue-layout.png",
     gallery: [
       "/images/sites/kandhan-avenue-layout.png",
-      "https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
     ],
     plotsSummary: {
@@ -220,48 +232,248 @@ export const projects: Project[] = [
       { plotNumber: 24, areaSqFt: 2400, areaCents: "5.51 Cent", dimensions: "40'-3\" x 60'-9\"", facing: "West", status: "booked" },
       { plotNumber: 25, areaSqFt: 2600, areaCents: "5.97 Cent", dimensions: "57' x 48'-3\"", facing: "Corner Main Road", status: "available" }
     ],
-    amenities: "12m Panchayat Tar Road, 9m Internal Road, EB, Sweet Water",
+    amenities: "Pollachi Highway 1.5 km, 12m Tar Road, EB, Sweet Water, Green Layout",
     amenitiesList: [
-      { name: "12.0m Wide Panchayat Tar Road", description: "Direct access to wide 40-foot main Panchayat bitumen road", iconName: "Route" },
-      { name: "Coimbatore LPA & DTCP Sanction", description: "Approved Layout L.P/CLPA No: 256/2026 with full legal clearances", iconName: "Shield" },
-      { name: "Round-the-clock Water Pipeline", description: "Dedicated sweet drinking water pipelines laid to each plot frontage", iconName: "Droplets" },
-      { name: "3-Phase Power & Streetlighting", description: "Underground electric cabling ducts and modern street luminaries", iconName: "Zap" },
-      { name: "Lush Tree Avenue & Greenery", description: "Planned park space and tree-lined walkways for peaceful living", iconName: "Trees" }
+      { name: "Direct Pollachi Highway Access", description: "Just 1.5 km (2 mins) from Pollachi Highway with excellent transport connectivity", iconName: "Route" },
+      { name: "DTCP Sanctioned Layout", description: "Approved Layout Approval No: 256/2026 with 100% clear titles & immediate Patta", iconName: "Shield" },
+      { name: "Round-the-clock Sweet Water", description: "Dedicated sweet drinking water pipelines laid to each plot and villa frontage", iconName: "Droplets" },
+      { name: "3-Phase Power & Street Lighting", description: "TANGEDCO power connection ready with modern streetlights", iconName: "Zap" },
+      { name: "Peaceful & Green Environment", description: "Clean air, quiet residential ambiance, and lush tree plantations throughout", iconName: "Trees" }
     ],
     specs: {
       plotDimensions: "30' x 45', 30' x 55', and Corner Plots up to 57' x 48'",
-      totalPlotArea: "25 Approved Plots (From 2.87 Cents to 5.97 Cents)",
-      builtUpArea: "Ideal for 2BHK, 3BHK & 4BHK Custom Architect Villas",
-      carpetArea: "100% Usable Residential Space",
+      totalPlotArea: "25 Approved Plots & Individual Houses (From 2.87 Cents to 5.97 Cents)",
+      builtUpArea: "Premium 2 BHK Individual Houses (Starting from JUST ₹29 LAKHS Onwards)",
+      carpetArea: "100% Usable Residential Space with Vastu Compliance",
       facing: "North, South, East & Main Road Corner Facings",
       roadWidth: "12.0m (40 Ft) Panchayat Road & 9.0m / 7.2m Layout Roads",
-      approvalNumber: "L.P/CLPA No: 256/2026 : 330/2026",
-      pattaStatus: "Clear Title Deed, Verified by Senior High Court Advocate",
-      foundation: "Deep Trench RCC Column Structure spec approved",
+      approvalNumber: "DTCP Approval No. 256/2026",
+      pattaStatus: "Clear Title Deed, 100% Legally Verified & Instant Sub-division Individual Patta",
+      foundation: "Deep Trench RCC Column Footing engineered for maximum structural life",
       superstructure: "Solid Concrete Blocks & Chamber Burnt Red Clay Bricks",
       flooring: "Vitrified Nano Polished Tiles",
       doorsWindows: "Burma Teak Entrance & Heavy UPVC Sliding Windows",
       electricalPlumbing: "Concealed Fire-Resistant Cabling & Ashirvad Pipes",
-      waterDrainage: "Direct Sweet Water Well Connection + Rainwater Trenches",
+      waterDrainage: "Direct Sweet Water Supply + Covered Underground Drains",
       ceilingHeight: "10 Feet 6 Inches"
     },
-    originalPrice: 5200000,
-    discountPercent: 40,
-    offerPrice: 3120000,
-    savingsAmount: 2080000,
-    ratePerSqFtOriginal: 2800,
-    ratePerSqFtOffer: 1680,
-    deepavaliOfferValidUntil: "Limited Deepavali Season Celebration Offer",
+    offerPrice: 2900000,
+    ratePerSqFtOffer: 1420,
+    startingPriceLabel: "Starting from JUST ₹29 LAKHS Onwards",
+    houseStartingPrice: "Starting from JUST ₹29 LAKHS Onwards",
+    plotRatePerCent: "₹6.20 LAKHS per Cent",
+    onHandAmount: "Only ₹5 LAKHS On-Hand",
+    bankLoanAssistance: "Up to 80% Bank Loan Assistance Available*",
+    launchOfferTitle: "GRAND LAUNCH OFFER",
+    neighborhoodConnectivity: [
+      {
+        category: "Easy Connectivity",
+        iconName: "Route",
+        items: [
+          { name: "Pollachi Highway", distanceTime: "1.5 km (2 mins)" },
+          { name: "Kinathukadavu Bus Stand", distanceTime: "3–5 mins" },
+          { name: "Kinathukadavu Railway Station", distanceTime: "3–5 mins" }
+        ]
+      },
+      {
+        category: "Top Schools Nearby",
+        iconName: "School",
+        items: [
+          { name: "Vivek Vidyalaya Matric Hr. Sec. School", distanceTime: "2–3 mins" },
+          { name: "Noyyal Public School", distanceTime: "3–4 mins" },
+          { name: "Akshaya Academy", distanceTime: "8–10 mins" }
+        ]
+      },
+      {
+        category: "Leading Colleges Nearby",
+        iconName: "GraduationCap",
+        items: [
+          { name: "VSB College of Engineering & Technical Campus", distanceTime: "3–5 mins" },
+          { name: "Sri Eshwar College of Engineering", distanceTime: "5–7 mins" },
+          { name: "Amrita Vishwa Vidyapeetham", distanceTime: "5–7 mins" },
+          { name: "Hindusthan College of Engineering & Technology", distanceTime: "10–15 mins" },
+          { name: "Karpagam Academy of Higher Education", distanceTime: "20–25 mins" }
+        ]
+      },
+      {
+        category: "Employment Hubs Nearby",
+        iconName: "Briefcase",
+        items: [
+          { name: "ELGi ACP", distanceTime: "5–7 mins" },
+          { name: "200-Acre SIDCO Industrial Estate", distanceTime: "10–15 mins" },
+          { name: "L&T IT Park", distanceTime: "10–15 mins" },
+          { name: "Rathinam Tech Park", distanceTime: "15–20 mins" }
+        ]
+      },
+      {
+        category: "Healthcare Nearby",
+        iconName: "HeartPulse",
+        items: [
+          { name: "Sri Venkateswara Hospital", distanceTime: "5–10 mins" },
+          { name: "Karpagam Medical College Hospital", distanceTime: "10–15 mins" }
+        ]
+      },
+      {
+        category: "Popular Landmarks",
+        iconName: "Landmark",
+        items: [
+          { name: "Eachanari Vinayagar Temple", distanceTime: "20 mins" },
+          { name: "Aliyar Dam", distanceTime: "40 mins" }
+        ]
+      }
+    ],
     view360Image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80",
     view360Title: "Kandhan Avenue 360° Layout Panorama",
-    description: "Kandhan Avenue is an approved residential development certified under Coimbatore LPA and DTCP (L.P/CLPA No: 256/2026 : 330/2026). Situated abutting a 12.0-meter wide Panchayat Tar Road, Kandhan Avenue offers 25 well-demarcated residential plots with 9.0m and 7.20m internal roads, underground water connections, and rapid connectivity towards Pollachi Main Road and Othakkalmandapam.",
+    description: "Kandhan Avenue at Elur, Arisipalayam is a DTCP Approved Layout (Approval No. 256/2026) featuring Premium 2 BHK Individual Houses starting from just ₹29 Lakhs onwards and residential plots at ₹6.20 Lakhs per cent. Situated only 1.5 km (2 mins) from Pollachi Highway and 3–5 mins from Kinathukadavu bus stand & railway station. With only ₹5 Lakhs on-hand and up to 80% bank loan assistance, Kandhan Avenue provides peaceful and green community living with rapid access to premier educational institutions (VSB, Sri Eshwar, Amrita, Karpagam) and major industrial and IT employment corridors (SIDCO Industrial Estate, ELGi ACP, L&T IT Park).",
     highlights: [
-      "DTCP / Coimbatore LPA Sanctioned Layout (256/2026 : 330/2026)",
-      "Abutting 12.0m (40 Feet) Main Panchayat Tar Road",
-      "Total 25 Plots: 11 Available, 6 Booked, 8 Sold",
-      "Clear sub-division Patta ready for instant SRO registration",
-      "Bank loan pre-approval ready with SBI, HDFC & Canara Bank",
-      "High-growth area connecting Pollachi road corridor"
+      "DTCP Approved Layout – Approval No. 256/2026",
+      "Premium 2 BHK Individual Houses from JUST ₹29 LAKHS Onwards",
+      "Residential Plots at ₹6.20 LAKHS per Cent",
+      "Only ₹5 LAKHS On-Hand • Up to 80% Bank Loan Assistance Available*",
+      "Pollachi Highway – 1.5 km (2 mins) • Kinathukadavu Bus Stand 3–5 mins",
+      "Close to Vivek Vidyalaya, VSB, Sri Eshwar, Amrita & Karpagam",
+      "Minutes from ELGi ACP, 200-Acre SIDCO Industrial Estate & L&T IT Park",
+      "Peaceful & Green Environment with High Future Appreciation Potential"
+    ]
+  },
+  {
+    id: "rathna-residency",
+    tag: "Grand Launch • Future Corporation Limit",
+    title: "Rathna Residency",
+    location: "Behind Karpagam University, Malumichampatty (Future Corporation Limit), Coimbatore",
+    type: "DTCP-Approved Gated Community Plots",
+    status: "available",
+    dtcpApprovalNumber: "DTCP-Approved Layouts",
+    surveyNumber: "Malumichampatty Prime Survey Extension",
+    img: "/images/official-layout-plan.png",
+    gallery: [
+      "/images/official-layout-plan.png",
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1524055988636-436cfa46e59e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    plotsSummary: {
+      total: 36,
+      available: 26,
+      booked: 6,
+      sold: 4,
+    },
+    plotsList: [
+      { plotNumber: 1, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "East", status: "available" },
+      { plotNumber: 2, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "East", status: "available" },
+      { plotNumber: 3, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "East", status: "booked" },
+      { plotNumber: 4, areaSqFt: 1089, areaCents: "2.50 Cent", dimensions: "25' x 43'-7\"", facing: "East", status: "available" },
+      { plotNumber: 5, areaSqFt: 1089, areaCents: "2.50 Cent", dimensions: "25' x 43'-7\"", facing: "East", status: "sold" },
+      { plotNumber: 6, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "East", status: "available" },
+      { plotNumber: 7, areaSqFt: 1525, areaCents: "3.50 Cent", dimensions: "35' x 43'-7\"", facing: "North-East Corner", status: "available" },
+      { plotNumber: 8, areaSqFt: 1742, areaCents: "4.00 Cent", dimensions: "40' x 43'-7\"", facing: "North", status: "available" },
+      { plotNumber: 9, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "North", status: "booked" },
+      { plotNumber: 10, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "North", status: "available" },
+      { plotNumber: 11, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "South", status: "available" },
+      { plotNumber: 12, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "South", status: "sold" },
+      { plotNumber: 13, areaSqFt: 1089, areaCents: "2.50 Cent", dimensions: "25' x 43'-7\"", facing: "South", status: "available" },
+      { plotNumber: 14, areaSqFt: 1525, areaCents: "3.50 Cent", dimensions: "35' x 43'-7\"", facing: "South", status: "booked" },
+      { plotNumber: 15, areaSqFt: 1742, areaCents: "4.00 Cent", dimensions: "40' x 43'-7\"", facing: "West", status: "available" },
+      { plotNumber: 16, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "West", status: "available" },
+      { plotNumber: 17, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "West", status: "sold" },
+      { plotNumber: 18, areaSqFt: 1089, areaCents: "2.50 Cent", dimensions: "25' x 43'-7\"", facing: "West", status: "available" },
+      { plotNumber: 19, areaSqFt: 1307, areaCents: "3.00 Cent", dimensions: "30' x 43'-7\"", facing: "West", status: "booked" },
+      { plotNumber: 20, areaSqFt: 2178, areaCents: "5.00 Cent", dimensions: "50' x 43'-7\"", facing: "Corner Main Road", status: "available" },
+    ],
+    amenities: "Grand Entrance Arch, Fully Gated Community, 33-ft Blacktop Roads, Individual Water Connection, Electricity, Solar Street Lights",
+    amenitiesList: [
+      { name: "DTCP-Approved Layouts", description: "Sanctioned DTCP residential layout with 100% legal clearance & instant Patta", iconName: "Shield" },
+      { name: "Grand Entrance Arch & Gated Community", description: "Secured perimeter wall with designer entrance arch and peaceful residential atmosphere", iconName: "Shield" },
+      { name: "33-ft Blacktop Roads", description: "Wide 33-feet heavy-duty blacktop roads with concrete stormwater drains", iconName: "Route" },
+      { name: "Individual Water & Electricity", description: "Dedicated individual water tap lines and TANGEDCO power connections ready for every plot", iconName: "Droplets" },
+      { name: "Solar Street Lights & Greenery", description: "Eco-friendly solar illumination and tranquil environment with high appreciation potential", iconName: "Zap" }
+    ],
+    specs: {
+      plotDimensions: "25' x 43'-7\", 30' x 43'-7\", 35' x 43'-7\", 40' x 43'-7\" & Corner Plots",
+      totalPlotArea: "DTCP Approved Residential Plots from 2.50 Cents to 5.00+ Cents",
+      builtUpArea: "Ideal for Custom Independent Villas, Rental Income & Long-Term Investment",
+      carpetArea: "100% Clear Vastu-Compliant Residential Plots",
+      facing: "East, North, West, South & Dual-Road Corner Facings",
+      roadWidth: "33-ft Heavy Duty Blacktop Layout Roads",
+      approvalNumber: "DTCP-Approved Layouts",
+      pattaStatus: "100% Clear Title Deeds with Instant Individual Sub-division Patta Transfer",
+      foundation: "High-density natural gravel soil with excellent bearing capacity",
+      superstructure: "Vastu compliant individual villa construction permitted immediately",
+      flooring: "N/A (Ready for Custom Villa Construction)",
+      doorsWindows: "N/A (Ready for Construction)",
+      electricalPlumbing: "Individual Water Pipeline + Direct Electricity Connection",
+      waterDrainage: "Individual Water Connection + Underground Stormwater Drains",
+      ceilingHeight: "Customizable"
+    },
+    offerPrice: 3125000,
+    ratePerSqFtOffer: 2870,
+    startingPriceLabel: "Launch Price: Just ₹12.5 Lakhs per Cent",
+    plotRatePerCent: "Just ₹12.5 Lakhs per Cent",
+    launchOfferTitle: "GRAND LAUNCH – FUTURE CORPORATION LIMIT",
+    neighborhoodConnectivity: [
+      {
+        category: "Prime Connectivity",
+        iconName: "Route",
+        items: [
+          { name: "Pollachi Road", distanceTime: "650 m" },
+          { name: "Future 6-Track L&T Bypass", distanceTime: "1.2 km" },
+          { name: "L&T IT Park", distanceTime: "2.2 km" },
+          { name: "Rathinam Tech Park", distanceTime: "3 km" },
+          { name: "Eachanari Vinayagar Temple", distanceTime: "2.5 km" },
+          { name: "Podanur Railway Station", distanceTime: "10–15 mins" },
+          { name: "Coimbatore Railway Station", distanceTime: "15–20 mins" },
+          { name: "Ukkadam Bus Stand", distanceTime: "15–20 mins" },
+          { name: "Gandhipuram Bus Stand", distanceTime: "20–25 mins" }
+        ]
+      },
+      {
+        category: "Surrounded by Top Educational Institutions",
+        iconName: "GraduationCap",
+        items: [
+          { name: "Karpagam University", distanceTime: "Just Behind" },
+          { name: "Karpagam Medical College & Hospital", distanceTime: "3–5 mins" },
+          { name: "Hindusthan College of Arts & Science", distanceTime: "5–7 mins" },
+          { name: "Rathinam University", distanceTime: "5–8 mins" },
+          { name: "Coimbatore Marine College", distanceTime: "5–8 mins" },
+          { name: "Christ The King Polytechnic College", distanceTime: "7–10 mins" },
+          { name: "GEDEE Public School", distanceTime: "5–7 mins" },
+          { name: "Zion Model Public School", distanceTime: "5–8 mins" },
+          { name: "Avatar Public School", distanceTime: "8–10 mins" },
+          { name: "Genius Kids International School", distanceTime: "8–10 mins" }
+        ]
+      },
+      {
+        category: "Near Major Employment Hubs",
+        iconName: "Briefcase",
+        items: [
+          { name: "SIDCO Industrial Estate", distanceTime: "5–8 mins" },
+          { name: "L&T IT Park", distanceTime: "2.2 km (5 mins)" },
+          { name: "Rathinam Tech Park", distanceTime: "3 km (6 mins)" },
+          { name: "Coimbatore Golf Club", distanceTime: "8–10 mins" }
+        ]
+      },
+      {
+        category: "Healthcare & Landmarks",
+        iconName: "HeartPulse",
+        items: [
+          { name: "Karpagam Medical College & Hospital", distanceTime: "3–5 mins" },
+          { name: "Eachanari Vinayagar Temple", distanceTime: "2.5 km (5 mins)" }
+        ]
+      }
+    ],
+    view360Image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80",
+    view360Title: "Rathna Residency 360° Layout Panorama",
+    description: "Own your dream plot in Rathna Residency, a premium DTCP-approved gated community located in one of Coimbatore's fastest-growing residential and IT corridors. Situated behind Karpagam University in Malumichampatty (Future Corporation Limit) and only 650 meters from Pollachi Road. Featuring 33-ft blacktop roads, grand entrance arch, individual water and electricity connections, and solar street lights, Rathna Residency offers exceptional connectivity to the future 6-track L&T Bypass, L&T IT Park, Rathinam Tech Park, and prestigious educational institutions. With its Future Corporation Limit status, this project offers high future appreciation potential at a launch price of just ₹12.5 Lakhs per Cent.",
+    highlights: [
+      "Prime Location in the Future Corporation Limit (Behind Karpagam University)",
+      "Launch Price: Just ₹12.5 Lakhs per Cent",
+      "DTCP-Approved Gated Layout with Grand Entrance Arch",
+      "33-ft Wide Blacktop Roads with Stormwater Drainage",
+      "Individual Water Connection & Electricity Connection",
+      "Solar Street Lights & Peaceful Residential Environment",
+      "Pollachi Road – 650 m • Future 6-Track L&T Bypass – 1.2 km",
+      "Minutes from L&T IT Park (2.2 km), Rathinam Tech Park (3 km) & SIDCO Industrial Estate",
+      "Surrounded by Karpagam, Hindusthan, Rathinam & Top Public Schools",
+      "Ideal for Dream Home, Rental Income & Long-Term Investment with High Appreciation"
     ]
   },
   {
@@ -373,13 +585,9 @@ export const projects: Project[] = [
       waterDrainage: "Siruvani Tap + Concealed Underground Drainage",
       ceilingHeight: "10 Feet 6 Inches"
     },
-    originalPrice: 4200000,
-    discountPercent: 40,
     offerPrice: 2520000,
-    savingsAmount: 1680000,
-    ratePerSqFtOriginal: 2400,
     ratePerSqFtOffer: 1440,
-    deepavaliOfferValidUntil: "Limited Deepavali Season Celebration Offer",
+    startingPriceLabel: "Starting from ₹25.20 Lakhs",
     view360Image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80",
     view360Title: "Siruvani Enclave Phase 1 & 2 Panorama",
     description: "Siruvani Enclave is a premier gated community layout divided into Phase 1 and Phase 2. Phase 1 has witnessed tremendous buyer enthusiasm with over 26 plots sold and handed over. Phase 2 brings freshly sanctioned residential plots with 10.0m wide main roads, direct Siruvani drinking water connections, and complete solar lighting infrastructure.",
@@ -389,7 +597,7 @@ export const projects: Project[] = [
       "Wide 10.0m, 9.0m, and 7.2m tar roads",
       "Direct Siruvani drinking water pipeline with individual taps",
       "Immediate registration ready with verified Patta",
-      "40% Deepavali discount active on Phase 2 introductory inventory"
+      "Phase 2 introductory inventory open with immediate individual Patta"
     ]
   }
 ];

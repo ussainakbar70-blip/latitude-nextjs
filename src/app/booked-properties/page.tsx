@@ -21,7 +21,7 @@ import { site, buildWhatsappLink } from "@/data/site";
 export const metadata = {
   title: "Booked Sites & Plots | Token Advance & Under Registration Sites in Coimbatore",
   description:
-    "Explore residential sites and plots currently booked under our 40% Deepavali offer and undergoing Sub-Registrar registration with Latitude Properties in Coimbatore. Join our Phase 2 priority waiting list.",
+    "Explore residential sites and plots currently booked and undergoing Sub-Registrar registration with Latitude Properties in Coimbatore. Join our Phase 2 priority waiting list.",
   alternates: {
     canonical: "/booked-properties",
   },
@@ -207,7 +207,7 @@ export default function BookedPropertiesPage() {
           <div className="mt-16 bg-gradient-to-r from-navy-900 to-navy-800 text-white p-8 md:p-12 rounded-sm border border-gold/30 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
-                Looking for Available Sites with 40% Deepavali Discount?
+                Looking for Available DTCP Approved Sites?
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
                 Browse our active layout listings with master layout maps, ready for immediate spot booking, instant registration, and individual Patta handover in Coimbatore.

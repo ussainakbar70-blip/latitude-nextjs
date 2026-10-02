@@ -25,9 +25,9 @@ export default function ProjectCard({
               {project.tag}
             </span>
             {isAvailable && (
-              <span className="bg-gradient-to-r from-red-600 to-amber-600 text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-bold rounded-sm shadow-md flex items-center gap-1">
-                <Sparkles size={11} />
-                40% Deepavali Offer
+              <span className="bg-gradient-to-r from-navy-900 to-navy-800 text-gold-warm text-[10px] tracking-wider uppercase px-2.5 py-1 font-bold rounded-sm shadow-md flex items-center gap-1 border border-gold/40">
+                <Sparkles size={11} className="text-gold-warm" />
+                {project.launchOfferTitle || "Available"}
               </span>
             )}
             {isBooked && (
@@ -101,21 +101,72 @@ export default function ProjectCard({
               </div>
             )}
 
-            <div className="bg-bg p-3 rounded-sm mb-4 border border-[#E9E6DB]">
-              <div className="flex items-baseline justify-between gap-2">
-                <div className="text-[11.5px] text-muted line-through">
-                  ₹{(project.originalPrice / 100000).toFixed(2)} Lakhs
+            {/* Transparent Pricing Card */}
+            <div className="bg-bg p-3.5 rounded-sm mb-4 border border-[#E9E6DB]">
+              {project.houseStartingPrice ? (
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-[10.5px] font-bold text-navy-900 uppercase tracking-wider bg-gold/20 text-gold-dark px-2 py-0.5 rounded">
+                      2 BHK Houses & Plots
+                    </span>
+                    <span className="text-[11px] font-semibold text-emerald-800">
+                      Plots: {project.plotRatePerCent}
+                    </span>
+                  </div>
+                  <div className="text-[19px] font-serif font-bold text-navy-900">
+                    ₹29 Lakhs Onwards
+                    <span className="text-[11.5px] font-sans font-normal text-muted ml-1.5">
+                      (2 BHK Individual House)
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted mt-1 pt-1.5 border-t border-[#ECE9DF] flex items-center justify-between">
+                    <span className="font-semibold text-navy-900">{project.onHandAmount}</span>
+                    <span className="text-emerald-700 font-medium">80% Bank Loan Support</span>
+                  </div>
                 </div>
-                <div className="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
-                  Save ₹{(project.savingsAmount / 100000).toFixed(2)}L (40% OFF)
+              ) : project.plotRatePerCent ? (
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-[10.5px] font-bold text-navy-900 uppercase tracking-wider bg-gold/20 text-gold-dark px-2 py-0.5 rounded">
+                      Grand Launch Offer
+                    </span>
+                    <span className="text-[11px] font-semibold text-emerald-800">
+                      DTCP Approved
+                    </span>
+                  </div>
+                  <div className="text-[19px] font-serif font-bold text-navy-900">
+                    {project.plotRatePerCent}
+                    <span className="text-[11.5px] font-sans font-normal text-muted ml-1.5">
+                      (Launch Price)
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted mt-1 pt-1.5 border-t border-[#ECE9DF] flex items-center justify-between">
+                    <span className="font-semibold text-navy-900">Future Corp Limit</span>
+                    <span className="text-emerald-700 font-medium">33-ft Blacktop Roads</span>
+                  </div>
                 </div>
-              </div>
-              <div className="text-[19px] font-serif font-bold text-navy-900 mt-0.5">
-                ₹{(project.offerPrice / 100000).toFixed(2)} Lakhs
-                <span className="text-[12px] font-sans font-normal text-muted ml-2">
-                  (₹{project.ratePerSqFtOffer}/sq.ft)
-                </span>
-              </div>
+              ) : (
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-0.5">
+                    <span className="text-[11px] font-semibold text-navy-900 uppercase tracking-wide">
+                      Plot Starting Price
+                    </span>
+                    <span className="text-[11px] font-medium text-emerald-700">
+                      Clear Patta Title
+                    </span>
+                  </div>
+                  <div className="text-[19px] font-serif font-bold text-navy-900">
+                    ₹{(project.offerPrice / 100000).toFixed(2)} Lakhs
+                    <span className="text-[12px] font-sans font-normal text-muted ml-2">
+                      (₹{project.ratePerSqFtOffer}/sq.ft)
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted mt-1 pt-1.5 border-t border-[#ECE9DF] flex items-center justify-between">
+                    <span>DTCP Approved</span>
+                    <span className="text-emerald-700 font-medium">Instant Registration</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="text-xs text-muted space-y-1 mb-5">

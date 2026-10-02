@@ -21,9 +21,9 @@ export default function PropertySearch() {
           </label>
           <select className="w-full border-0 border-b border-[#E5E1D8] py-2 text-[15.5px] bg-transparent outline-none focus:border-gold">
             <option>Coimbatore</option>
-            <option>Siruvani Main Road</option>
-            <option>Kalampalayam</option>
-            <option>Pollachi Road / Othakkalmandapam</option>
+            <option>Malumichampatty (Future Corp Limit)</option>
+            <option>Pollachi Road / Elur, Arisipalayam</option>
+            <option>Siruvani Main Road / Kalampalayam</option>
           </select>
         </div>
         <div>
@@ -41,7 +41,7 @@ export default function PropertySearch() {
             Budget
           </label>
           <select className="w-full border-0 border-b border-[#E5E1D8] py-2 text-[15.5px] bg-transparent outline-none focus:border-gold">
-            <option>All Budgets (40% Deepavali Offer)</option>
+            <option>All Budgets</option>
             <option>Under ₹25 Lakhs</option>
             <option>₹25L – ₹40L</option>
             <option>₹40L and above</option>

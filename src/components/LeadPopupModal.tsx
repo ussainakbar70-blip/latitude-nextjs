@@ -11,7 +11,7 @@ export default function LeadPopupModal() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    requirement: "Residential Plot (40% Festive Offer)",
+    requirement: "Kandhan Avenue (2 BHK Houses from ₹29L / Plots)",
   });
 
   useEffect(() => {
@@ -116,19 +116,19 @@ export default function LeadPopupModal() {
             {/* Floating Offer Badge */}
             <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-gold text-navy-900 font-bold text-xs shadow-lg uppercase tracking-wider">
               <Sparkles size={14} className="animate-spin-slow" />
-              <span>40% Festive Discount</span>
+              <span>Grand Launch Offer</span>
             </div>
 
             {/* Bottom Caption on Left Image */}
             <div className="absolute bottom-4 left-4 right-4 text-white">
               <p className="text-xs font-semibold uppercase tracking-widest text-gold-warm">
-                Kalampalayam, Coimbatore
+                Elur, Arisipalayam & Coimbatore
               </p>
               <p className="font-serif text-lg font-medium leading-snug">
-                DTCP & RERA Approved Villa Plots
+                DTCP Approved Plots & 2 BHK Houses
               </p>
               <p className="text-[11px] text-white/80 mt-0.5">
-                Individual Patta • Pure Siruvani Water • 30ft Roads
+                Individual Patta • Sweet Water • 40ft/30ft Roads
               </p>
             </div>
           </div>
@@ -149,8 +149,8 @@ export default function LeadPopupModal() {
 
                 {/* Subtitle / Description */}
                 <p className="text-xs sm:text-[13px] text-muted leading-relaxed mb-5">
-                  Leading Coimbatore with verified DTCP & RERA certified plots,
-                  individual instant Patta, and 100% pure Siruvani drinking water.
+                  Leading Coimbatore with verified DTCP certified plots,
+                  individual instant Patta, and premium 2 BHK individual houses.
                 </p>
 
                 {/* Form */}
@@ -189,8 +189,14 @@ export default function LeadPopupModal() {
                       }
                       className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#D1D9D1] rounded-sm text-ink focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
                     >
-                      <option value="Residential Plot (40% Festive Offer)">
-                        Residential Plot (40% Festive Offer)
+                      <option value="Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)">
+                        Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)
+                      </option>
+                      <option value="Kandhan Avenue (2 BHK Houses from ₹29L / Plots)">
+                        Kandhan Avenue (2 BHK Houses from ₹29L / Plots)
+                      </option>
+                      <option value="Residential Plot in Coimbatore">
+                        Residential Plot in Coimbatore
                       </option>
                       <option value="East / Corner Facing Plot">
                         East / Corner Facing Plot

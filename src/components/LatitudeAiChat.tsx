@@ -37,9 +37,9 @@ type Message = {
 };
 
 const INITIAL_PROMPTS = [
+  "Rathna Residency Launch (₹12.5L/Cent) 🏡",
+  "Kandhan Avenue 2 BHK (₹29L) ✨",
   "Show me available plots in the site map 🗺️",
-  "Watch YouTube video tours & shorts 🎥",
-  "Tell me about the 40% Deepavali Offer! ✨",
   "Which plots are corner plots?",
   "What are the DTCP approval details?",
   "How do I book a free cab site visit? 🚗",
@@ -53,13 +53,13 @@ export default function LatitudeAiChat() {
     {
       id: "welcome",
       sender: "ai",
-      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Properties**.\n\nI can help you explore our DTCP approved residential sites, **Master Layout Maps**, real-time plot availability (Available, Booked & Sold), our **Special 40% Deepavali Festive Offer**, and free cab site visits.\n\nWhat would you like to explore today?`,
+      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Properties**.\n\nI can help you explore our Grand Launches:\n• **[Rathna Residency](/sites/rathna-residency)** (Malumichampatty, Future Corporation Limit - Plots at ₹12.5L/cent)\n• **[Kandhan Avenue](/sites/kandhan-avenue)** (Elur, Arisipalayam - 2 BHK Houses from ₹29L, Plots at ₹6.20L/cent)\n• **[Master Layout Maps & Live Plots](/sites/sri-aanandham-avenue)**\n\nWhat would you like to explore today?`,
       timestamp: "Just now",
       links: [
-        { label: "View Our Sites (40% Off)", href: "/#sites" },
+        { label: "Rathna Residency (Launch Offer)", href: "/sites/rathna-residency" },
+        { label: "Kandhan Avenue (2 BHK & Plots)", href: "/sites/kandhan-avenue" },
         { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
-        { label: "Kandhan Avenue Layout Map", href: "/sites/kandhan-avenue" },
-        { label: "Booked Plots", href: "/booked-properties" },
+        { label: "View All Sites", href: "/#sites" },
       ],
     },
   ]);
@@ -91,11 +91,11 @@ export default function LatitudeAiChat() {
         return {
           text: `📍 **Details for ${plot.label} (${layoutMetadata.projectName})**:\n\n• **Status:** ${
             isAvail
-              ? "🟢 **Available (40% Deepavali Discount Active)**"
+              ? "🟢 **Available**"
               : isBk
               ? "🟡 **Booked (Token Advance Paid - SRO Processing)**"
               : "⚪ **100% Sold Out & Patta Transferred**"
-          }\n• **Dimensions:** ${plot.dimensionsImperial} (${plot.dimensionsMetric})\n• **Area:** **${plot.areaSqFt} Sq.Ft** (${plot.areaCents} Cents)\n• **Facing:** ${plot.facing}\n• **Road Access:** ${plot.roadAccess}\n\n💰 **Pricing Details:**\n• Standard Price: ~~₹${(plot.originalPrice / 100000).toFixed(2)} Lakhs~~\n• **40% Offer Price:** **₹${(plot.offerPrice / 100000).toFixed(2)} Lakhs**\n• **Direct Savings:** ₹${(plot.savingsAmount / 100000).toFixed(2)} Lakhs (Rate: ₹${plot.ratePerSqFt}/sq.ft)\n\n${plot.note ? `*Note: ${plot.note}*\n\n` : ""}Would you like to reserve ${plot.label} or inspect it during a free cab site visit?`,
+          }\n• **Dimensions:** ${plot.dimensionsImperial} (${plot.dimensionsMetric})\n• **Area:** **${plot.areaSqFt} Sq.Ft** (${plot.areaCents} Cents)\n• **Facing:** ${plot.facing}\n• **Road Access:** ${plot.roadAccess}\n\n💰 **Pricing Details:**\n• **Price:** **₹${(plot.offerPrice / 100000).toFixed(2)} Lakhs** (Rate: ₹${plot.ratePerSqFt}/sq.ft)\n• **Title:** 100% Clear Title with Instant Sub-division Patta Transfer\n\n${plot.note ? `*Note: ${plot.note}*\n\n` : ""}Would you like to reserve ${plot.label} or inspect it during a free cab site visit?`,
           links: [
             { label: `View ${plot.label} on Site Map`, href: "/#site-map" },
             { label: "Book Free Cab Site Visit", href: "/#contact" },
@@ -120,7 +120,7 @@ export default function LatitudeAiChat() {
       const sldCount = getSoldSitePlots().length;
 
       return {
-        text: `🗺️ **Master Site Map & Plot Availability Overview**:\n\n• **Project:** **${layoutMetadata.projectName}**\n• **Location:** ${layoutMetadata.location}\n• **DTCP Sanction:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Order:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n\n📊 **Current Inventory Status (17 Total Plots):**\n• 🟢 **Available (40% Deepavali Offer):** **${availCount} Plots** (Plots #01, #03, #05, #08, #11, #15, #16)\n• 🟡 **Booked (Token Received):** **${bkCount} Plots** (Plots #02, #09, #12, #14)\n• ⚪ **Sold Out (Patta Delivered):** **${sldCount} Plots** (Plots #04, #06, #07, #10, #13, #17)\n\n🛣️ **Infrastructure:** 9.0m (30 Ft) Main Central Tar Avenue + 7.2m (24 Ft) Cross Branch Roads, pure Siruvani drinking water, and dedicated TANGEDCO power space.\n\nYou can explore and click any plot on our live interactive site map!`,
+        text: `🗺️ **Master Site Map & Plot Availability Overview**:\n\n• **Project:** **${layoutMetadata.projectName}**\n• **Location:** ${layoutMetadata.location}\n• **DTCP Sanction:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Order:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n\n📊 **Current Inventory Status (17 Total Plots):**\n• 🟢 **Available:** **${availCount} Plots** (Plots #01, #03, #05, #08, #11, #15, #16)\n• 🟡 **Booked (Token Received):** **${bkCount} Plots** (Plots #02, #09, #12, #14)\n• ⚪ **Sold Out (Patta Delivered):** **${sldCount} Plots** (Plots #04, #06, #07, #10, #13, #17)\n\n🛣️ **Infrastructure:** 9.0m (30 Ft) Main Central Tar Avenue + 7.2m (24 Ft) Cross Branch Roads, pure Siruvani drinking water, and dedicated TANGEDCO power space.\n\nYou can explore and click any plot on our live interactive site map!`,
         links: [
           { label: "Explore Interactive Site Map", href: "/#site-map" },
           { label: "Book Free Cab Site Visit", href: "/#contact" },
@@ -134,15 +134,15 @@ export default function LatitudeAiChat() {
       const cornerList = corners
         .map(
           (c) =>
-            `• **${c.label}** (${c.status.toUpperCase()}): ${c.dimensionsImperial} (${c.areaCents} Cents) — ${c.facing} — Offer: **₹${(c.offerPrice / 100000).toFixed(2)} Lakhs**`
+            `• **${c.label}** (${c.status.toUpperCase()}): ${c.dimensionsImperial} (${c.areaCents} Cents) — ${c.facing} — Price: **₹${(c.offerPrice / 100000).toFixed(2)} Lakhs**`
         )
         .join("\n");
 
       return {
-        text: `🏡 **Corner Plots in our Layout**:\n\nCorner plots provide dual road ventilation, maximum natural light, and superior Vastu compliance:\n\n${cornerList}\n\nWould you like to reserve a corner plot under our 40% Deepavali offer?`,
+        text: `🏡 **Corner Plots in our Layout**:\n\nCorner plots provide dual road ventilation, maximum natural light, and superior Vastu compliance:\n\n${cornerList}\n\nWould you like to reserve a corner plot or visit the site?`,
         links: [
           { label: "Inspect Corners on Site Map", href: "/#site-map" },
-          { label: "Claim Offer on WhatsApp", href: buildWhatsappLink(site.defaultWhatsappMessage) },
+          { label: "Enquire on WhatsApp", href: buildWhatsappLink(site.defaultWhatsappMessage) },
         ],
       };
     }
@@ -157,47 +157,70 @@ export default function LatitudeAiChat() {
       q.includes("document")
     ) {
       return {
-        text: `📜 **DTCP & Government Approval Details**:\n\n• **DTCP Order No:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Sanction:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n• **Title Status:** Single-owner parent deed with 40-year clean encumbrance certificate.\n• **Patta Transfer:** Instant individual sub-division Patta transfer upon registration.\n• **Bank Approval:** Pre-approved for up to 85% home loan by SBI, HDFC, Canara, and ICICI.\n\nWould you like our senior legal advisor to present the certified sanction copies during your site visit?`,
+        text: `📜 **DTCP & Government Approval Details**:\n\n• **Kandhan Avenue Approval:** DTCP Approval No. 256/2026\n• **Sri Aanandham Avenue:** DTCP Order No: ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Sanction:** ${layoutMetadata.subdivisionNo}\n• **Title Status:** Single-owner parent deed with 40-year clean encumbrance certificate.\n• **Patta Transfer:** Instant individual sub-division Patta transfer upon registration.\n• **Bank Approval:** Pre-approved for up to 80%-85% home loans.\n\nWould you like our senior legal advisor to present certified sanction copies during your site visit?`,
         links: [
+          { label: "View Kandhan Avenue Details", href: "/sites/kandhan-avenue" },
           { label: "View Approved Blueprint", href: "/#site-map" },
           { label: "Schedule Free Site Visit", href: "/#contact" },
         ],
       };
     }
 
-    // 1. Deepavali 40% Offer
+    // 1. Rathna Residency – Malumichampatty Grand Launch
     if (
-      q.includes("deepavali") ||
-      q.includes("depavali") ||
-      q.includes("diwali") ||
+      q.includes("rathna") ||
+      q.includes("residency") ||
+      q.includes("malumichampatty") ||
+      q.includes("karpagam") ||
+      q.includes("12.5") ||
+      q.includes("corporation limit")
+    ) {
+      return {
+        text: `🏡🎉 **GRAND LAUNCH – RATHNA RESIDENCY, MALUMICHAMPATTY** (Future Corporation Limit) 🎉🏡\n\nOwn your dream plot in Rathna Residency, a premium DTCP-approved gated community located in one of Coimbatore's fastest-growing residential and IT corridors.\n\n💥 **Launch Price: Just ₹12.5 Lakhs per Cent**\n📍 **Location:** Behind Karpagam University, Malumichampatty (Future Corporation Limit)\n\n🌟 **Project Highlights:**\n✅ DTCP-Approved Layouts\n✅ Grand Entrance Arch & Fully Gated Community\n✅ 33-ft Wide Blacktop Roads\n✅ Individual Water Connection & Electricity Connection\n✅ Solar Street Lights\n✅ Peaceful Residential Environment\n\n📍 **Prime Connectivity:**\n🚗 Pollachi Road – 650 m\n🛣️ Future 6-Track L&T Bypass – 1.2 km\n💻 L&T IT Park – 2.2 km\n🏢 Rathinam Tech Park – 3 km\n🙏 Eachanari Vinayagar Temple – 2.5 km\n🚉 Podanur Railway Station – 10–15 mins\n🚆 Coimbatore Railway Station – 15–20 mins\n🚌 Ukkadam Bus Stand – 15–20 mins\n🚌 Gandhipuram Bus Stand – 20–25 mins\n\n🎓 **Surrounded by Top Educational Institutions:**\n• Karpagam University (Just Behind)\n• Karpagam Medical College & Hospital\n• Hindusthan College of Arts & Science\n• Rathinam University & Coimbatore Marine College\n• Christ The King Polytechnic College\n• GEDEE, Zion Model, Avatar & Genius Kids Public Schools\n\n💼 **Near Major Employment Hubs:**\n• SIDCO Industrial Estate\n• L&T IT Park (2.2 km)\n• Rathinam Tech Park (3 km)\n• Coimbatore Golf Club\n\n🌟 **Why Invest in Rathna Residency?**\n✔️ Prime Location in the Future Corporation Limit\n✔️ Close to Leading Educational Institutions & IT Parks\n✔️ Excellent Connectivity to Major Roads & Transport Hubs\n✔️ Ideal for Dream Home, Rental Income & Long-Term Investment\n✔️ High Future Appreciation Potential\n\nWould you like to reserve your preferred plot or schedule a free site visit?`,
+        links: [
+          { label: "Explore Rathna Residency Details", href: "/sites/rathna-residency" },
+          { label: "Book Free Cab Site Visit", href: "/#contact" },
+          { label: "Enquire on WhatsApp", href: buildWhatsappLink("Hello Latitude Properties, I would like to book a site visit for Rathna Residency, Malumichampatty (Launch Price: Just Rs. 12.5 Lakhs per Cent).") },
+        ],
+      };
+    }
+
+    // 2. Kandhan Avenue & Grand Launch Offer
+    if (
+      q.includes("kandhan") ||
+      q.includes("launch") ||
       q.includes("offer") ||
-      q.includes("40%") ||
+      q.includes("2bhk") ||
+      q.includes("house") ||
+      q.includes("houses") ||
+      q.includes("arisipalayam") ||
+      q.includes("elur") ||
+      q.includes("kinathukadavu") ||
+      q.includes("price") ||
+      q.includes("pricing") ||
       q.includes("discount")
     ) {
       return {
-        text: `🎉 **Mega Deepavali 40% Festive Dhamaka Offer!**\n\nLatitude Properties is currently offering an unprecedented **Flat 40% OFF** on our active residential sites in Coimbatore:\n\n• **Sri Aanandham Avenue**: Original ₹48L ➔ **Offer Price: ₹28.80 Lakhs** (Save ₹19.20 Lakhs! Rate: ₹1,740/sq.ft)\n• **Kandhan Avenue**: Original ₹52L ➔ **Offer Price: ₹31.20 Lakhs** (Save ₹20.80 Lakhs! Rate: ₹1,680/sq.ft)\n• **Siruvani Enclave (Phase 1 & 2)**: Original ₹42L ➔ **Offer Price: ₹25.20 Lakhs** (Save ₹16.80 Lakhs!)\n\n⚡ **Offer Highlights:**\n- Valid for limited spot bookings during the festive season\n- Clear DTCP sanctioned master layouts with individual Patta\n- Bank loans up to 85% with SBI, HDFC, Canara, ICICI\n\nWould you like to reserve a plot or schedule a free site visit?`,
+        text: `🏡✨ **KANDHAN AVENUE – ELUR, ARISIPALAYAM** ✨🏡\n\n🎉 **GRAND LAUNCH OFFER** 🎉\n\n🏠 **PREMIUM 2 BHK INDIVIDUAL HOUSES**\n💰 Starting from **JUST ₹29 LAKHS Onwards**\n\n💸 **Only ₹5 LAKHS On-Hand**\n🏦 **Up to 80% Bank Loan Assistance Available\***\n📜 **DTCP Approved Layout – Approval No. 256/2026**\n📐 **Residential Plots:** **₹6.20 LAKHS per Cent**\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n📍 **Prime Location & Easy Connectivity:**\n✅ Pollachi Highway – 1.5 km (2 mins)\n✅ Kinathukadavu Bus Stand – 3–5 mins\n✅ Kinathukadavu Railway Station – 3–5 mins\n\n🏫 **Top Schools Nearby:**\n• Vivek Vidyalaya Matric Hr. Sec. School (2–3 mins)\n• Noyyal Public School (3–4 mins)\n• Akshaya Academy (8–10 mins)\n\n🎓 **Leading Colleges Nearby:**\n• VSB College of Engineering & Technical Campus (3–5 mins)\n• Sri Eshwar College of Engineering (5–7 mins)\n• Amrita Vishwa Vidyapeetham (5–7 mins)\n• Hindusthan College of Engineering (10–15 mins)\n• Karpagam Academy of Higher Education (20–25 mins)\n\n💼 **Employment Hubs Nearby:**\n• ELGi ACP (5–7 mins)\n• 200-Acre SIDCO Industrial Estate (10–15 mins)\n• L&T IT Park (10–15 mins)\n• Rathinam Tech Park (15–20 mins)\n\n🏥 **Healthcare Nearby:**\n• Sri Venkateswara Hospital (5–10 mins)\n• Karpagam Medical College Hospital (10–15 mins)\n\nWould you like to reserve a unit or schedule a free site visit?`,
         links: [
-          { label: "Explore Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
-          { label: "Explore Kandhan Avenue", href: "/sites/kandhan-avenue" },
-          { label: "Live Interactive Site Map", href: "/#site-map" },
+          { label: "Explore Kandhan Avenue Details", href: "/sites/kandhan-avenue" },
+          { label: "Book Free Cab Site Visit", href: "/#contact" },
+          { label: "Enquire on WhatsApp", href: buildWhatsappLink("Hello Latitude Properties, I would like to book a site visit for Kandhan Avenue.") },
         ],
       };
     }
 
     // 2. Layout Maps & Plot Availability
     if (
-      q.includes("layout") ||
       q.includes("map") ||
-      q.includes("plot") ||
-      q.includes("site") ||
-      q.includes("sites") ||
-      q.includes("available")
+      q.includes("available") ||
+      q.includes("inventory")
     ) {
       return {
-        text: `🗺️ **Master Layout Maps & Live Plot Status:**\n\nYou can inspect our high-resolution sanctioned layout maps and real-time plot directory right on each site page:\n\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)**: 17 Plots total (8 Available, 4 Booked, 5 Sold) | 30ft Roads, Siruvani water line, solar lights\n• **[Kandhan Avenue](/sites/kandhan-avenue)**: 25 Plots total (11 Available, 6 Booked, 8 Sold) | 12m Panchayat Tar Road, LPA & DTCP approved\n• **[Siruvani Enclave (Phase 1 & 2)](/sites/siruvani-phase-1-2)**: 56 Plots total (18 Available in Phase 2, 12 Booked, 26 Sold in Phase 1)\n\nEvery site detail page features an interactive zoomable layout map and plot-by-plot inventory table!`,
+        text: `🗺️ **Master Layout Maps & Live Plot Status:**\n\nYou can inspect our high-resolution sanctioned layout maps and real-time plot directory right on each site page:\n\n• **[Kandhan Avenue](/sites/kandhan-avenue)**: 25 Plots total (11 Available, 6 Booked, 8 Sold) | 2 BHK Houses from ₹29L, Plots ₹6.20L/cent, 12m Tar Road, DTCP 256/2026\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)**: 17 Plots total (8 Available, 4 Booked, 5 Sold) | 30ft Roads, Siruvani water line, solar lights\n• **[Siruvani Enclave (Phase 1 & 2)](/sites/siruvani-phase-1-2)**: 56 Plots total (18 Available in Phase 2, 12 Booked, 26 Sold in Phase 1)\n\nEvery site detail page features an interactive zoomable layout map and plot-by-plot inventory table!`,
         links: [
+          { label: "Kandhan Avenue Details", href: "/sites/kandhan-avenue" },
           { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
-          { label: "Kandhan Avenue Layout Map", href: "/sites/kandhan-avenue" },
           { label: "Siruvani Enclave Layout Map", href: "/sites/siruvani-phase-1-2" },
         ],
       };
@@ -209,7 +232,7 @@ export default function LatitudeAiChat() {
       const list = booked
         .map(
           (p) =>
-            `• **[${p.title}](/sites/${p.id})**:\n  - Location: ${p.location}\n  - Locked Price: ₹${(p.offerPrice / 100000).toFixed(2)} Lakhs (under 40% Deepavali offer)\n  - Status: ${p.bookedOrSoldNote}`
+            `• **[${p.title}](/sites/${p.id})**:\n  - Location: ${p.location}\n  - Starting Price: ₹${(p.offerPrice / 100000).toFixed(2)} Lakhs\n  - Status: ${p.bookedOrSoldNote || "Token Received"}`
         )
         .join("\n\n");
 
@@ -303,9 +326,10 @@ export default function LatitudeAiChat() {
 
     // Default intelligent overview
     return {
-      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP and LPA approved gated layouts with direct Siruvani drinking water, wide tar roads, and 100% clear titles.\n\nRight now, we are celebrating our **40% Deepavali Festive Discount** across our sites including Sri Aanandham Avenue, Kandhan Avenue, and Siruvani Enclave.\n\nFeel free to ask me about:\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 💥 The 40% Deepavali price savings\n- 🏡 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 🔒 Booked & Sold property records\n- 🚗 Free cab pickup for site visits`,
+      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP approved gated layouts, 2 BHK individual houses, wide tar roads, and 100% clear titles.\n\nCheck out our **Grand Launch Offer at Kandhan Avenue (Elur, Arisipalayam)** starting from ₹29 Lakhs for 2 BHK individual houses and ₹6.20 Lakhs/cent for plots!\n\nFeel free to ask me about:\n- 🏡 Kandhan Avenue 2 BHK houses & ₹6.20L/cent plots\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 📏 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 📜 DTCP Sanctions & Patta records\n- 🚗 Free cab pickup for site visits`,
       links: [
-        { label: "View Our Sites (40% Off)", href: "/#sites" },
+        { label: "Kandhan Avenue (Launch Offer)", href: "/sites/kandhan-avenue" },
+        { label: "Live Interactive Site Map", href: "/#site-map" },
         { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
         { label: "Booked Plots", href: "/booked-properties" },
       ],
@@ -370,7 +394,7 @@ export default function LatitudeAiChat() {
           }
           if (relevantLinks.length === 0) {
             relevantLinks = [
-              { label: "View Our Sites (40% Off)", href: "/#sites" },
+              { label: "Kandhan Avenue", href: "/sites/kandhan-avenue" },
               { label: "Live Interactive Site Map", href: "/#site-map" },
               { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
               { label: "Booked Plots", href: "/booked-properties" },
@@ -438,7 +462,7 @@ export default function LatitudeAiChat() {
                   LATITUDE AI
                   <Sparkles size={11} className="text-amber-400 animate-pulse" />
                 </div>
-                <div className="text-[9.5px] text-white/70">Ask 40% Offer & Specs</div>
+                <div className="text-[9.5px] text-white/70">Ask Launch Offers & Specs</div>
               </div>
             </div>
           </button>
@@ -463,8 +487,8 @@ export default function LatitudeAiChat() {
               <div>
                 <div className="font-serif text-base font-bold text-gold-warm flex items-center gap-1.5 leading-none">
                   LATITUDE AI
-                  <span className="bg-gradient-to-r from-red-600 to-amber-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">
-                    40% OFFER ACTIVE
+                  <span className="bg-gradient-to-r from-navy-800 to-navy-950 border border-gold/40 text-gold-warm text-[9px] font-bold px-1.5 py-0.5 rounded">
+                    GRAND LAUNCH
                   </span>
                 </div>
                 <div className="text-[10.5px] text-white/80 mt-0.5 flex items-center gap-1.5">
@@ -576,7 +600,7 @@ export default function LatitudeAiChat() {
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask about 40% offer, plots, specs, 360°..."
+                    placeholder="Ask about Kandhan Avenue, plots, 2 BHK houses, specs..."
                     className="flex-1 text-xs px-3 py-2.5 bg-bg border border-[#D5D2C7] rounded-sm focus:border-gold focus:outline-none"
                   />
                   <button
