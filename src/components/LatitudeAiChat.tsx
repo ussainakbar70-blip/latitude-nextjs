@@ -276,17 +276,6 @@ export default function LatitudeAiChat() {
       };
     }
 
-    // 6. 360-Degree Views
-    if (q.includes("360") || q.includes("virtual") || q.includes("tour") || q.includes("panorama") || q.includes("view")) {
-      return {
-        text: `🌐 **360° Interactive Virtual Site Tours:**\n\nEvery site detail page contains an interactive 360-degree viewer! You can click, drag, pan, zoom, and rotate the panorama horizontally 360 degrees to inspect the layout, roads, and scenic surroundings right from your screen.\n\nVisit any site page to test the interactive 360° tour!`,
-        links: [
-          { label: "Test 360° Tour on Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
-          { label: "Test 360° Tour on Kandhan Avenue", href: "/sites/kandhan-avenue" },
-        ],
-      };
-    }
-
     // YouTube Video Tours & Shorts
     if (
       q.includes("youtube") ||
@@ -326,7 +315,7 @@ export default function LatitudeAiChat() {
 
     // Default intelligent overview
     return {
-      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP approved gated layouts, 2 BHK individual houses, wide tar roads, and 100% clear titles.\n\nCheck out our **Grand Launch Offer at Kandhan Avenue (Elur, Arisipalayam)** starting from ₹29 Lakhs for 2 BHK individual houses and ₹6.20 Lakhs/cent for plots!\n\nFeel free to ask me about:\n- 🏡 Kandhan Avenue 2 BHK houses & ₹6.20L/cent plots\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 📏 Available plot dimensions & pricing\n- 🌐 360° Virtual Tours & inch-by-inch specs\n- 📜 DTCP Sanctions & Patta records\n- 🚗 Free cab pickup for site visits`,
+      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP approved gated layouts, 2 BHK individual houses, wide tar roads, and 100% clear titles.\n\nCheck out our **Grand Launch Offer at Kandhan Avenue (Elur, Arisipalayam)** starting from ₹29 Lakhs for 2 BHK individual houses and ₹6.20 Lakhs/cent for plots!\n\nFeel free to ask me about:\n- 🏡 Kandhan Avenue 2 BHK houses & ₹6.20L/cent plots\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 📏 Available plot dimensions & pricing\n- 🎥 YouTube video tours & inch-by-inch specs\n- 📜 DTCP Sanctions & Patta records\n- 🚗 Free cab pickup for site visits`,
       links: [
         { label: "Kandhan Avenue (Launch Offer)", href: "/sites/kandhan-avenue" },
         { label: "Live Interactive Site Map", href: "/#site-map" },

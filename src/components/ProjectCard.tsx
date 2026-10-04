@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ArrowRight, Sparkles, Compass, Layers, Map } from "lucide-react";
+import { MapPin, ArrowRight, Sparkles, Layers, Map } from "lucide-react";
 import { Project } from "@/data/projects";
 import Reveal from "./Reveal";
 
@@ -42,19 +42,12 @@ export default function ProjectCard({
             )}
           </div>
 
-          <div className="absolute bottom-3 right-3 z-10 bg-navy-900/80 backdrop-blur-sm text-white/90 text-[11px] px-2.5 py-1 rounded-sm flex items-center gap-1.5">
-            {project.layoutMapImage ? (
-              <>
-                <Map size={13} className="text-gold-warm" />
-                Layout Map Ready
-              </>
-            ) : (
-              <>
-                <Compass size={13} className="text-gold-warm" />
-                360° Tour Ready
-              </>
-            )}
-          </div>
+          {project.layoutMapImage && (
+            <div className="absolute bottom-3 right-3 z-10 bg-navy-900/80 backdrop-blur-sm text-white/90 text-[11px] px-2.5 py-1 rounded-sm flex items-center gap-1.5">
+              <Map size={13} className="text-gold-warm" />
+              Layout Map Ready
+            </div>
+          )}
 
           <Image
             src={project.img}

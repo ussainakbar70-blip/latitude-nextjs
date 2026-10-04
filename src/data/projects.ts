@@ -76,9 +76,6 @@ export type Project = {
   bankLoanAssistance?: string;
   launchOfferTitle?: string;
   neighborhoodConnectivity?: NeighborhoodCategory[];
-  // 360 Tour resources
-  view360Image: string;
-  view360Title: string;
   description: string;
   highlights: string[];
   bookedOrSoldNote?: string;
@@ -169,8 +166,6 @@ export const projects: Project[] = [
     offerPrice: 2880000,
     ratePerSqFtOffer: 1740,
     startingPriceLabel: "Starting from ₹28.80 Lakhs",
-    view360Image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Sri Aanandham Avenue 360° Interactive Virtual Tour",
     description: "Sri Aanandham Avenue is a prestigious DTCP Approved residential layout (DTCP No: 252/2026) located right off Siruvani Main Road in Kalampalayam, Coimbatore. Featuring 17 prime plots ranging from 2.87 to 4.56 cents, complete with 30-feet wide tar roads, individual Siruvani water pipeline connections, complete electricity infrastructure, and eco-friendly solar street lights. Within minutes from Kikani School (5 mins), Kovai Kondattam (5 mins), Karunya University (10 mins), and Isha Yoga Center (15 mins).",
     highlights: [
       "DTCP Approved Layout No: 252/2026",
@@ -322,8 +317,6 @@ export const projects: Project[] = [
         ]
       }
     ],
-    view360Image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Kandhan Avenue 360° Layout Panorama",
     description: "Kandhan Avenue at Elur, Arisipalayam is a DTCP Approved Layout (Approval No. 256/2026) featuring Premium 2 BHK Individual Houses starting from just ₹29 Lakhs onwards and residential plots at ₹6.20 Lakhs per cent. Situated only 1.5 km (2 mins) from Pollachi Highway and 3–5 mins from Kinathukadavu bus stand & railway station. With only ₹5 Lakhs on-hand and up to 80% bank loan assistance, Kandhan Avenue provides peaceful and green community living with rapid access to premier educational institutions (VSB, Sri Eshwar, Amrita, Karpagam) and major industrial and IT employment corridors (SIDCO Industrial Estate, ELGi ACP, L&T IT Park).",
     highlights: [
       "DTCP Approved Layout – Approval No. 256/2026",
@@ -460,8 +453,6 @@ export const projects: Project[] = [
         ]
       }
     ],
-    view360Image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Rathna Residency 360° Layout Panorama",
     description: "Own your dream plot in Rathna Residency, a premium DTCP-approved gated community located in one of Coimbatore's fastest-growing residential and IT corridors. Situated behind Karpagam University in Malumichampatty (Future Corporation Limit) and only 650 meters from Pollachi Road. Featuring 33-ft blacktop roads, grand entrance arch, individual water and electricity connections, and solar street lights, Rathna Residency offers exceptional connectivity to the future 6-track L&T Bypass, L&T IT Park, Rathinam Tech Park, and prestigious educational institutions. With its Future Corporation Limit status, this project offers high future appreciation potential at a launch price of just ₹12.5 Lakhs per Cent.",
     highlights: [
       "Prime Location in the Future Corporation Limit (Behind Karpagam University)",
@@ -588,8 +579,6 @@ export const projects: Project[] = [
     offerPrice: 2520000,
     ratePerSqFtOffer: 1440,
     startingPriceLabel: "Starting from ₹25.20 Lakhs",
-    view360Image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80",
-    view360Title: "Siruvani Enclave Phase 1 & 2 Panorama",
     description: "Siruvani Enclave is a premier gated community layout divided into Phase 1 and Phase 2. Phase 1 has witnessed tremendous buyer enthusiasm with over 26 plots sold and handed over. Phase 2 brings freshly sanctioned residential plots with 10.0m wide main roads, direct Siruvani drinking water connections, and complete solar lighting infrastructure.",
     highlights: [
       "Phase 1 & Phase 2 Layout with 56 Total Plots",

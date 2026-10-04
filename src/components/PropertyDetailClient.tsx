@@ -21,7 +21,6 @@ import {
   Compass,
   Waves,
   Grid3x3,
-  Eye,
   MessageCircle,
   GraduationCap,
   Briefcase,
@@ -32,7 +31,6 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import Property360Viewer from "@/components/Property360Viewer";
 import SiteLayoutViewer from "@/components/SiteLayoutViewer";
 import SiteLayoutMap from "@/components/SiteLayoutMap";
 import { Project } from "@/data/projects";
@@ -302,7 +300,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
       <section className="py-12">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Left 2 Columns: Gallery, Master Layout Map & Plot Status, 360 Viewer, Specs, Amenities */}
+            {/* Left 2 Columns: Gallery, Master Layout Map & Plot Status, Specs, Amenities */}
             <div className="lg:col-span-2 space-y-12">
               {/* Photo Gallery with Switcher */}
               <div className="bg-white p-4 border border-[#ECE9DF] rounded-sm shadow-sm">
@@ -356,29 +354,6 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                   }));
                 }}
               />
-
-              {/* 360-Degree Interactive Virtual Tour Viewer */}
-              {project.view360Image && (
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div>
-                      <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900 flex items-center gap-2">
-                        <Eye className="text-gold" />
-                        360° Interactive Walkthrough
-                      </h2>
-                      <p className="text-muted text-sm mt-1">
-                        Drag to rotate 360 degrees horizontally. Experience every angle of this site layout.
-                      </p>
-                    </div>
-                  </div>
-
-                  <Property360Viewer
-                    title={project.title}
-                    imageUrl={project.view360Image}
-                    location={project.location}
-                  />
-                </div>
-              )}
 
               {/* Inch-by-Inch Architectural & Structural Specifications */}
               <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
