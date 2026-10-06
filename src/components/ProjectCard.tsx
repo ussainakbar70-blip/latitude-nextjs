@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ArrowRight, Sparkles, Layers, Map } from "lucide-react";
+import { MapPin, ArrowRight, Sparkles, Layers } from "lucide-react";
 import { Project } from "@/data/projects";
 import Reveal from "./Reveal";
 
@@ -41,13 +41,6 @@ export default function ProjectCard({
               </span>
             )}
           </div>
-
-          {project.layoutMapImage && (
-            <div className="absolute bottom-3 right-3 z-10 bg-navy-900/80 backdrop-blur-sm text-white/90 text-[11px] px-2.5 py-1 rounded-sm flex items-center gap-1.5">
-              <Map size={13} className="text-gold-warm" />
-              Layout Map Ready
-            </div>
-          )}
 
           <Image
             src={project.img}
@@ -96,7 +89,7 @@ export default function ProjectCard({
 
             {/* Transparent Pricing Card */}
             <div className="bg-bg p-3.5 rounded-sm mb-4 border border-[#E9E6DB]">
-              {project.houseStartingPrice ? (
+              {project.id === "kandhan-avenue" ? (
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[10.5px] font-bold text-navy-900 uppercase tracking-wider bg-gold/20 text-gold-dark px-2 py-0.5 rounded">
@@ -109,7 +102,7 @@ export default function ProjectCard({
                   <div className="text-[19px] font-serif font-bold text-navy-900">
                     ₹29 Lakhs Onwards
                     <span className="text-[11.5px] font-sans font-normal text-muted ml-1.5">
-                      (2 BHK Individual House)
+                      (2 BHK House)
                     </span>
                   </div>
                   <div className="text-[11px] text-muted mt-1 pt-1.5 border-t border-[#ECE9DF] flex items-center justify-between">
@@ -117,7 +110,28 @@ export default function ProjectCard({
                     <span className="text-emerald-700 font-medium">80% Bank Loan Support</span>
                   </div>
                 </div>
-              ) : project.plotRatePerCent ? (
+              ) : project.id === "sri-aanandham-avenue" ? (
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-[10.5px] font-bold text-navy-900 uppercase tracking-wider bg-gold/20 text-gold-dark px-2 py-0.5 rounded">
+                      Plots & Duplex Villas
+                    </span>
+                    <span className="text-[11px] font-semibold text-emerald-800">
+                      Duplex: ₹45 Lakhs
+                    </span>
+                  </div>
+                  <div className="text-[19px] font-serif font-bold text-navy-900">
+                    {project.plotRatePerCent}
+                    <span className="text-[11.5px] font-sans font-normal text-muted ml-1.5">
+                      (Launch Price)
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-muted mt-1 pt-1.5 border-t border-[#ECE9DF] flex items-center justify-between">
+                    <span className="font-semibold text-navy-900">700m to Bus Stop</span>
+                    <span className="text-emerald-700 font-medium">1.8 km Ring Road</span>
+                  </div>
+                </div>
+              ) : project.id === "rathna-residency" ? (
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[10.5px] font-bold text-navy-900 uppercase tracking-wider bg-gold/20 text-gold-dark px-2 py-0.5 rounded">
@@ -173,7 +187,7 @@ export default function ProjectCard({
               href={`/sites/${project.id}`}
               className="inline-flex items-center gap-1.5 text-navy-900 font-semibold text-sm hover:text-gold transition-colors"
             >
-              Site Details & Layout
+              Site Details
               <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
 

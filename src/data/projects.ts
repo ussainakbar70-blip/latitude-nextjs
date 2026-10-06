@@ -49,6 +49,19 @@ export type NeighborhoodCategory = {
   }[];
 };
 
+export type ProjectInstagramReel = {
+  id: string;
+  url: string;
+  embedUrl: string;
+  title: string;
+  shortTitle: string;
+  category: string;
+  thumbnail: string;
+  viewsBadge?: string;
+  highlight: string;
+  isClientSatisfaction?: boolean;
+};
+
 export type Project = {
   id: string;
   tag: string;
@@ -61,6 +74,7 @@ export type Project = {
   img: string;
   gallery: string[];
   specs: InchByInchSpecs;
+  instagramReels?: ProjectInstagramReel[];
   // Transparent Pricing Details
   originalPrice?: number;
   discountPercent?: number;
@@ -95,12 +109,12 @@ export type Site = Project;
 export const projects: Project[] = [
   {
     id: "sri-aanandham-avenue",
-    tag: "Premium DTCP Approved Plots",
+    tag: "Grand Launch • Madhampatty",
     title: "Sri Aanandham Avenue",
-    location: "Siruvani Main Road, Kalampalayam, Coimbatore",
-    type: "DTCP Approved Residential Layout",
+    location: "Madhampatty (700m from Main Bus Stop), Siruvani Main Road, Coimbatore",
+    type: "DTCP Approved Residential Plots & Luxury Duplex Villas",
     status: "available",
-    dtcpApprovalNumber: "DTCP No: 252/2026",
+    dtcpApprovalNumber: "DTCP Approval No. 252/2026",
     surveyNumber: "S.F. NO - 258/1A1, 258/1B, 256, 257/2, 258/2B1A1",
     layoutMapImage: "/images/sites/sri-aanandham-layout.jpg",
     layoutMapTitle: "Sri Aanandham Avenue Official Approved Layout Plan",
@@ -137,7 +151,7 @@ export const projects: Project[] = [
       { plotNumber: 16, areaSqFt: 1711, areaCents: "3 Cent 404 Sft", dimensions: "35' x 43'-6\"", facing: "North-West Corner", status: "booked" },
       { plotNumber: 17, areaSqFt: 1971, areaCents: "4 Cent 229 Sft", dimensions: "36'-9\" x 51'-9\"", facing: "North", status: "available" }
     ],
-    amenities: "30 Ft Tar Roads, Water Pipeline, Electricity, Solar Street Lights",
+    amenities: "700m Bus Stop, 1.8km Ring Road, 30 Ft Tar Roads, Siruvani Water, EB, Solar Street Lights",
     amenitiesList: [
       { name: "30 Feet Wide Tar Roads", description: "Layout Road 9.0m and 7.2m wide heavy-duty blacktop roads with proper curbs", iconName: "Route" },
       { name: "Direct Siruvani Water Pipeline", description: "Pure municipal Siruvani drinking water pipe connection ready at every plot", iconName: "Droplets" },
@@ -149,11 +163,11 @@ export const projects: Project[] = [
     specs: {
       plotDimensions: "From 25' x 45' up to 40' x 50' (Customizable)",
       totalPlotArea: "17 Approved Plots (Total 28,237 Sq.Ft / 64.35 Cents)",
-      builtUpArea: "Villa Construction Assistance Available (1,800 - 2,800 Sq.Ft)",
-      carpetArea: "Optimal 80% Usable Carpet Area",
+      builtUpArea: "Build Luxury 2 BHK Duplex with Car Parking for Just ₹45 Lakhs",
+      carpetArea: "Optimal 80% Usable Carpet Area with Vastu Compliance",
       facing: "East & North Vastu Compliant Facing Plots",
       roadWidth: "9.0m (30 Feet) & 7.2m (24 Feet) Wide Tar Roads",
-      approvalNumber: "DTCP Approval No: 252/2026",
+      approvalNumber: "DTCP Approval No. 252/2026",
       pattaStatus: "100% Clear Title & Instant Sub-division Individual Patta",
       foundation: "Engineered RCC Isolated Column Footing suited for Coimbatore soil",
       superstructure: "First Grade Chamber Wire-cut Red Bricks",
@@ -163,17 +177,78 @@ export const projects: Project[] = [
       waterDrainage: "Pure Siruvani Municipal Water Supply + Covered Underground Drains",
       ceilingHeight: "10 Feet 6 Inches Clear Ceiling Height"
     },
-    offerPrice: 2880000,
-    ratePerSqFtOffer: 1740,
-    startingPriceLabel: "Starting from ₹28.80 Lakhs",
-    description: "Sri Aanandham Avenue is a prestigious DTCP Approved residential layout (DTCP No: 252/2026) located right off Siruvani Main Road in Kalampalayam, Coimbatore. Featuring 17 prime plots ranging from 2.87 to 4.56 cents, complete with 30-feet wide tar roads, individual Siruvani water pipeline connections, complete electricity infrastructure, and eco-friendly solar street lights. Within minutes from Kikani School (5 mins), Kovai Kondattam (5 mins), Karunya University (10 mins), and Isha Yoga Center (15 mins).",
+    offerPrice: 3415300,
+    ratePerSqFtOffer: 2732,
+    startingPriceLabel: "Launch Price: ₹11.90 Lakhs / Cent",
+    houseStartingPrice: "Build Luxury 2 BHK Duplex from ₹45 LAKHS",
+    plotRatePerCent: "₹11.90 LAKHS per Cent",
+    bankLoanAssistance: "Up to 80%-85% Bank Loan Assistance Available*",
+    launchOfferTitle: "GRAND LAUNCH OFFER",
+    neighborhoodConnectivity: [
+      {
+        category: "Easy Connectivity",
+        iconName: "Route",
+        items: [
+          { name: "Madhampatty Main Bus Stop", distanceTime: "700 m (1 min)" },
+          { name: "Western Ring Road", distanceTime: "1.8 km (3 mins)" },
+          { name: "Palakkad Road", distanceTime: "12 km (15 mins)" },
+          { name: "Coimbatore Junction Railway Station", distanceTime: "14 km (20 mins)" },
+          { name: "Gandhipuram Bus Stand", distanceTime: "15 km (25 mins)" }
+        ]
+      },
+      {
+        category: "Top Educational Institutions Nearby",
+        iconName: "GraduationCap",
+        items: [
+          { name: "Kikani Vidhya Mandir / School", distanceTime: "5 mins" },
+          { name: "Sri Krishna College of Engineering & Technology", distanceTime: "8–10 mins" },
+          { name: "Karunya University", distanceTime: "10 mins" }
+        ]
+      },
+      {
+        category: "Leisure & Landmarks",
+        iconName: "Landmark",
+        items: [
+          { name: "Kovai Kondattam", distanceTime: "5 km (5 mins)" },
+          { name: "Isha Yoga Center", distanceTime: "15 mins" }
+        ]
+      }
+    ],
+    description: "Own your dream plot in Sri Aanandham Avenue, a prestigious DTCP-approved gated layout (Approval No. 252/2026) located in prime Madhampatty, Siruvani Main Road, Coimbatore. Situated only 700 meters from Madhampatty Main Bus Stop and just 1.8 km from the upcoming Western Ring Road. Offering a limited launch price of just ₹11.90 Lakhs per Cent, with an exclusive package to build a luxury 2 BHK duplex with car parking for just ₹45 Lakhs. Featuring 30-ft wide tar roads, direct municipal Siruvani drinking water pipeline, 3-phase electricity, and automated solar street lights. Perfect for first-time home buyers and investors seeking prime connectivity and high future appreciation.",
     highlights: [
-      "DTCP Approved Layout No: 252/2026",
-      "Exact Area Statement: 17 Plots (28,237 Sq.Ft total layout area)",
-      "Status: 8 Available, 4 Booked, 5 Sold Out",
-      "30 Feet wide tar roads with 9.0m and 7.2m layout roads",
-      "Kikani School 5 mins • Kovai Kondattam 5 mins • Karunya 10 mins • Isha 15 mins",
-      "Direct Siruvani drinking water pipeline & solar street lights"
+      "DTCP Approved Layout – Approval No. 252/2026",
+      "Launch Price: Just ₹11.90 Lakhs per Cent",
+      "Build a Luxury 2 BHK Duplex with Car Parking for Just ₹45 Lakhs",
+      "Only 700 m from Madhampatty Main Bus Stop & 1.8 km from Western Ring Road",
+      "Near Kikani School, Sri Krishna College, Kovai Kondattam & Karunya University",
+      "Direct Municipal Siruvani Drinking Water Pipeline & Solar Street Lights",
+      "14 km to Coimbatore Junction Railway Station & 15 km to Gandhipuram",
+      "Perfect for First-Time Home Buyers with High Future Appreciation Potential"
+    ],
+    instagramReels: [
+      {
+        id: "DaKupuWvKW_",
+        url: "https://www.instagram.com/reel/DaKupuWvKW_/?stkn=MXU0MWVjbjBrYXZvZA==",
+        embedUrl: "https://www.instagram.com/reel/DaKupuWvKW_/embed/",
+        title: "Madhampatty 2 BHK (₹45L) & 3 BHK (₹49L) | 700m from Bus Stop & Western Ring Road",
+        shortTitle: "Madhampatty Villas & DTCP Plots",
+        category: "Site Tour",
+        thumbnail: "/images/reels/DaKupuWvKW_.jpg",
+        viewsBadge: "Site Walkthrough",
+        highlight: "DTCP plots and premium villas near Western Ring Road, 30ft tar road, sweet Siruvani water, and peaceful green surroundings."
+      },
+      {
+        id: "DeCCc-6NYfE",
+        url: "https://www.instagram.com/reel/DeCCc-6NYfE/?stkn=eWhxbXR4ZW40eHp0",
+        embedUrl: "https://www.instagram.com/reel/DeCCc-6NYfE/embed/",
+        title: "Madhampatti Site 15 Client Handover & Happiness",
+        shortTitle: "Madhampatti Site 15 Handover",
+        category: "Client Satisfaction",
+        thumbnail: "/images/reels/DeCCc-6NYfE.jpg",
+        viewsBadge: "Client Review",
+        highlight: "Happy buyer receiving clear Patta documents and immediate possession for Site 15 with Latitude Properties.",
+        isClientSatisfaction: true
+      }
     ]
   },
   {
@@ -327,6 +402,31 @@ export const projects: Project[] = [
       "Close to Vivek Vidyalaya, VSB, Sri Eshwar, Amrita & Karpagam",
       "Minutes from ELGi ACP, 200-Acre SIDCO Industrial Estate & L&T IT Park",
       "Peaceful & Green Environment with High Future Appreciation Potential"
+    ],
+    instagramReels: [
+      {
+        id: "DbigrPONjte",
+        url: "https://www.instagram.com/reel/DbigrPONjte/?stkn=emo3cXVncGZ1aHo4",
+        embedUrl: "https://www.instagram.com/reel/DbigrPONjte/embed/",
+        title: "₹5 லட்சத்தில் உங்கள் சொந்த 2 BHK வீடு - 80% Bank Loan Assistance",
+        shortTitle: "₹5L On-Hand 2 BHK Individual House",
+        category: "House Walkthrough",
+        thumbnail: "/images/reels/DbigrPONjte.jpg",
+        viewsBadge: "Value Deal",
+        highlight: "Stop paying rent! Own a 2 BHK individual house starting from just ₹5 Lakhs on-hand with 80% bank loan assistance."
+      },
+      {
+        id: "Ddv4l1TN2Hp",
+        url: "https://www.instagram.com/reel/Ddv4l1TN2Hp/?stkn=MWU3MTVhOHF3N3R6cg==",
+        embedUrl: "https://www.instagram.com/reel/Ddv4l1TN2Hp/embed/",
+        title: "Customer Site Review & Real Land Investment Experience",
+        shortTitle: "Customer Review: Investment Experience",
+        category: "Client Satisfaction",
+        thumbnail: "/images/reels/Ddv4l1TN2Hp.jpg",
+        viewsBadge: "Client Review",
+        highlight: "Direct buyer feedback on spot documentation, DTCP sanction, and hassle-free clear title handover at Kandhan Avenue.",
+        isClientSatisfaction: true
+      }
     ]
   },
   {
@@ -465,128 +565,31 @@ export const projects: Project[] = [
       "Minutes from L&T IT Park (2.2 km), Rathinam Tech Park (3 km) & SIDCO Industrial Estate",
       "Surrounded by Karpagam, Hindusthan, Rathinam & Top Public Schools",
       "Ideal for Dream Home, Rental Income & Long-Term Investment with High Appreciation"
-    ]
-  },
-  {
-    id: "siruvani-phase-1-2",
-    tag: "Phase 1 Inhabited • Phase 2 Open",
-    title: "Siruvani Enclave (Phase 1 & Phase 2)",
-    location: "Siruvani Main Road, Kalampalayam, Coimbatore",
-    type: "Integrated Gated Community Plots",
-    status: "available",
-    dtcpApprovalNumber: "DTCP: 188/2025 | Panchayat Sanctioned",
-    surveyNumber: "S.F. NO - 267/3A1, 267/3A3, 267/3B, 267/1B1, 267/2A, 267/2B",
-    layoutMapImage: "/images/sites/phase1-phase2-layout.png",
-    layoutMapTitle: "Siruvani Enclave Phase 1 & Phase 2 Layout Plan",
-    brochureImage: "/images/sites/phase1-phase2-layout.png",
-    img: "/images/sites/phase1-phase2-layout.png",
-    gallery: [
-      "/images/sites/phase1-phase2-layout.png",
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
     ],
-    plotsSummary: {
-      total: 56,
-      available: 18,
-      booked: 12,
-      sold: 26,
-    },
-    plotsList: [
-      // Phase 2 Plots (Plots 1 to 12 in the newly released sector)
-      { plotNumber: "P2-1", areaSqFt: 1750, areaCents: "4.02 Cent", dimensions: "29'-9\" x 41'-9\"", facing: "East", status: "available" },
-      { plotNumber: "P2-2", areaSqFt: 1850, areaCents: "4.25 Cent", dimensions: "25' x 43'-6\"", facing: "East", status: "available" },
-      { plotNumber: "P2-3", areaSqFt: 1800, areaCents: "4.13 Cent", dimensions: "30' x 42'", facing: "East", status: "available" },
-      { plotNumber: "P2-4", areaSqFt: 1720, areaCents: "3.95 Cent", dimensions: "35' x 49'", facing: "East", status: "available" },
-      { plotNumber: "P2-5", areaSqFt: 1950, areaCents: "4.48 Cent", dimensions: "35' x 51'-3\"", facing: "North-East Corner", status: "booked" },
-      { plotNumber: "P2-6", areaSqFt: 1800, areaCents: "4.13 Cent", dimensions: "30' x 60'", facing: "North", status: "available" },
-      { plotNumber: "P2-7", areaSqFt: 1800, areaCents: "4.13 Cent", dimensions: "30' x 60'", facing: "North", status: "available" },
-      { plotNumber: "P2-8", areaSqFt: 1800, areaCents: "4.13 Cent", dimensions: "30' x 60'", facing: "North", status: "available" },
-      { plotNumber: "P2-9", areaSqFt: 1900, areaCents: "4.36 Cent", dimensions: "31'-9\" x 61'-3\"", facing: "North", status: "available" },
-      { plotNumber: "P2-10", areaSqFt: 1600, areaCents: "3.67 Cent", dimensions: "42' x 32'-3\"", facing: "West", status: "booked" },
-      { plotNumber: "P2-11", areaSqFt: 1550, areaCents: "3.56 Cent", dimensions: "26'-9\" x 26'-6\"", facing: "South", status: "available" },
-      { plotNumber: "P2-12", areaSqFt: 1650, areaCents: "3.79 Cent", dimensions: "30'-3\" x 22'-3\"", facing: "South", status: "available" },
-      // Phase 1 Sample plots representing the 44 plots in Phase 1
-      { plotNumber: "P1-1", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-2", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-3", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-4", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-5", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-6", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-7", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-8", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-9", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-10", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-11", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "booked" },
-      { plotNumber: "P1-12", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-13", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-14", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-15", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-16", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "booked" },
-      { plotNumber: "P1-17", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "South", status: "sold" },
-      { plotNumber: "P1-18", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "South", status: "sold" },
-      { plotNumber: "P1-19", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "South", status: "available" },
-      { plotNumber: "P1-20", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "South", status: "available" },
-      { plotNumber: "P1-21", areaSqFt: 1850, areaCents: "4.25 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-22", areaSqFt: 1850, areaCents: "4.25 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-23", areaSqFt: 1850, areaCents: "4.25 Cent", facing: "East", status: "sold" },
-      { plotNumber: "P1-24", areaSqFt: 1900, areaCents: "4.36 Cent", facing: "East", status: "booked" },
-      { plotNumber: "P1-25", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-26", areaSqFt: 1500, areaCents: "3.44 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-27", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "available" },
-      { plotNumber: "P1-28", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-29", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "available" },
-      { plotNumber: "P1-30", areaSqFt: 1600, areaCents: "3.67 Cent", facing: "West", status: "sold" },
-      { plotNumber: "P1-31", areaSqFt: 1650, areaCents: "3.79 Cent", facing: "West", status: "booked" },
-      { plotNumber: "P1-32", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "available" },
-      { plotNumber: "P1-33", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "booked" },
-      { plotNumber: "P1-34", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "available" },
-      { plotNumber: "P1-35", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "available" },
-      { plotNumber: "P1-36", areaSqFt: 1700, areaCents: "3.90 Cent", facing: "North", status: "booked" },
-      { plotNumber: "P1-37", areaSqFt: 1750, areaCents: "4.02 Cent", facing: "South", status: "available" },
-      { plotNumber: "P1-38", areaSqFt: 1750, areaCents: "4.02 Cent", facing: "South", status: "sold" },
-      { plotNumber: "P1-39", areaSqFt: 1750, areaCents: "4.02 Cent", facing: "South", status: "booked" },
-      { plotNumber: "P1-40", areaSqFt: 1750, areaCents: "4.02 Cent", facing: "South", status: "booked" },
-      { plotNumber: "P1-41", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-42", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "North", status: "booked" },
-      { plotNumber: "P1-43", areaSqFt: 1800, areaCents: "4.13 Cent", facing: "North", status: "sold" },
-      { plotNumber: "P1-44", areaSqFt: 1850, areaCents: "4.25 Cent", facing: "North", status: "sold" }
-    ],
-    amenities: "10m Main Road, 9m/7.2m Internal Roads, Pure Siruvani Water, Solar Lights",
-    amenitiesList: [
-      { name: "10.0m Wide Main Layout Road", description: "Grand 33-foot central spine road connecting Phase 1 and Phase 2", iconName: "Route" },
-      { name: "Dual Water Connection (Siruvani)", description: "Direct municipal Siruvani connection + high yield community borewell", iconName: "Droplets" },
-      { name: "Complete Solar Street Lighting", description: "Automated dusk-to-dawn LED solar illumination on every pole", iconName: "Sun" },
-      { name: "Clear Title & Instant Patta", description: "Verified by legal team with 100% encumbrance free history", iconName: "Shield" },
-      { name: "Avenue Tree Borders", description: "Shady native green trees along all layout roads for temperature control", iconName: "Trees" }
-    ],
-    specs: {
-      plotDimensions: "30' x 50', 35' x 50', and Corner Plot Options",
-      totalPlotArea: "56 Plots Total across Phase 1 & Phase 2",
-      builtUpArea: "Villa Construction Package Available",
-      carpetArea: "Optimal Gated Layout Configuration",
-      facing: "North, East, West & Corner Options",
-      roadWidth: "10.0m (33 Ft), 9.0m (30 Ft) & 7.2m (24 Ft) Tar Roads",
-      approvalNumber: "DTCP: 188/2025 | Panchayat Certified",
-      pattaStatus: "Clear Mother Deed with Individual Sub-division Patta for Each Plot",
-      foundation: "Reinforced Concrete Isolated Footing",
-      superstructure: "Wire Cut Chamber Clay Bricks",
-      flooring: "Kajaria 4x2 Vitrified Tiles",
-      doorsWindows: "Teak Main Door & UPVC Sliding Windows",
-      electricalPlumbing: "Finolex Cables & Jaquar Fixtures",
-      waterDrainage: "Siruvani Tap + Concealed Underground Drainage",
-      ceilingHeight: "10 Feet 6 Inches"
-    },
-    offerPrice: 2520000,
-    ratePerSqFtOffer: 1440,
-    startingPriceLabel: "Starting from ₹25.20 Lakhs",
-    description: "Siruvani Enclave is a premier gated community layout divided into Phase 1 and Phase 2. Phase 1 has witnessed tremendous buyer enthusiasm with over 26 plots sold and handed over. Phase 2 brings freshly sanctioned residential plots with 10.0m wide main roads, direct Siruvani drinking water connections, and complete solar lighting infrastructure.",
-    highlights: [
-      "Phase 1 & Phase 2 Layout with 56 Total Plots",
-      "Status: 18 Available, 12 Booked, 26 Sold Out",
-      "Wide 10.0m, 9.0m, and 7.2m tar roads",
-      "Direct Siruvani drinking water pipeline with individual taps",
-      "Immediate registration ready with verified Patta",
-      "Phase 2 introductory inventory open with immediate individual Patta"
+    instagramReels: [
+      {
+        id: "Db8X_DGN4rV",
+        url: "https://www.instagram.com/reel/Db8X_DGN4rV/?stkn=ZnBnaXVqc3B4Nmtp",
+        embedUrl: "https://www.instagram.com/reel/Db8X_DGN4rV/embed/",
+        title: "Malumichampatty-la Ungaloda Dream Land! Prime Location & Great Connectivity",
+        shortTitle: "Malumichampatty Dream Land Tour",
+        category: "Site Tour",
+        thumbnail: "/images/reels/Db8X_DGN4rV.jpg",
+        viewsBadge: "Site Walkthrough",
+        highlight: "Prime location behind Karpagam University, future corporation limit, 33-ft wide blacktop roads, and high appreciation potential."
+      },
+      {
+        id: "DdtXwmetl5a",
+        url: "https://www.instagram.com/reel/DdtXwmetl5a/?stkn=MXF3bmI5Njc2M3Ftbg==",
+        embedUrl: "https://www.instagram.com/reel/DdtXwmetl5a/embed/",
+        title: "Malumichampatti DTCP Site Booking Celebration",
+        shortTitle: "Malumichampatti Land Booking",
+        category: "Client Satisfaction",
+        thumbnail: "/images/reels/DdtXwmetl5a.jpg",
+        viewsBadge: "Client Review",
+        highlight: "Delighted homebuyers celebrating their DTCP approved plot booking in prime Malumichampatti at Rathna Residency.",
+        isClientSatisfaction: true
+      }
     ]
   }
 ];
@@ -595,11 +598,8 @@ export const projects: Project[] = [
 const idAliases: Record<string, string> = {
   "kalampalayam-area": "sri-aanandham-avenue",
   "green-fields-layout": "kandhan-avenue",
-  "coimbatore-region-plots": "siruvani-phase-1-2",
   "royal-palms-residency-plot-14": "sri-aanandham-avenue",
   "grand-orchard-plot-08": "kandhan-avenue",
-  "ananya-gardens-phase-1": "siruvani-phase-1-2",
-  "siruvani-meadows-layout": "siruvani-phase-1-2",
 };
 
 export function getProjectById(id: string): Project | undefined {

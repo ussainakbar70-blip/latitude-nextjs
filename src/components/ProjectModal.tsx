@@ -66,7 +66,7 @@ export default function ProjectModal({
 
           {/* Pricing Card */}
           <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-gold/40 rounded p-4 mb-4">
-            {project.houseStartingPrice ? (
+            {project.id === "kandhan-avenue" ? (
               <div>
                 <div className="flex justify-between items-center text-xs font-bold text-navy-900 mb-1">
                   <span>PREMIUM 2 BHK INDIVIDUAL HOUSES</span>
@@ -80,7 +80,21 @@ export default function ProjectModal({
                   <span className="text-emerald-700 font-medium">{project.bankLoanAssistance}</span>
                 </div>
               </div>
-            ) : project.plotRatePerCent ? (
+            ) : project.id === "sri-aanandham-avenue" ? (
+              <div>
+                <div className="flex justify-between items-center text-xs font-bold text-navy-900 mb-1">
+                  <span>PLOTS & LUXURY DUPLEX VILLAS</span>
+                  <span className="text-emerald-800">Duplex: ₹45 Lakhs</span>
+                </div>
+                <div className="text-2xl font-serif font-bold text-navy-900">
+                  {project.plotRatePerCent}
+                </div>
+                <div className="text-xs text-muted mt-2 pt-2 border-t border-gold/20 flex flex-wrap justify-between gap-1">
+                  <span className="font-semibold text-navy-900">700m to Madhampatty Bus Stop</span>
+                  <span className="text-emerald-700 font-medium">1.8 km Western Ring Road</span>
+                </div>
+              </div>
+            ) : project.id === "rathna-residency" ? (
               <div>
                 <div className="flex justify-between items-center text-xs font-bold text-navy-900 mb-1">
                   <span>GRAND LAUNCH OFFER</span>
@@ -124,7 +138,7 @@ export default function ProjectModal({
               onClick={onClose}
               className="w-full inline-flex items-center justify-center gap-2 rounded-sm bg-navy-900 hover:bg-navy-800 text-gold-warm font-semibold text-[14px] px-6 py-3.5 transition-all shadow-md"
             >
-              Open Full Site Details & Layout Map
+              Open Full Site Details
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -138,7 +152,7 @@ export default function ProjectModal({
             </a>
             <a
               href={buildWhatsappLink(
-                `Hello Latitude Properties, I would like more details about ${project.title} layout map and pricing.`
+                `Hello Latitude Properties, I would like more details about ${project.title} and pricing.`
               )}
               target="_blank"
               rel="noopener"

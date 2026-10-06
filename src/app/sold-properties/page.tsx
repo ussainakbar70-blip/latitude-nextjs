@@ -184,7 +184,7 @@ export default function SoldPropertiesPage() {
                       href={`/sites/${project.id}`}
                       className="inline-flex items-center gap-1.5 text-navy-900 font-semibold text-sm hover:text-gold transition-colors"
                     >
-                      View Layout Map & Specs
+                      View Site Details & Specs
                       <ArrowRight size={15} />
                     </Link>
 
@@ -215,7 +215,7 @@ export default function SoldPropertiesPage() {
                 Explore Currently Available DTCP Approved Sites
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
-                Our active plots and houses in Kandhan Avenue (Elur, Arisipalayam), Sri Aanandham Avenue, and Siruvani Enclave are filling fast.
+                Our active plots and houses in Kandhan Avenue (Elur, Arisipalayam), Rathna Residency (Malumichampatty), and Sri Aanandham Avenue are filling fast.
                 Benefit from our Grand Launch pricing and site visit assistance today!
               </p>
             </div>

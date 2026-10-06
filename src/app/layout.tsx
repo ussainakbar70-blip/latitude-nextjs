@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Latitude Properties",
   },
   description:
-    "Explore DTCP approved residential sites, layout maps, and plots in Coimbatore with Latitude Properties. Discover Rathna Residency at Malumichampatty (Future Corporation Limit - ₹12.5L/Cent), Kandhan Avenue at Elur (2 BHK from ₹29L), Sri Aanandham Avenue, and Siruvani Enclave with verified titles.",
+    "Explore DTCP approved residential sites and plots in Coimbatore with Latitude Properties. Discover Rathna Residency at Malumichampatty (Future Corporation Limit - ₹12.5L/Cent), Kandhan Avenue at Elur (2 BHK from ₹29L), and Sri Aanandham Avenue with verified titles.",
   keywords: [
     "sites in Coimbatore",
     "residential sites for sale Coimbatore",
@@ -41,8 +41,7 @@ export const metadata: Metadata = {
     "2 BHK houses Coimbatore",
     "Kinathukadavu plots",
     "Sri Aanandham Avenue",
-    "Siruvani Enclave",
-    "plots layout map Coimbatore",
+    "plots for sale Coimbatore",
     "Latitude Properties",
     "Latitude Promoters",
     "Siruvani water plots",
@@ -65,9 +64,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Latitude Properties | Residential Sites & Master Layout Maps in Coimbatore",
+    title: "Latitude Properties | Residential Sites & Plots in Coimbatore",
     description:
-      "DTCP approved sites with certified layout plans in Coimbatore. Live plot status (Available, Booked, Sold), Siruvani water, and free site visits with cab pickup.",
+      "DTCP approved sites and plots in Coimbatore. Live plot status (Available, Booked, Sold), Siruvani water, and free site visits with cab pickup.",
     url: siteUrl,
     siteName: "Latitude Properties",
     images: [
@@ -85,7 +84,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Latitude Properties | Residential Sites in Coimbatore",
     description:
-      "DTCP certified residential sites in Coimbatore with master layout maps and live plot availability.",
+      "DTCP certified residential sites in Coimbatore with verified clear titles and live plot availability.",
     images: ["/images/branding/logo.png"],
   },
   robots: {
@@ -160,8 +159,7 @@ const jsonLd = {
   ],
   sameAs: [
     "https://facebook.com",
-    "https://instagram.com",
-    "https://www.youtube.com/@LatitudeProperties",
+    "https://www.instagram.com/latitude_properties/",
     "https://wa.me/919363439993",
   ],
 };

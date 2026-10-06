@@ -182,7 +182,7 @@ export default function BookedPropertiesPage() {
                       href={`/sites/${project.id}`}
                       className="inline-flex items-center gap-1.5 text-navy-900 font-semibold text-sm hover:text-gold transition-colors"
                     >
-                      View Layout Map & Site Specs
+                      View Site Details & Specs
                       <ArrowRight size={15} />
                     </Link>
 
@@ -210,7 +210,7 @@ export default function BookedPropertiesPage() {
                 Looking for Available DTCP Approved Sites?
               </h3>
               <p className="text-sm text-[#EDEAE0] max-w-xl">
-                Browse our active layout listings with master layout maps, ready for immediate spot booking, instant registration, and individual Patta handover in Coimbatore.
+                Browse our active site listings, ready for immediate spot booking, instant registration, and individual Patta handover in Coimbatore.
               </p>
             </div>
 

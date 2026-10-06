@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Instagram } from "lucide-react";
 import { site } from "@/data/site";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/#video-tours", label: "Video Tours & Reels" },
   { href: "/#sites", label: "Our Sites" },
-  { href: "/#video-tours", label: "Video Tours & Shorts" },
   { href: "/booked-properties", label: "Booked Plots" },
   { href: "/sold-properties", label: "Sold Out Sites" },
   { href: "/#about", label: "About Us" },
@@ -72,15 +73,16 @@ export default function Footer() {
             <li className="mb-3">
               <span className="text-[14.5px]">{site.address.line1} {site.address.line2}</span>
             </li>
-            {site.youtube && (
+            {site.instagram && (
               <li>
                 <a
-                  href={site.youtube}
+                  href={site.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-pink-400 hover:text-pink-300 font-medium"
                 >
-                  <span>YouTube: @LatitudeProperties</span>
+                  <Instagram size={14} />
+                  <span>Instagram: {site.instagramHandle}</span>
                 </a>
               </li>
             )}

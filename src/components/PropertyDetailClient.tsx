@@ -27,14 +27,17 @@ import {
   HeartPulse,
   Landmark,
   School,
+  Play,
+  RotateCcw,
+  ExternalLink,
+  Instagram,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import SiteLayoutViewer from "@/components/SiteLayoutViewer";
-import SiteLayoutMap from "@/components/SiteLayoutMap";
 import { Project } from "@/data/projects";
 import { site, buildWhatsappLink } from "@/data/site";
+import { instagramAccount } from "@/data/instagram-reels";
 
 const amenityIconMap: Record<string, any> = {
   Route,
@@ -59,6 +62,7 @@ const neighborhoodIconMap: Record<string, any> = {
 
 export default function PropertyDetailClient({ project }: { project: Project }) {
   const [activeImage, setActiveImage] = useState(project.img);
+  const [activeReelId, setActiveReelId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -72,7 +76,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
     if (navigator.share) {
       navigator.share({
         title: `${project.title} - Latitude Properties`,
-        text: `Check out ${project.title} layout map & property details!`,
+        text: `Check out ${project.title} property details!`,
         url: window.location.href,
       }).catch(() => {});
     } else {
@@ -174,7 +178,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
 
             {/* Pricing Showcase Card */}
             <div className="bg-navy-800/90 border-2 border-gold/60 p-5 rounded-sm shadow-xl max-w-md w-full">
-              {project.houseStartingPrice ? (
+              {project.id === "kandhan-avenue" ? (
                 <div>
                   <div className="flex items-center justify-between text-xs text-gold-warm font-semibold mb-1">
                     <span className="flex items-center gap-1 font-bold tracking-wider">
@@ -205,7 +209,38 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                     *{project.bankLoanAssistance}
                   </div>
                 </div>
-              ) : project.plotRatePerCent ? (
+              ) : project.id === "sri-aanandham-avenue" ? (
+                <div>
+                  <div className="flex items-center justify-between text-xs text-gold-warm font-semibold mb-1">
+                    <span className="flex items-center gap-1 font-bold tracking-wider">
+                      <Sparkles size={14} className="text-gold-warm" />
+                      {project.launchOfferTitle || "GRAND LAUNCH OFFER"}
+                    </span>
+                    <span className="bg-emerald-600 text-white font-bold px-2 py-0.5 rounded text-[11px]">
+                      DTCP APPROVED
+                    </span>
+                  </div>
+
+                  <div className="text-xs text-[#EDEAE0] uppercase tracking-wide mt-1">
+                    Madhampatty Launch Price
+                  </div>
+                  <div className="font-serif text-2xl md:text-3xl font-bold text-white my-1">
+                    {project.plotRatePerCent}
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs mt-2 pt-2 border-t border-white/10">
+                    <span className="text-emerald-400 font-semibold">
+                      2 BHK Duplex: From ₹45L
+                    </span>
+                    <span className="text-gold-warm font-bold">
+                      700m to Bus Stop
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-white/70 mt-1">
+                    Western Ring Road 1.8 km • Direct Siruvani Drinking Water
+                  </div>
+                </div>
+              ) : project.id === "rathna-residency" ? (
                 <div>
                   <div className="flex items-center justify-between text-xs text-gold-warm font-semibold mb-1">
                     <span className="flex items-center gap-1 font-bold tracking-wider">
@@ -300,7 +335,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
       <section className="py-12">
         <div className="max-w-[1240px] mx-auto px-5 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Left 2 Columns: Gallery, Master Layout Map & Plot Status, Specs, Amenities */}
+            {/* Left 2 Columns: Gallery, Specs, Amenities */}
             <div className="lg:col-span-2 space-y-12">
               {/* Photo Gallery with Switcher */}
               <div className="bg-white p-4 border border-[#ECE9DF] rounded-sm shadow-sm">
@@ -344,16 +379,153 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                 )}
               </div>
 
-              {/* Master Layout Map & Real-Time Plot Availability Section */}
-              <SiteLayoutViewer
-                project={project}
-                onSelectPlot={(plot) => {
-                  setFormData((prev) => ({
-                    ...prev,
-                    message: `Hi Latitude Properties, I am interested in Plot #${plot.plotNumber} (${plot.areaCents} / ${plot.areaSqFt} sq.ft) at ${project.title}. Please share available plot layout details and booking steps.`,
-                  }));
-                }}
-              />
+              {/* Project Video Walkthroughs & Client Satisfaction Reels */}
+              {project.instagramReels && project.instagramReels.length > 0 && (
+                <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
+                  <div className="border-b border-[#ECE9DF] pb-5 mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 uppercase text-xs font-semibold tracking-[0.25em] text-gold mb-1">
+                        <Instagram size={14} className="text-[#E1306C]" />
+                        <span>Official Video Tours</span>
+                      </div>
+                      <h2 className="font-serif text-2xl md:text-3xl font-bold text-navy-900">
+                        Site Walkthrough & Client Reviews
+                      </h2>
+                      <p className="text-muted text-sm mt-1 max-w-xl">
+                        Watch verified on-site video walkthroughs and authentic customer satisfaction stories filmed live at {project.title}.
+                      </p>
+                    </div>
+
+                    <a
+                      href={instagramAccount.reelsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-navy-900 hover:text-gold transition-colors py-1.5 px-3 rounded bg-bg border border-[#ECE9DF] shrink-0 self-start sm:self-auto"
+                    >
+                      <Instagram size={14} className="text-[#E1306C]" />
+                      <span>{instagramAccount.handle}</span>
+                      <ExternalLink size={12} className="text-muted" />
+                    </a>
+                  </div>
+
+                  {/* Video Cards Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {project.instagramReels.map((reel) => {
+                      const isPlaying = activeReelId === reel.id;
+                      return (
+                        <div
+                          key={reel.id}
+                          className="flex flex-col bg-bg border border-[#ECE9DF] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                        >
+                          {/* 9:15 Aspect Ratio Container */}
+                          <div className="relative aspect-[9/15] w-full bg-black overflow-hidden group">
+                            {isPlaying ? (
+                              <div className="relative w-full h-full bg-black">
+                                <iframe
+                                  src={reel.embedUrl}
+                                  title={reel.title}
+                                  allow="encrypted-media"
+                                  allowFullScreen
+                                  scrolling="no"
+                                  className="w-full h-full border-0 bg-black"
+                                />
+                                {/* Top Controls */}
+                                <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-20 pointer-events-none">
+                                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-white text-[11px] font-bold">
+                                    <Instagram size={12} className="text-[#E1306C]" />
+                                    <span>Instagram Reel</span>
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => setActiveReelId(null)}
+                                    aria-label="Close video player"
+                                    className="pointer-events-auto p-1.5 rounded-full bg-black/80 hover:bg-black text-white transition-colors"
+                                  >
+                                    <RotateCcw size={14} />
+                                  </button>
+                                </div>
+                              </div>
+                            ) : (
+                              <div
+                                className="relative w-full h-full cursor-pointer"
+                                onClick={() => setActiveReelId(reel.id)}
+                              >
+                                <Image
+                                  src={reel.thumbnail}
+                                  alt={reel.title}
+                                  fill
+                                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                  sizes="(max-width: 768px) 100vw, 400px"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/35" />
+
+                                {/* Top Badges */}
+                                <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none z-10">
+                                  <span className="bg-navy-900/90 backdrop-blur-md text-gold-warm font-bold text-[11px] px-2.5 py-1 rounded shadow border border-gold/30">
+                                    {reel.viewsBadge || reel.category}
+                                  </span>
+                                  {reel.isClientSatisfaction && (
+                                    <span className="bg-emerald-600/90 backdrop-blur-md text-white text-[10.5px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+                                      <CheckCircle2 size={11} />
+                                      Verified Client
+                                    </span>
+                                  )}
+                                </div>
+
+                                {/* Central Play Button */}
+                                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#E1306C] via-[#F77737] to-[#FCAF45] p-0.5 shadow-2xl group-hover:scale-110 transition-transform">
+                                    <div className="w-full h-full rounded-full bg-navy-900/90 flex items-center justify-center text-white backdrop-blur-sm group-hover:bg-navy-900 transition-colors">
+                                      <Play size={24} className="text-gold-warm fill-gold-warm ml-1" />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Bottom Information on Thumbnail */}
+                                <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white z-10 pointer-events-none">
+                                  <p className="text-[11px] text-gold-warm font-semibold mb-0.5 uppercase tracking-wider">
+                                    {reel.category}
+                                  </p>
+                                  <h3 className="font-serif font-bold text-sm sm:text-base leading-snug line-clamp-2 text-white">
+                                    {reel.shortTitle || reel.title}
+                                  </h3>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Content Details & Action Footer */}
+                          <div className="p-4 flex flex-col justify-between flex-grow bg-white">
+                            <p className="text-xs text-muted leading-relaxed mb-3">
+                              {reel.highlight}
+                            </p>
+                            <div className="pt-3 border-t border-[#ECE9DF] flex items-center justify-between gap-2 text-xs">
+                              <button
+                                type="button"
+                                onClick={() => setActiveReelId(isPlaying ? null : reel.id)}
+                                className="inline-flex items-center gap-1.5 font-bold text-navy-900 hover:text-gold transition-colors"
+                              >
+                                <Play size={13} className="text-gold fill-gold" />
+                                <span>{isPlaying ? "Close Player" : "Watch Reel"}</span>
+                              </button>
+                              <a
+                                href={reel.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-muted hover:text-[#E1306C] transition-colors"
+                              >
+                                <Instagram size={13} className="text-[#E1306C]" />
+                                <span>Open Instagram</span>
+                                <ExternalLink size={11} />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Inch-by-Inch Architectural & Structural Specifications */}
               <div className="bg-white p-6 md:p-8 border border-[#ECE9DF] rounded-sm shadow-sm">
@@ -559,7 +731,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                   {project.launchOfferTitle || "Verified Property Offer"}
                 </div>
 
-                {project.houseStartingPrice ? (
+                {project.id === "kandhan-avenue" ? (
                   <>
                     <div className="text-2xl font-serif font-bold text-white mb-1">
                       {project.houseStartingPrice}
@@ -599,7 +771,47 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                       Enquire on WhatsApp
                     </a>
                   </>
-                ) : project.plotRatePerCent ? (
+                ) : project.id === "sri-aanandham-avenue" ? (
+                  <>
+                    <div className="text-2xl font-serif font-bold text-white mb-1">
+                      {project.plotRatePerCent}
+                    </div>
+                    <p className="text-xs text-[#EDEAE0] mb-4">
+                      Grand launch DTCP approved plots & luxury 2 BHK duplex villas at Madhampatty.
+                    </p>
+
+                    <div className="bg-white/10 p-4 rounded-sm border border-white/15 space-y-2 mb-4 text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-white/80">Launch Price:</span>
+                        <span className="font-bold text-gold-warm">{project.plotRatePerCent}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/80">2 BHK Duplex:</span>
+                        <span className="font-bold text-emerald-400">From ₹45 Lakhs</span>
+                      </div>
+                      <div className="flex justify-between border-t border-white/10 pt-2">
+                        <span className="text-white/80">Western Ring Rd:</span>
+                        <span className="text-white font-medium">1.8 km (3 mins)</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/80">DTCP Layout:</span>
+                        <span className="text-white font-medium">{project.dtcpApprovalNumber}</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={buildWhatsappLink(
+                        `Hello Latitude Properties, I would like to book a site visit for Sri Aanandham Avenue, Madhampatty (Plots: ${project.plotRatePerCent} / Duplex: from Rs. 45L).`
+                      )}
+                      target="_blank"
+                      rel="noopener"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-br from-gold-warm to-gold text-navy-900 font-bold text-sm py-3 px-4 rounded-sm shadow hover:scale-[1.02] transition-transform"
+                    >
+                      <MessageCircle size={18} />
+                      Enquire on WhatsApp
+                    </a>
+                  </>
+                ) : project.id === "rathna-residency" ? (
                   <>
                     <div className="text-2xl font-serif font-bold text-white mb-1">
                       {project.plotRatePerCent}
@@ -766,7 +978,7 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
                   </div>
                   <div className="flex items-center gap-2">
                     <Check size={14} className="text-emerald-600 flex-shrink-0" />
-                    <span>On-site DTCP documents & layout map inspection</span>
+                    <span>On-site DTCP documents & legal title inspection</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check size={14} className="text-emerald-600 flex-shrink-0" />
@@ -798,13 +1010,6 @@ export default function PropertyDetailClient({ project }: { project: Project }) 
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Master Site Map & Plot Availability Section */}
-      <section className="py-14 bg-white border-t border-[#ECE9DF]">
-        <div className="max-w-[1240px] mx-auto px-5 md:px-10">
-          <SiteLayoutMap />
         </div>
       </section>
 

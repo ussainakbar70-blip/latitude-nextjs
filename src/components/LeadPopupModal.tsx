@@ -1,49 +1,81 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent, useCallback } from "react";
 import Image from "next/image";
-import { X, CheckCircle2, MessageCircle, Phone, Sparkles } from "lucide-react";
+import {
+  X,
+  CheckCircle2,
+  MessageCircle,
+  Phone,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+} from "lucide-react";
 import { site, buildWhatsappLink } from "@/data/site";
+
+interface SiteSlide {
+  id: string;
+  badge: string;
+  location: string;
+  title: string;
+  subtitle: string;
+  priceHighlight: string;
+  highlights: string;
+  image: string;
+  dropdownValue: string;
+}
+
+const siteSlides: SiteSlide[] = [
+  {
+    id: "kandhan-avenue",
+    badge: "Grand Launch Offer",
+    location: "Elur, Arisipalayam (Pollachi Highway 1.5 km)",
+    title: "Kandhan Avenue",
+    subtitle: "Premium 2 BHK Individual Houses & DTCP Plots",
+    priceHighlight: "Houses from ₹29 Lakhs • Plots ₹6.20L/Cent",
+    highlights: "Only ₹5L On-Hand • Up to 80% Loan • DTCP 256/2026",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+    dropdownValue: "Kandhan Avenue (2 BHK Houses from ₹29L / Plots)",
+  },
+  {
+    id: "rathna-residency",
+    badge: "Future Corporation Limit",
+    location: "Behind Karpagam University, Malumichampatty",
+    title: "Rathna Residency",
+    subtitle: "DTCP-Approved Gated Community Plots",
+    priceHighlight: "Launch Price: Just ₹12.5 Lakhs / Cent",
+    highlights: "33-ft Blacktop Roads • Water & EB • Solar Lights",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80",
+    dropdownValue: "Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)",
+  },
+  {
+    id: "sri-aanandham-avenue",
+    badge: "Grand Launch • Madhampatty",
+    location: "700m from Main Bus Stop, Siruvani Main Rd",
+    title: "Sri Aanandham Avenue",
+    subtitle: "DTCP Plots & Luxury 2 BHK Duplex Villas",
+    priceHighlight: "Plots ₹11.90L / Cent • Duplex from ₹45L",
+    highlights: "1.8 km from Western Ring Road • Siruvani Water • DTCP 252/2026",
+    image:
+      "https://images.unsplash.com/photo-1524055988636-436cfa46e59e?auto=format&fit=crop&w=1000&q=80",
+    dropdownValue:
+      "Sri Aanandham Avenue, Madhampatty (Plots ₹11.90L/Cent / Duplex ₹45L)",
+  },
+];
 
 export default function LeadPopupModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    requirement: "Kandhan Avenue (2 BHK Houses from ₹29L / Plots)",
+    requirement: siteSlides[0].dropdownValue,
   });
-
-  useEffect(() => {
-    // Check if dismissed in current session
-    try {
-      const isDismissed = sessionStorage.getItem("latitude_lead_popup_dismissed");
-      if (!isDismissed) {
-        // Trigger popup after 1.8 seconds delay
-        const timer = setTimeout(() => {
-          setIsOpen(true);
-        }, 1800);
-        return () => clearTimeout(timer);
-      }
-    } catch {
-      // Fallback if sessionStorage is not accessible
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 1800);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  // Handle escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        handleClose();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -53,6 +85,82 @@ export default function LeadPopupModal() {
       // ignore
     }
   };
+
+  const goToSlide = useCallback((index: number) => {
+    setActiveSlide(index);
+    // Sync requirement dropdown if it currently matches one of the 3 site options
+    const currentReq = formData.requirement;
+    const isOneOfSites = siteSlides.some((s) => s.dropdownValue === currentReq);
+    if (isOneOfSites) {
+      setFormData((prev) => ({
+        ...prev,
+        requirement: siteSlides[index].dropdownValue,
+      }));
+    }
+  }, [formData.requirement]);
+
+  const nextSlide = useCallback(() => {
+    const nextIdx = (activeSlide + 1) % siteSlides.length;
+    goToSlide(nextIdx);
+  }, [activeSlide, goToSlide]);
+
+  const prevSlide = useCallback(() => {
+    const prevIdx = (activeSlide - 1 + siteSlides.length) % siteSlides.length;
+    goToSlide(prevIdx);
+  }, [activeSlide, goToSlide]);
+
+  const handleRequirementChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, requirement: value }));
+    const matchedIdx = siteSlides.findIndex((s) => s.dropdownValue === value);
+    if (matchedIdx !== -1) {
+      setActiveSlide(matchedIdx);
+    }
+  };
+
+  // Popup display delay
+  useEffect(() => {
+    try {
+      const isDismissed = sessionStorage.getItem("latitude_lead_popup_dismissed");
+      if (!isDismissed) {
+        const timer = setTimeout(() => {
+          setIsOpen(true);
+        }, 1800);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 1800);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Keyboard navigation & escape listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      if (e.key === "Escape") {
+        handleClose();
+      } else if (e.key === "ArrowLeft") {
+        prevSlide();
+      } else if (e.key === "ArrowRight") {
+        nextSlide();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, prevSlide, nextSlide]);
+
+  // Slideshow auto-advance timer (3.8 seconds)
+  useEffect(() => {
+    if (!isOpen || isPaused || submitted) return;
+
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % siteSlides.length);
+    }, 3800);
+
+    return () => clearInterval(interval);
+  }, [isOpen, isPaused, submitted]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -69,6 +177,7 @@ export default function LeadPopupModal() {
 
   if (!isOpen) return null;
 
+  const currentSlideData = siteSlides[activeSlide];
   const whatsappMessage = `Hi Latitude Properties! My name is ${formData.name}. I am interested in: ${formData.requirement}. My contact number is ${formData.phone}. Please share layout pricing & availability.`;
 
   return (
@@ -96,40 +205,111 @@ export default function LeadPopupModal() {
           <button
             onClick={handleClose}
             aria-label="Close modal"
-            className="sm:hidden absolute top-2.5 right-2.5 z-20 bg-black/60 text-white rounded-full p-1.5 focus:outline-none"
+            className="sm:hidden absolute top-2.5 right-2.5 z-30 bg-black/60 text-white rounded-full p-1.5 focus:outline-none"
           >
             <X size={18} strokeWidth={2.5} />
           </button>
-          {/* Left Column: Architectural Photo */}
-          <div className="relative w-full md:w-1/2 min-h-[220px] md:min-h-[460px] bg-navy-900">
-            <Image
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
-              alt="Latitude Properties Luxury Residential Villa & Plots in Coimbatore"
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-navy-900/30" />
 
-            {/* Floating Offer Badge */}
-            <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-gold text-navy-900 font-bold text-xs shadow-lg uppercase tracking-wider">
-              <Sparkles size={14} className="animate-spin-slow" />
-              <span>Grand Launch Offer</span>
-            </div>
+          {/* Left Column: 3-Site Slideshow */}
+          <div
+            className="relative w-full md:w-1/2 min-h-[260px] md:min-h-[470px] bg-navy-900 overflow-hidden select-none"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {siteSlides.map((slide, idx) => {
+              const isActive = idx === activeSlide;
+              return (
+                <div
+                  key={slide.id}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    isActive
+                      ? "opacity-100 z-10 pointer-events-auto"
+                      : "opacity-0 z-0 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={slide.image}
+                    alt={`${slide.title} - Latitude Properties`}
+                    fill
+                    priority={idx === 0}
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/50 to-navy-950/40" />
 
-            {/* Bottom Caption on Left Image */}
-            <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-xs font-semibold uppercase tracking-widest text-gold-warm">
-                Elur, Arisipalayam & Coimbatore
-              </p>
-              <p className="font-serif text-lg font-medium leading-snug">
-                DTCP Approved Plots & 2 BHK Houses
-              </p>
-              <p className="text-[11px] text-white/80 mt-0.5">
-                Individual Patta • Sweet Water • 40ft/30ft Roads
-              </p>
+                  {/* Top Bar: Floating Offer Badge & Counter */}
+                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-20">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded bg-gold text-navy-900 font-bold text-[11px] sm:text-xs shadow-lg uppercase tracking-wider">
+                      <Sparkles size={13} className="animate-spin-slow shrink-0" />
+                      <span>{slide.badge}</span>
+                    </div>
+                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider text-white/90 bg-black/55 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-white/15">
+                      Site {idx + 1} of {siteSlides.length}
+                    </span>
+                  </div>
+
+                  {/* Bottom Information Overlay */}
+                  <div className="absolute bottom-11 left-4 right-4 text-white z-20">
+                    <div className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-gold-warm mb-1">
+                      <MapPin size={12} className="text-gold shrink-0" />
+                      <span className="truncate">{slide.location}</span>
+                    </div>
+
+                    <h4 className="font-serif text-lg sm:text-xl font-bold leading-snug drop-shadow-md text-white">
+                      {slide.title}
+                    </h4>
+
+                    <p className="text-[12px] sm:text-[13px] text-white/90 font-medium mt-0.5 line-clamp-1">
+                      {slide.subtitle}
+                    </p>
+
+                    <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-md rounded border border-gold/30 text-[11px] sm:text-xs text-gold-light font-bold">
+                      <span>🏷️</span>
+                      <span>{slide.priceHighlight}</span>
+                    </div>
+
+                    <p className="text-[10px] sm:text-[11px] text-white/80 mt-1 line-clamp-1">
+                      {slide.highlights}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Left / Right Carousel Controls */}
+            <button
+              type="button"
+              onClick={prevSlide}
+              aria-label="Previous Site"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/45 hover:bg-black/75 text-white flex items-center justify-center transition-all backdrop-blur-sm hover:scale-110 focus:outline-none"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={nextSlide}
+              aria-label="Next Site"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/45 hover:bg-black/75 text-white flex items-center justify-center transition-all backdrop-blur-sm hover:scale-110 focus:outline-none"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            {/* Bottom Dots Navigation */}
+            <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 z-20">
+              {siteSlides.map((slide, idx) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  onClick={() => goToSlide(idx)}
+                  aria-label={`Show ${slide.title}`}
+                  className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${
+                    idx === activeSlide
+                      ? "w-7 bg-gold shadow-md"
+                      : "w-2 bg-white/45 hover:bg-white/80"
+                  }`}
+                />
+              ))}
             </div>
           </div>
 
@@ -184,16 +364,17 @@ export default function LeadPopupModal() {
                   <div>
                     <select
                       value={formData.requirement}
-                      onChange={(e) =>
-                        setFormData({ ...formData, requirement: e.target.value })
-                      }
+                      onChange={(e) => handleRequirementChange(e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#D1D9D1] rounded-sm text-ink focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
                     >
-                      <option value="Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)">
-                        Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)
-                      </option>
                       <option value="Kandhan Avenue (2 BHK Houses from ₹29L / Plots)">
-                        Kandhan Avenue (2 BHK Houses from ₹29L / Plots)
+                        Kandhan Avenue – Elur (Houses from ₹29L / Plots ₹6.20L/Cent)
+                      </option>
+                      <option value="Rathna Residency, Malumichampatty (Plots from ₹12.5L/Cent)">
+                        Rathna Residency – Malumichampatty (Plots ₹12.5L/Cent)
+                      </option>
+                      <option value="Sri Aanandham Avenue, Madhampatty (Plots ₹11.90L/Cent / Duplex ₹45L)">
+                        Sri Aanandham Avenue – Madhampatty (Plots ₹11.90L / Duplex ₹45L)
                       </option>
                       <option value="Residential Plot in Coimbatore">
                         Residential Plot in Coimbatore

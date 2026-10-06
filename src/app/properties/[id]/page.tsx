@@ -124,6 +124,17 @@ export default function PropertyDetailPage({
     ],
   };
 
+  const videoJsonLd = project.instagramReels?.map((reel) => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: reel.title,
+    description: reel.highlight,
+    thumbnailUrl: [`https://latitudeproperties.com${reel.thumbnail}`],
+    uploadDate: "2026-01-01T08:00:00+05:30",
+    embedUrl: reel.embedUrl,
+    contentUrl: reel.url,
+  }));
+
   return (
     <>
       <script
@@ -134,6 +145,12 @@ export default function PropertyDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {videoJsonLd && videoJsonLd.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+        />
+      )}
       <PropertyDetailClient project={project} />
     </>
   );

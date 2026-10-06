@@ -39,7 +39,7 @@ type Message = {
 const INITIAL_PROMPTS = [
   "Rathna Residency Launch (₹12.5L/Cent) 🏡",
   "Kandhan Avenue 2 BHK (₹29L) ✨",
-  "Show me available plots in the site map 🗺️",
+  "What are the available plots & pricing? 🏡",
   "Which plots are corner plots?",
   "What are the DTCP approval details?",
   "How do I book a free cab site visit? 🚗",
@@ -53,12 +53,12 @@ export default function LatitudeAiChat() {
     {
       id: "welcome",
       sender: "ai",
-      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Properties**.\n\nI can help you explore our Grand Launches:\n• **[Rathna Residency](/sites/rathna-residency)** (Malumichampatty, Future Corporation Limit - Plots at ₹12.5L/cent)\n• **[Kandhan Avenue](/sites/kandhan-avenue)** (Elur, Arisipalayam - 2 BHK Houses from ₹29L, Plots at ₹6.20L/cent)\n• **[Master Layout Maps & Live Plots](/sites/sri-aanandham-avenue)**\n\nWhat would you like to explore today?`,
+      text: `Hello! I am **LATITUDE AI**, Senior Property Advisor for **Latitude Properties**.\n\nI can help you explore our Grand Launches:\n• **[Rathna Residency](/sites/rathna-residency)** (Malumichampatty, Future Corporation Limit - Plots at ₹12.5L/cent)\n• **[Kandhan Avenue](/sites/kandhan-avenue)** (Elur, Arisipalayam - 2 BHK Houses from ₹29L, Plots at ₹6.20L/cent)\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)** (Siruvani Main Road, Kalampalayam - DTCP Approved Plots)\n\nWhat would you like to explore today?`,
       timestamp: "Just now",
       links: [
         { label: "Rathna Residency (Launch Offer)", href: "/sites/rathna-residency" },
         { label: "Kandhan Avenue (2 BHK & Plots)", href: "/sites/kandhan-avenue" },
-        { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
+        { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
         { label: "View All Sites", href: "/#sites" },
       ],
     },
@@ -97,32 +97,28 @@ export default function LatitudeAiChat() {
               : "⚪ **100% Sold Out & Patta Transferred**"
           }\n• **Dimensions:** ${plot.dimensionsImperial} (${plot.dimensionsMetric})\n• **Area:** **${plot.areaSqFt} Sq.Ft** (${plot.areaCents} Cents)\n• **Facing:** ${plot.facing}\n• **Road Access:** ${plot.roadAccess}\n\n💰 **Pricing Details:**\n• **Price:** **₹${(plot.offerPrice / 100000).toFixed(2)} Lakhs** (Rate: ₹${plot.ratePerSqFt}/sq.ft)\n• **Title:** 100% Clear Title with Instant Sub-division Patta Transfer\n\n${plot.note ? `*Note: ${plot.note}*\n\n` : ""}Would you like to reserve ${plot.label} or inspect it during a free cab site visit?`,
           links: [
-            { label: `View ${plot.label} on Site Map`, href: "/#site-map" },
             { label: "Book Free Cab Site Visit", href: "/#contact" },
+            { label: "View All Sites", href: "/#sites" },
           ],
         };
       }
     }
 
-    // 0b. Master Site Map / Layout Map / Blueprint / Inventory Inquiry
+    // 0b. Plot Availability & Inventory Inquiry
     if (
-      q.includes("site map") ||
-      q.includes("layout") ||
-      q.includes("blueprint") ||
-      q.includes("sitemap") ||
-      q.includes("plan") ||
       q.includes("how many plot") ||
       q.includes("how many plots") ||
-      q.includes("plot map")
+      q.includes("inventory") ||
+      q.includes("plots available")
     ) {
       const availCount = getAvailableSitePlots().length;
       const bkCount = getBookedSitePlots().length;
       const sldCount = getSoldSitePlots().length;
 
       return {
-        text: `🗺️ **Master Site Map & Plot Availability Overview**:\n\n• **Project:** **${layoutMetadata.projectName}**\n• **Location:** ${layoutMetadata.location}\n• **DTCP Sanction:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Order:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n\n📊 **Current Inventory Status (17 Total Plots):**\n• 🟢 **Available:** **${availCount} Plots** (Plots #01, #03, #05, #08, #11, #15, #16)\n• 🟡 **Booked (Token Received):** **${bkCount} Plots** (Plots #02, #09, #12, #14)\n• ⚪ **Sold Out (Patta Delivered):** **${sldCount} Plots** (Plots #04, #06, #07, #10, #13, #17)\n\n🛣️ **Infrastructure:** 9.0m (30 Ft) Main Central Tar Avenue + 7.2m (24 Ft) Cross Branch Roads, pure Siruvani drinking water, and dedicated TANGEDCO power space.\n\nYou can explore and click any plot on our live interactive site map!`,
+        text: `📊 **Plot Availability Overview**:\n\n• **Project:** **${layoutMetadata.projectName}**\n• **Location:** ${layoutMetadata.location}\n• **DTCP Sanction:** ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Order:** ${layoutMetadata.subdivisionNo}\n• **Survey Numbers:** ${layoutMetadata.surveyNumbers}\n\n📊 **Current Inventory Status (17 Total Plots):**\n• 🟢 **Available:** **${availCount} Plots** (Plots #01, #03, #05, #08, #11, #15, #16)\n• 🟡 **Booked (Token Received):** **${bkCount} Plots** (Plots #02, #09, #12, #14)\n• ⚪ **Sold Out (Patta Delivered):** **${sldCount} Plots** (Plots #04, #06, #07, #10, #13, #17)\n\n🛣️ **Infrastructure:** 9.0m (30 Ft) Main Central Tar Avenue + 7.2m (24 Ft) Cross Branch Roads, pure Siruvani drinking water, and dedicated TANGEDCO power space.`,
         links: [
-          { label: "Explore Interactive Site Map", href: "/#site-map" },
+          { label: "View All Sites", href: "/#sites" },
           { label: "Book Free Cab Site Visit", href: "/#contact" },
         ],
       };
@@ -141,7 +137,7 @@ export default function LatitudeAiChat() {
       return {
         text: `🏡 **Corner Plots in our Layout**:\n\nCorner plots provide dual road ventilation, maximum natural light, and superior Vastu compliance:\n\n${cornerList}\n\nWould you like to reserve a corner plot or visit the site?`,
         links: [
-          { label: "Inspect Corners on Site Map", href: "/#site-map" },
+          { label: "View Available Sites", href: "/#sites" },
           { label: "Enquire on WhatsApp", href: buildWhatsappLink(site.defaultWhatsappMessage) },
         ],
       };
@@ -160,7 +156,7 @@ export default function LatitudeAiChat() {
         text: `📜 **DTCP & Government Approval Details**:\n\n• **Kandhan Avenue Approval:** DTCP Approval No. 256/2026\n• **Sri Aanandham Avenue:** DTCP Order No: ${layoutMetadata.dtcpApprovalNo}\n• **Sub-division Sanction:** ${layoutMetadata.subdivisionNo}\n• **Title Status:** Single-owner parent deed with 40-year clean encumbrance certificate.\n• **Patta Transfer:** Instant individual sub-division Patta transfer upon registration.\n• **Bank Approval:** Pre-approved for up to 80%-85% home loans.\n\nWould you like our senior legal advisor to present certified sanction copies during your site visit?`,
         links: [
           { label: "View Kandhan Avenue Details", href: "/sites/kandhan-avenue" },
-          { label: "View Approved Blueprint", href: "/#site-map" },
+          { label: "View Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
           { label: "Schedule Free Site Visit", href: "/#contact" },
         ],
       };
@@ -210,18 +206,18 @@ export default function LatitudeAiChat() {
       };
     }
 
-    // 2. Layout Maps & Plot Availability
+    // 2. Available Sites & Plot Status
     if (
-      q.includes("map") ||
       q.includes("available") ||
-      q.includes("inventory")
+      q.includes("inventory") ||
+      q.includes("plots")
     ) {
       return {
-        text: `🗺️ **Master Layout Maps & Live Plot Status:**\n\nYou can inspect our high-resolution sanctioned layout maps and real-time plot directory right on each site page:\n\n• **[Kandhan Avenue](/sites/kandhan-avenue)**: 25 Plots total (11 Available, 6 Booked, 8 Sold) | 2 BHK Houses from ₹29L, Plots ₹6.20L/cent, 12m Tar Road, DTCP 256/2026\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)**: 17 Plots total (8 Available, 4 Booked, 5 Sold) | 30ft Roads, Siruvani water line, solar lights\n• **[Siruvani Enclave (Phase 1 & 2)](/sites/siruvani-phase-1-2)**: 56 Plots total (18 Available in Phase 2, 12 Booked, 26 Sold in Phase 1)\n\nEvery site detail page features an interactive zoomable layout map and plot-by-plot inventory table!`,
+        text: `🏡 **Available Sites & Live Plot Status:**\n\nYou can explore our sanctioned residential projects and real-time plot directory right on each site page:\n\n• **[Rathna Residency](/sites/rathna-residency)**: Malumichampatty, Future Corporation Limit | Launch Price ₹12.5L/cent, 33-ft Blacktop Roads\n• **[Kandhan Avenue](/sites/kandhan-avenue)**: 25 Plots total (11 Available, 6 Booked, 8 Sold) | 2 BHK Houses from ₹29L, Plots ₹6.20L/cent, 12m Tar Road, DTCP 256/2026\n• **[Sri Aanandham Avenue](/sites/sri-aanandham-avenue)**: Madhampatty (700m from Bus Stop, 1.8km Ring Road) | Launch Price ₹11.90L/cent, 2 BHK Duplex from ₹45L, DTCP 252/2026\n\nEvery site detail page features complete specifications and real-time plot inventory!`,
         links: [
+          { label: "Rathna Residency Details", href: "/sites/rathna-residency" },
           { label: "Kandhan Avenue Details", href: "/sites/kandhan-avenue" },
-          { label: "Sri Aanandham Layout Map", href: "/sites/sri-aanandham-avenue" },
-          { label: "Siruvani Enclave Layout Map", href: "/sites/siruvani-phase-1-2" },
+          { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
         ],
       };
     }
@@ -276,20 +272,23 @@ export default function LatitudeAiChat() {
       };
     }
 
-    // YouTube Video Tours & Shorts
+    // Instagram Video Tours & Reels
     if (
+      q.includes("instagram") ||
       q.includes("youtube") ||
       q.includes("video") ||
+      q.includes("reel") ||
+      q.includes("reels") ||
       q.includes("short") ||
       q.includes("channel") ||
       q.includes("tour") ||
       q.includes("walkthrough")
     ) {
       return {
-        text: `🎥 **Latitude Properties Official YouTube Channel & Video Tours:**\n\nYou can watch live on-site layout tours, villa walkthroughs, and buyer experiences directly on our website!\n\n• **Featured On-Site Shorts:**\n  - Rathna Residency DTCP Plots (Behind Karpagam University)\n  - Madhampatty 2 BHK Luxury Villa (₹45 Lakhs Onwards)\n  - Malumichampatty Dream Land Tour\n  - Coimbatore Real Estate Investment Guide\n\n• **Official Channel:** [@LatitudeProperties](https://www.youtube.com/@LatitudeProperties)`,
+        text: `🎥 **Latitude Properties Official Instagram Reels & Video Tours:**\n\nYou can watch live client satisfaction handovers, DTCP project walkthroughs, and villa tours directly on our website!\n\n• **Client Satisfaction Stories:** Malumichampatti & Madhampatti site handovers\n• **Grand Launches:** Rathna Residency & Kandhan Avenue\n• **Budget Villas:** 2 BHK Individual Houses from ₹29 Lakhs\n\n📸 **Official Instagram:** [@latitude_properties](https://www.instagram.com/latitude_properties/)`,
         links: [
-          { label: "Watch Shorts Carousel on Website", href: "/#video-tours" },
-          { label: "Visit Official YouTube Channel", href: "https://www.youtube.com/@LatitudeProperties" },
+          { label: "Watch Video Tours on Website", href: "/#video-tours" },
+          { label: "Follow on Instagram", href: "https://www.instagram.com/latitude_properties/" },
         ],
       };
     }
@@ -315,10 +314,10 @@ export default function LatitudeAiChat() {
 
     // Default intelligent overview
     return {
-      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP approved gated layouts, 2 BHK individual houses, wide tar roads, and 100% clear titles.\n\nCheck out our **Grand Launch Offer at Kandhan Avenue (Elur, Arisipalayam)** starting from ₹29 Lakhs for 2 BHK individual houses and ₹6.20 Lakhs/cent for plots!\n\nFeel free to ask me about:\n- 🏡 Kandhan Avenue 2 BHK houses & ₹6.20L/cent plots\n- 🗺️ Layout maps & live plot availability (Available / Booked / Sold)\n- 📏 Available plot dimensions & pricing\n- 🎥 YouTube video tours & inch-by-inch specs\n- 📜 DTCP Sanctions & Patta records\n- 🚗 Free cab pickup for site visits`,
+      text: `Thank you for asking! **Latitude Properties** is Coimbatore's premier land and residential promoter, specializing in DTCP approved gated communities, 2 BHK individual houses, wide tar roads, and 100% clear titles.\n\nCheck out our **Grand Launch Offer at Kandhan Avenue (Elur, Arisipalayam)** starting from ₹29 Lakhs for 2 BHK individual houses and ₹6.20 Lakhs/cent for plots!\n\nFeel free to ask me about:\n- 🏡 Kandhan Avenue 2 BHK houses & ₹6.20L/cent plots\n- 📊 Available plots & live availability (Available / Booked / Sold)\n- 📏 Available plot dimensions & pricing\n- 🎥 Instagram video tours & real client stories\n- 📜 DTCP Sanctions & Patta records\n- 🚗 Free cab pickup for site visits`,
       links: [
         { label: "Kandhan Avenue (Launch Offer)", href: "/sites/kandhan-avenue" },
-        { label: "Live Interactive Site Map", href: "/#site-map" },
+        { label: "View Our Sites", href: "/#sites" },
         { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
         { label: "Booked Plots", href: "/booked-properties" },
       ],
@@ -361,19 +360,19 @@ export default function LatitudeAiChat() {
           let relevantLinks: { label: string; href: string }[] = [];
           const lower = (query + " " + data.content).toLowerCase();
           if (lower.includes("aanandham")) {
-            relevantLinks.push({ label: "Sri Aanandham Avenue Layout", href: "/sites/sri-aanandham-avenue" });
+            relevantLinks.push({ label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" });
           }
-          if (lower.includes("site map") || lower.includes("plot") || lower.includes("layout") || lower.includes("map")) {
-            relevantLinks.push({ label: "Live Interactive Site Map", href: "/#site-map" });
+          if (lower.includes("plot") || lower.includes("sites") || lower.includes("layout")) {
+            relevantLinks.push({ label: "View Our Sites", href: "/#sites" });
           }
           if (lower.includes("kalampalayam")) {
             relevantLinks.push({ label: "Sri Aanandham Avenue (Kalampalayam)", href: "/sites/sri-aanandham-avenue" });
           }
           if (lower.includes("kandhan")) {
-            relevantLinks.push({ label: "Kandhan Avenue Layout", href: "/sites/kandhan-avenue" });
+            relevantLinks.push({ label: "Kandhan Avenue Details", href: "/sites/kandhan-avenue" });
           }
-          if (lower.includes("siruvani enclave") || lower.includes("phase")) {
-            relevantLinks.push({ label: "Siruvani Enclave Layout", href: "/sites/siruvani-phase-1-2" });
+          if (lower.includes("rathna") || lower.includes("malumichampatty")) {
+            relevantLinks.push({ label: "Rathna Residency Details", href: "/sites/rathna-residency" });
           }
           if (lower.includes("booked")) {
             relevantLinks.push({ label: "Booked Plots", href: "/booked-properties" });
@@ -384,7 +383,7 @@ export default function LatitudeAiChat() {
           if (relevantLinks.length === 0) {
             relevantLinks = [
               { label: "Kandhan Avenue", href: "/sites/kandhan-avenue" },
-              { label: "Live Interactive Site Map", href: "/#site-map" },
+              { label: "View Our Sites", href: "/#sites" },
               { label: "Sri Aanandham Avenue", href: "/sites/sri-aanandham-avenue" },
               { label: "Booked Plots", href: "/booked-properties" },
               { label: "Sold Out Sites", href: "/sold-properties" },
